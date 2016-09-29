@@ -1,0 +1,75 @@
+{% extends "GestionStockBundle::template.html.twig" %}
+	 {% block contenu %}
+	 <br><br>
+	 <div class="well">
+        <em><center><h2>Ajouter un nouveau produit pharmaceutique </h2></center></em>
+		{{ form_start(formulaire, {'attr': {'class': 'form-horizontal'}}) }}
+		{{ form_errors(formulaire) }}
+		<div class="form-group">
+		    {# Génération du label. #}
+		    {{ form_label(formulaire.libelle, "Libellé produit", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+
+		    {# Affichage des erreurs pour ce champ précis. #}
+		    {{ form_errors(formulaire.libelle) }}
+
+		    <div class="col-sm-4">
+		        {# Génération de l'input. #}
+		        {{ form_widget(formulaire.libelle, {'attr': {'class': 'form-control'}}) }}
+		    </div>
+		</div>
+		<div class="form-group">
+		    {# Génération du label. #}
+		    {{ form_label(formulaire.quantite, "Quantité produit", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+
+		    {# Affichage des erreurs pour ce champ précis. #}
+		    {{ form_errors(formulaire.quantite) }}
+
+		    <div class="col-sm-4">
+		        {# Génération de l'input. #}
+		        {{ form_widget(formulaire.quantite, {'attr': {'class': 'form-control'}}) }}
+		    </div>
+		</div>
+		<div class="form-group">
+		    {# Génération du label. #}
+		    {{ form_label(formulaire.prixUnitaire, "Prix Unitaire", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+
+		    {# Affichage des erreurs pour ce champ précis. #}
+		    {{ form_errors(formulaire.prixUnitaire) }}
+
+		    <div class="col-sm-4">
+		        {# Génération de l'input. #}
+		        {{ form_widget(formulaire.prixUnitaire, {'attr': {'class': 'form-control'}}) }}
+		    </div>
+		</div>
+		<div class="form-group">
+		    {# Génération du label. #}
+		    {{ form_label(formulaire.codeBarre, "CodeBarre", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+
+		    {# Affichage des erreurs pour ce champ précis. #}
+		    {{ form_errors(formulaire.codeBarre) }}
+
+		    <div class="col-sm-4">
+		        {# Génération de l'input. #}
+		        {{ form_widget(formulaire.codeBarre, {'attr': {'class': 'form-control'}}) }}
+		    </div>
+		</div>
+		<div class="form-group">
+		    {# Génération du label. #}
+		    {{ form_label(formulaire.type, "Catégorie produit", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+
+		    {# Affichage des erreurs pour ce champ précis. #}
+		    {{ form_errors(formulaire.type) }}
+
+		    <div class="col-sm-4">
+		        {# Génération de l'input. #}
+		        {{ form_widget(formulaire.type, {'attr': {'class': 'form-control'}}) }}
+		    </div>
+		</div>
+
+		{# Pour le bouton, pas de label ni d'erreur, on affiche juste le widget #}
+        <span style="margin-left:30%">{{ form_widget(formulaire.Ajouter, {'attr': {'class': 'btn btn-primary'}}) }}</span>
+
+		{{ form_widget(formulaire) }}
+		 {{ form_end(formulaire) }}	
+		 </div>
+	{%endblock%}

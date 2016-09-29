@@ -1,0 +1,12 @@
+services:
+#    administration_pharmacie.example:
+#        class: Administration\PharmacieBundle\Example
+#        arguments: ["@service_id", "plain_value", %parameter%]
+    # administration.pharmacie.admin:
+    #     class: Administration\PharmacieBundle\Admin\PharmacieAdmin
+    #     arguments: [~, Administration\PharmacieBundle\Entity\Pharmacie, ~]
+
+    #     tags:
+    #         - { name: sonata.admin, manager_type: orm, group: Administration globale, label: Pharmacie }
+    #     calls:
+    #         - [ setTranslationDomain, [AdministrationPharmacieBundle]]

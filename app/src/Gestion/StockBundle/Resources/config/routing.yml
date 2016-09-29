@@ -1,0 +1,15 @@
+gestion_stock_homepage:
+    path:     /produit
+    defaults: { _controller: GestionStockBundle:Default:index }
+
+gestion_stock_ajouter_produit:
+    path:     /produit/ajouter
+    defaults: { _controller: GestionStockBundle:Produit:ajouter }
+
+gestion_stock_afficher_produit:
+    path:     /produit/afficher/{code}
+    defaults: { _controller: GestionStockBundle:Produit:afficher }
+
+gestion_stock_lister_produit:
+    path:     /produit/lister
+    defaults: { _controller: GestionStockBundle:Produit:lister }

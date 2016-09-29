@@ -1,0 +1,28 @@
+{% extends "GestionStockBundle::template.html.twig" %}
+{% block contenu %}
+	 <div class="col-md-12" >
+        <div class="table-responsive">
+            <table id="mytable" class="table table-bordered ">
+                <thead>
+                    <th>Libellé</th>
+                    <th>Quantité</th>
+                    <th>Prix Unitaire</th>
+                    <th>Code Barre</th>
+                    <th>Type</th>
+                    <th></th>
+                </thead>
+                <tbody>
+                    {% for tag in produits %}
+                         <tr>
+                            <td>{{ tag.libelle}}</td>
+                            <td>{{ tag.quantite}}</td>
+                            <td>{{ tag.prixUnitaire}}</td>
+                            <td>{{ tag.codeBarre}}</td>
+                            <td>{{ tag.type }}</td>
+                             <td><a href="{{ path('gestion_stock_afficher_produit', {'code': tag.codeBarre}) }}"><button class="btn btn-info btn-xs"><span class="glyphicon glyphicon-list"></span></button></a></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+{% endblock%}

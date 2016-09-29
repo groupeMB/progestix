@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>PharmaGes</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <!-- Encodage en utf-8, en HTML 5 -->
+        <meta charset="utf-8" />
+        <!-- Inclusion des bibliothèques JavaScript -->
+
+        <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+        <script type="text/javascript">
+            google.load("visualization", "1", {packages:["corechart", 'table', 'treemap', 'gauge']});
+            google.load('jquery', '1.6.0');
+        </script>
+        <script type="text/javascript" src=" {{ app.request.schemeAndHttpHost ~ asset('bundles/pharmaciepharmacien/bower_components/jquery/dist/jquery.min.js') }}"></script>
+        <script type="text/javascript" src=" {{ app.request.schemeAndHttpHost ~ asset('bundles/pharmaciepharmacien/bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+        <script type="text/javascript" src=" {{ app.request.schemeAndHttpHost ~ asset('bundles/pharmaciepharmacien/bower_components/jquery/dist/jquery.dataTables.min.js') }}"></script>
+        <script type="text/javascript" src=" {{ app.request.schemeAndHttpHost ~ asset('bundles/pharmaciepharmacien/js/modernizr.js') }}"></script>
+        <script type="text/javascript" src=" {{ app.request.schemeAndHttpHost ~ asset('bundles/pharmaciepharmacien/js/accueil.js') }}"></script>
+        <script type="text/javascript" src=" {{ app.request.schemeAndHttpHost ~ asset('bundles/pharmaciepharmacien/js/membre.js') }}"></script>
+        <script type="text/javascript" src=" {{ app.request.schemeAndHttpHost ~ asset('bundles/pharmaciepharmacien/js/contrat.js') }}"></script>
+        <script type="text/javascript" src=" {{ app.request.schemeAndHttpHost ~ asset('bundles/pharmaciepharmacien/js/sms.js') }}"></script>
+        <script>
+            $(function() {
+                    $('a[data-confirm]').click(function(ev) {
+                    var href = $(this).attr('href');
+                    if (!$('#dataConfirmModal').length) {
+                        $('body').append('<div id="dataConfirmModal" class="modal" role="dialog" aria-labelledby="dataConfirmLabel" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button><h3 id="dataConfirmLabel" style="text-align: center; color: white; background-color: #83b719; padding: 5px">Confirmation de l\'opération en cours</h3></div><div class="modal-body"></div><div class="modal-footer"><button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Non</button><a class="btn btn-success" id="dataConfirmOK">Oui</a></div></div></div></div>');
+                    }
+                    $('#dataConfirmModal').find('.modal-body').text($(this).attr('data-confirm'));
+                    $('#dataConfirmOK').attr('href', href);
+                    $('#dataConfirmModal').modal({show:true});
+                     return false;
+                });
+            });
+        </script>
+
+
+        <!-- Inclusion des fichiers de styles -->
+        
+        <link rel="icon" href="asset('bundles/pharmaciepharmacien/images/favicon.ico')" />
+        <link rel="stylesheet" type="text/css" href = "{{ app.request.schemeAndHttpHost ~ asset('bundles/pharmaciepharmacien/css/accueil.css') }}"/>
+        <link rel="stylesheet" type="text/css" href = "{{ app.request.schemeAndHttpHost ~ asset('bundles/pharmaciepharmacien/css/membre.css') }}"/>
+        <link rel="stylesheet" type="text/css" href = "{{ app.request.schemeAndHttpHost ~ asset('bundles/pharmaciepharmacien/bower_components/bootstrap/dist/css/bootstrap.min.css') }}"/>
+        <link rel="stylesheet" type="text/css" href = "{{ app.request.schemeAndHttpHost ~ asset('bundles/pharmaciepharmacien/bower_components/bootstrap/dist/css/jquery.dataTables.min.css') }}"/>
+         <link rel="stylesheet" type="text/css" href = "{{ app.request.schemeAndHttpHost ~  asset('bundles/pharmaciepharmacien/css/sb-admin-2.css') }}"/>
+        <link rel="stylesheet" type="text/css" href = "{{ app.request.schemeAndHttpHost ~ asset('bundles/pharmaciepharmacien/css/font-awesome.min.css') }}"/>
+        
+    </head>
+    <body id="coprsTemplate" onload="date_heure('heure');">
+        <div >
+            <!-- bloc conteneur de la page  -->
+            <div id="container" class="container container-fluid">
+                {% block entete%}
+                    <div class="row" style="margin-top: 15px">
+                        <div class="col-sm-6 col-md-3" id="portofolioPresentation">
+                            <img src="{{ app.request.schemeAndHttpHost ~ asset('bundles/pharmaciepharmacien/images/pharmages.png') }}" width="100%">
+                        </div>
+                        <div class="col-sm-3 col-md-3" id="portofolioPresentation">
+                            <div class="panel panel-success">
+                                <div class="panel-heading"><center><em>Recette du jour</em></center></div>
+                                <div class="panel-body">
+                                    <center><em>250.000 FCFA</em></center>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3 col-md-3" id="portofolioPresentation">
+                            <div class="panel panel-success">
+                                <div class="panel-heading"><center><em>Nombre produits vendus</em></center></div>
+                                <div class="panel-body">
+                                    <center><em>600</em></center>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3 col-md-3" id="portofolioPresentation">
+                            <div class="panel panel-success">
+                                <div class="panel-heading"><center><em>Fonds de roulement</em></center></div>
+                                <div class="panel-body">
+                                    <center><em>60.000 FCFA</em></center>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                {% endblock %}
+                {% block corps %}
+                    {% block menuHaut %}
+                        <nav class="navbar navbar-fixed-top" role="navigation" style="background-color: #83b719; color: white">
+                            <div class="container-fluid">
+                                <div class="navbar-header">
+                                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                                        <span class="sr-only">Toggle navigation</span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                    </button>
+                                    {% block titre %}
+                                        <span class="navbar-brand" href="#">Votre gestionnaire de pharmacie sécurisé</span>
+                                    {% endblock %}
+                                </div>
+                                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                                    {% if app.user %}
+                                        <ul class="nav navbar-nav navbar-right">
+                                                <li style="background-color: #461900"><a style="color: white">Bienvenue Pharmacien</a></li>
+                                        </ul>
+                                    {% endif %}
+                                    <ul class="nav navbar-nav navbar-right barrehaut">
+                                        {% if app.user == "" %}
+                                            <li class="icone_connexion">
+                                                <a href=""><span class="glyphicon glyphicon-login" aria-hidden="true"></span> Connexion</a>
+                                            </li>
+                                        {% else %}
+                                            <li class="icone_connexion">
+                                                <a href=""><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Accueil </a>
+                                            </li>
+                                        {% endif %}
+                                        <li>
+                                            <a href="#"><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> Support technique</a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Contactez-nous</a>
+                                        </li>
+                                        {% block logout %}
+
+                                        {% endblock %}
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </nav>  
+                </div>
+
+                    {% endblock %}
+                <div style="width: 100%;">
+                    
+                    {% block menuLeft %}
+
+                    {% endblock %}            
+                    {% block contenu %}
+
+                    {% endblock %}
+
+                </div>
+                {% endblock %}
+        </div>            
+    </body>
+
+</html>
