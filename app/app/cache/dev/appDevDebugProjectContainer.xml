@@ -28,6 +28,7 @@
       <parameter key="PharmaciePharmacienBundle">Pharmacie\PharmacienBundle\PharmaciePharmacienBundle</parameter>
       <parameter key="AdministrationPharmacieBundle">Administration\PharmacieBundle\AdministrationPharmacieBundle</parameter>
       <parameter key="GestionStockBundle">Gestion\StockBundle\GestionStockBundle</parameter>
+      <parameter key="KnpSnappyBundle">Knp\Bundle\SnappyBundle\KnpSnappyBundle</parameter>
       <parameter key="DebugBundle">Symfony\Bundle\DebugBundle\DebugBundle</parameter>
       <parameter key="WebProfilerBundle">Symfony\Bundle\WebProfilerBundle\WebProfilerBundle</parameter>
       <parameter key="SensioDistributionBundle">Sensio\Bundle\DistributionBundle\SensioDistributionBundle</parameter>
@@ -39,7 +40,7 @@
     <parameter key="database_port">null</parameter>
     <parameter key="database_name">pharmages</parameter>
     <parameter key="database_user">root</parameter>
-    <parameter key="database_password">null</parameter>
+    <parameter key="database_password">root</parameter>
     <parameter key="mailer_transport">smtp</parameter>
     <parameter key="mailer_host">127.0.0.1</parameter>
     <parameter key="mailer_user">null</parameter>
@@ -881,6 +882,16 @@
       <parameter>Registration</parameter>
       <parameter>Default</parameter>
     </parameter>
+    <parameter key="knp_snappy.pdf.internal_generator.class">Knp\Snappy\Pdf</parameter>
+    <parameter key="knp_snappy.pdf.class">Knp\Bundle\SnappyBundle\Snappy\LoggableGenerator</parameter>
+    <parameter key="knp_snappy.pdf.binary">/usr/bin/wkhtmltopdf.sh</parameter>
+    <parameter key="knp_snappy.pdf.options" type="collection"/>
+    <parameter key="knp_snappy.pdf.env" type="collection"/>
+    <parameter key="knp_snappy.image.internal_generator.class">Knp\Snappy\Image</parameter>
+    <parameter key="knp_snappy.image.class">Knp\Bundle\SnappyBundle\Snappy\LoggableGenerator</parameter>
+    <parameter key="knp_snappy.image.binary">wkhtmltoimage</parameter>
+    <parameter key="knp_snappy.image.options" type="collection"/>
+    <parameter key="knp_snappy.image.env" type="collection"/>
     <parameter key="web_profiler.controller.profiler.class">Symfony\Bundle\WebProfilerBundle\Controller\ProfilerController</parameter>
     <parameter key="web_profiler.controller.router.class">Symfony\Bundle\WebProfilerBundle\Controller\RouterController</parameter>
     <parameter key="web_profiler.controller.exception.class">Symfony\Bundle\WebProfilerBundle\Controller\ExceptionController</parameter>
@@ -2615,7 +2626,7 @@
         </argument>
         <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-            <argument>57ec1690673611.03916008</argument>
+            <argument>57ed6edce4e3b3.17807330</argument>
           </service>
         </argument>
         <argument type="service">
@@ -2629,7 +2640,7 @@
         </argument>
         <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-            <argument>57ec1690673611.03916008</argument>
+            <argument>57ed6edce4e3b3.17807330</argument>
           </service>
         </argument>
       </argument>
@@ -3038,7 +3049,7 @@
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
             <argument type="service" id="security.token_storage"/>
-            <argument>57ec1690673611.03916008</argument>
+            <argument>57ed6edce4e3b3.17807330</argument>
             <argument type="service" id="monolog.logger.security" on-invalid="null"/>
             <argument type="service" id="security.authentication.manager"/>
           </service>
@@ -3150,7 +3161,7 @@
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
             <argument type="service" id="security.token_storage"/>
-            <argument>57ec1690673611.03916008</argument>
+            <argument>57ed6edce4e3b3.17807330</argument>
             <argument type="service" id="monolog.logger.security" on-invalid="null"/>
             <argument type="service" id="security.authentication.manager"/>
           </service>
@@ -3540,7 +3551,7 @@
         <argument key="port">null</argument>
         <argument key="dbname">pharmages</argument>
         <argument key="user">root</argument>
-        <argument key="password">null</argument>
+        <argument key="password">root</argument>
         <argument key="charset">UTF8</argument>
         <argument key="driverOptions" type="collection"/>
         <argument key="defaultTableOptions" type="collection"/>
@@ -5247,6 +5258,28 @@
         </argument>
       </call>
     </service>
+    <service id="knp_snappy.pdf" class="Knp\Bundle\SnappyBundle\Snappy\LoggableGenerator">
+      <tag name="monolog.logger" channel="snappy"/>
+      <argument type="service">
+        <service class="Knp\Snappy\Pdf" public="false">
+          <argument>/usr/bin/wkhtmltopdf.sh</argument>
+          <argument type="collection"/>
+          <argument type="collection"/>
+        </service>
+      </argument>
+      <argument type="service" id="monolog.logger.snappy" on-invalid="null"/>
+    </service>
+    <service id="knp_snappy.image" class="Knp\Bundle\SnappyBundle\Snappy\LoggableGenerator">
+      <tag name="monolog.logger" channel="snappy"/>
+      <argument type="service">
+        <service class="Knp\Snappy\Image" public="false">
+          <argument>wkhtmltoimage</argument>
+          <argument type="collection"/>
+          <argument type="collection"/>
+        </service>
+      </argument>
+      <argument type="service" id="monolog.logger.snappy" on-invalid="null"/>
+    </service>
     <service id="data_collector.dump" class="Symfony\Component\HttpKernel\DataCollector\DumpDataCollector">
       <tag name="data_collector" id="dump" template="@Debug/Profiler/dump.html.twig" priority="240"/>
       <argument type="service" id="debug.stopwatch" on-invalid="ignore"/>
@@ -5464,6 +5497,18 @@
     </service>
     <service id="monolog.logger.doctrine" class="Symfony\Bridge\Monolog\Logger">
       <argument>doctrine</argument>
+      <call method="pushHandler">
+        <argument type="service" id="monolog.handler.main"/>
+      </call>
+      <call method="pushHandler">
+        <argument type="service" id="monolog.handler.debug"/>
+      </call>
+    </service>
+    <service id="monolog.logger.snappy" class="Symfony\Bridge\Monolog\Logger">
+      <argument>snappy</argument>
+      <call method="pushHandler">
+        <argument type="service" id="monolog.handler.console"/>
+      </call>
       <call method="pushHandler">
         <argument type="service" id="monolog.handler.main"/>
       </call>

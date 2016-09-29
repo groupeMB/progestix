@@ -46,3 +46,8 @@ fda666,::1,GET,http://localhost/pharmages/web/app_dev.php/produit/afficher/asset
 c67003,::1,GET,http://localhost/pharmages/web/app_dev.php/produit/afficher/asset('bundles/gestionstock/images/favicon.ico'),1474220574,,404
 67509f,::1,GET,http://localhost/pharmages/web/app_dev.php/produit/afficher/gfhtiol23154jk,1474220833,,200
 fc98a7,::1,GET,http://localhost/pharmages/web/app_dev.php/produit/afficher/gfhtiol23154jk,1474220919,,200
+6a4301,127.0.0.1,GET,http://localhost/progestix/app/web/app_dev.php/,1475178209,,200
+49f58b,127.0.0.1,GET,http://localhost/progestix/app/web/app_dev.php/admin,1475178282,,301
+d5ea91,127.0.0.1,GET,http://localhost/progestix/app/web/app_dev.php/admin/,1475178282,,302
+bf725d,127.0.0.1,GET,http://localhost/progestix/app/web/app_dev.php/admin/login,1475178284,48227b,200
+48227b,127.0.0.1,GET,http://localhost/progestix/app/web/app_dev.php/admin/login,1475178284,,500

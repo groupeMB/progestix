@@ -1,0 +1,3 @@
+gestion_inventaire_homepage:
+    path:     /
+    defaults: { _controller: GestionInventaireBundle:Default:index }
