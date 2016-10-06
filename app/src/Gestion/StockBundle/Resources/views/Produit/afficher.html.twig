@@ -4,16 +4,17 @@
      <div class="row">
           <div class="col-sm-6 col-md-4">
             <div class="thumbnail">
-              <img src="..." alt="...">
+            
               <div class="caption">
                 <h3>detail du produit</h3>
                 
                 <p>
                  libellé : {{ code.libelle }};<br>
-                quantité : {{ code.quantite }}<br>
-                prix    : {{ code.prixUnitaire}}<br>
-                type    : {{code.type }}<br>
-                codeBarre : {{code.codebarre }}   
+                 code barre: {{ code.codebarre }}<br>
+                 prix    : {{ code.prixunitaire}}<br>
+                 date de péremption   : {{code.dateperemption|date('m-d-Y') }}<br>
+                 Réference : {{code.reference }}   
+                 Catégorie : {{code.categorie }}   
                 </p>
               </div>
             </div>

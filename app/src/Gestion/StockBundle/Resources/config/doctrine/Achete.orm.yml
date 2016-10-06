@@ -1,0 +1,55 @@
+Gestion\StockBundle\Entity\Achete:
+    type: entity
+    table: achete
+    indexes:
+        IDX_6AFD8FC3C29D63C1:
+            columns:
+                - idproduit_id
+        IDX_6AFD8FC367F0C0D4:
+            columns:
+                - idclient_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        date:
+            type: date
+            nullable: false
+        heure:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+        montant:
+            type: decimal
+            nullable: false
+            precision: 10
+            scale: 0
+    manyToOne:
+        idclient:
+            targetEntity: Client
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idclient_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        idproduit:
+            targetEntity: Produit
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idproduit_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

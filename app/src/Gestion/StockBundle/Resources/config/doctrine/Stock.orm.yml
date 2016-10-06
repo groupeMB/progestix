@@ -1,0 +1,40 @@
+Gestion\StockBundle\Entity\Stock:
+    type: entity
+    table: stock
+    uniqueConstraints:
+        UNIQ_4B365660F347EFB:
+            columns:
+                - produit_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        quantite:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+        seuilmin:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: seuilMin
+    manyToOne:
+        produit:
+            targetEntity: Produit
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                produit_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

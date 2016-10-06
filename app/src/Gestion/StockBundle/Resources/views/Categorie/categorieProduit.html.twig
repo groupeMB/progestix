@@ -1,0 +1,14 @@
+{% extends "::base.html.twig" %}
+{%block tilte%}
+	{{ parent() }}
+{%endblock%}
+
+{% block body %}
+
+{{parent()}}
+
+	{% for tag in categorieName %}
+		{{  tag.libelle}}
+	{%endfor%}
+	
+{% endblock %}
