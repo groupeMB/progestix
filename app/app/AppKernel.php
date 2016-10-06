@@ -28,6 +28,7 @@ class AppKernel extends Kernel
             new Pharmacie\PharmacienBundle\PharmaciePharmacienBundle(),
             new Administration\PharmacieBundle\AdministrationPharmacieBundle(),
             new Gestion\StockBundle\GestionStockBundle(),
+            new Gestion\InventaireBundle\GestionInventaireBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'), true)) {
