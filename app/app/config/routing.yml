@@ -1,7 +1,10 @@
 gestion_stock:
     resource: "@GestionStockBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /stock
 
+gestion_inventaire:
+    resource: "@GestionInventaireBundle/Resources/config/routing.yml"
+    prefix:   /inventaire
 
 app:
     resource: "@AppBundle/Controller/"
