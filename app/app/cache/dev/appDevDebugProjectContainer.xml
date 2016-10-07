@@ -29,6 +29,7 @@
       <parameter key="AdministrationPharmacieBundle">Administration\PharmacieBundle\AdministrationPharmacieBundle</parameter>
       <parameter key="GestionStockBundle">Gestion\StockBundle\GestionStockBundle</parameter>
       <parameter key="KnpSnappyBundle">Knp\Bundle\SnappyBundle\KnpSnappyBundle</parameter>
+      <parameter key="GestionInventaireBundle">Gestion\InventaireBundle\GestionInventaireBundle</parameter>
       <parameter key="DebugBundle">Symfony\Bundle\DebugBundle\DebugBundle</parameter>
       <parameter key="WebProfilerBundle">Symfony\Bundle\WebProfilerBundle\WebProfilerBundle</parameter>
       <parameter key="SensioDistributionBundle">Sensio\Bundle\DistributionBundle\SensioDistributionBundle</parameter>
@@ -2626,7 +2627,7 @@
         </argument>
         <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-            <argument>57ed6edce4e3b3.17807330</argument>
+            <argument>57f5665f401943.59722533</argument>
           </service>
         </argument>
         <argument type="service">
@@ -2640,7 +2641,7 @@
         </argument>
         <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-            <argument>57ed6edce4e3b3.17807330</argument>
+            <argument>57f5665f401943.59722533</argument>
           </service>
         </argument>
       </argument>
@@ -3049,7 +3050,7 @@
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
             <argument type="service" id="security.token_storage"/>
-            <argument>57ed6edce4e3b3.17807330</argument>
+            <argument>57f5665f401943.59722533</argument>
             <argument type="service" id="monolog.logger.security" on-invalid="null"/>
             <argument type="service" id="security.authentication.manager"/>
           </service>
@@ -3161,7 +3162,7 @@
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
             <argument type="service" id="security.token_storage"/>
-            <argument>57ed6edce4e3b3.17807330</argument>
+            <argument>57f5665f401943.59722533</argument>
             <argument type="service" id="monolog.logger.security" on-invalid="null"/>
             <argument type="service" id="security.authentication.manager"/>
           </service>
@@ -5952,6 +5953,10 @@
       <call method="addPath">
         <argument>/var/www/html/progestix/app/src/Gestion/StockBundle/Resources/views</argument>
         <argument>GestionStock</argument>
+      </call>
+      <call method="addPath">
+        <argument>/var/www/html/progestix/app/src/Gestion/InventaireBundle/Resources/views</argument>
+        <argument>GestionInventaire</argument>
       </call>
       <call method="addPath">
         <argument>/var/www/html/progestix/app/vendor/symfony/symfony/src/Symfony/Bundle/DebugBundle/Resources/views</argument>

@@ -105,6 +105,19 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
+        if (0 === strpos($pathinfo, '/inventaire')) {
+            // gestion_inventaire_homepage
+            if ($pathinfo === '/inventaire') {
+                return array (  '_controller' => 'Gestion\\InventaireBundle\\Controller\\InventaireController::indexAction',  '_route' => 'gestion_inventaire_homepage',);
+            }
+
+            // generer_pdf_inventaire
+            if ($pathinfo === '/inventaire/pdf') {
+                return array (  '_controller' => 'Gestion\\InventaireBundle\\Controller\\InventaireController::pdfAction',  '_route' => 'generer_pdf_inventaire',);
+            }
+
+        }
+
         if (0 === strpos($pathinfo, '/produit')) {
             // gestion_stock_homepage
             if ($pathinfo === '/produit') {

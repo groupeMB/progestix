@@ -1,3 +1,8 @@
 gestion_inventaire_homepage:
-    path:     /
-    defaults: { _controller: GestionInventaireBundle:Default:index }
+    path:     /inventaire
+    defaults: { _controller: GestionInventaireBundle:Inventaire:index }
+
+
+generer_pdf_inventaire:
+    path:     /inventaire/pdf
+    defaults: { _controller: GestionInventaireBundle:Inventaire:pdf }
