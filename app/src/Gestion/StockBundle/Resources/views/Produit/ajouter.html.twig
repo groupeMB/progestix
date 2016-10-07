@@ -19,55 +19,69 @@
 		</div>
 		<div class="form-group">
 		    {# Génération du label. #}
-		    {{ form_label(formulaire.quantite, "Quantité produit", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+		    {{ form_label(formulaire.codebarre, "Code barre", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
 
 		    {# Affichage des erreurs pour ce champ précis. #}
-		    {{ form_errors(formulaire.quantite) }}
+		    {{ form_errors(formulaire.codebarre) }}
 
 		    <div class="col-sm-4">
 		        {# Génération de l'input. #}
-		        {{ form_widget(formulaire.quantite, {'attr': {'class': 'form-control'}}) }}
+		        {{ form_widget(formulaire.codebarre, {'attr': {'class': 'form-control'}}) }}
 		    </div>
 		</div>
 		<div class="form-group">
 		    {# Génération du label. #}
-		    {{ form_label(formulaire.prixUnitaire, "Prix Unitaire", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+		    {{ form_label(formulaire.prixunitaire, "Prix Unitaire", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
 
 		    {# Affichage des erreurs pour ce champ précis. #}
-		    {{ form_errors(formulaire.prixUnitaire) }}
+		    {{ form_errors(formulaire.prixunitaire) }}
 
 		    <div class="col-sm-4">
 		        {# Génération de l'input. #}
-		        {{ form_widget(formulaire.prixUnitaire, {'attr': {'class': 'form-control'}}) }}
+		        {{ form_widget(formulaire.prixunitaire, {'attr': {'class': 'form-control'}}) }}
 		    </div>
 		</div>
 		<div class="form-group">
 		    {# Génération du label. #}
-		    {{ form_label(formulaire.codeBarre, "CodeBarre", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+		    {{ form_label(formulaire.dateperemption, "Date de péremption", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
 
 		    {# Affichage des erreurs pour ce champ précis. #}
-		    {{ form_errors(formulaire.codeBarre) }}
+		    {{ form_errors(formulaire.dateperemption) }}
 
 		    <div class="col-sm-4">
 		        {# Génération de l'input. #}
-		        {{ form_widget(formulaire.codeBarre, {'attr': {'class': 'form-control'}}) }}
+		        {{ form_widget(formulaire.dateperemption, {'attr': {'class': 'form-control'}}) }}
 		    </div>
 		</div>
 		<div class="form-group">
 		    {# Génération du label. #}
-		    {{ form_label(formulaire.type, "Catégorie produit", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+		    {{ form_label(formulaire.reference, "Réference du produit", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
 
 		    {# Affichage des erreurs pour ce champ précis. #}
-		    {{ form_errors(formulaire.type) }}
+		    {{ form_errors(formulaire.reference) }}
 
 		    <div class="col-sm-4">
 		        {# Génération de l'input. #}
-		        {{ form_widget(formulaire.type, {'attr': {'class': 'form-control'}}) }}
+		        {{ form_widget(formulaire.reference, {'attr': {'class': 'form-control'}}) }}
 		    </div>
 		</div>
 
-		{# Pour le bouton, pas de label ni d'erreur, on affiche juste le widget #}
-        <span style="margin-left:30%">{{ form_widget(formulaire.Ajouter, {'attr': {'class': 'btn btn-primary'}}) }}</span>
+		<div class="form-group">
+		    {# Génération du label. #}
+		    {{ form_label(formulaire.categorie, "Categorie du produit", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+
+		    {# Affichage des erreurs pour ce champ précis. #}
+		    {{ form_errors(formulaire.categorie) }}
+
+		    <div class="col-sm-4">
+		        {# Génération de l'input. #}
+		        {{ form_widget(formulaire.categorie, {'attr': {'class': 'form-control'}}) }}
+		    </div>
+		</div>
+
+        <span style="margin-left:30%">{{ form_widget(formulaire.Ajouter, {'attr': {'class': 'btn btn-success'}}) }}</span>
+
+         <span style="margin-left:25%">{{ form_widget(formulaire.Annuler, {'label': 'Annuler', 'attr': {'class': 'btn btn-warning'}}) }}</span>
 
 		{{ form_widget(formulaire) }}
 		 {{ form_end(formulaire) }}	

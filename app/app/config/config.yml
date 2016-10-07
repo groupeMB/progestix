@@ -97,10 +97,3 @@ fos_user:
 sonata_admin:
     title:      PROGESTIX
     title_logo: bundles/administrationpharmacie/img/logo.png
-
-
-knp_snappy:
-    pdf:
-        enabled:    true
-        binary:     /usr/bin/wkhtmltopdf.sh
-        options:    []

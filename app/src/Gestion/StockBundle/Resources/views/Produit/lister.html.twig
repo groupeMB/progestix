@@ -5,21 +5,29 @@
             <table id="mytable" class="table table-bordered">
                 <thead>
                     <th>Libellé</th>
-                    <th>Quantité</th>
-                    <th>Prix Unitaire</th>
+                    <th>Catégorie</th>
                     <th>Code Barre</th>
-                    <th>Type</th>
+                    <th>Prix Unitaire</th>
+                    <th>Date de Péremption</th>
+                    <th>Réference</th>
+                    
                     <th></th>
                 </thead>
                 <tbody>
                     {% for tag in produits %}
                          <tr>
                             <td>{{ tag.libelle}}</td>
-                            <td>{{ tag.quantite}}</td>
-                            <td>{{ tag.prixUnitaire}}</td>
-                            <td>{{ tag.codeBarre}}</td>
-                            <td>{{ tag.type }}</td>
-                             <td><a href="{{ path('gestion_stock_afficher_produit', {'code': tag.codeBarre}) }}"><button class="btn btn-info btn-xs"><span class="glyphicon glyphicon-list"></span></button></a></td>
+                            <td>{{ tag.categorie }}</td>
+                            <td>{{ tag.codebarre}}</td>
+                            <td>{{ tag.prixunitaire}}</td>
+                            <td>{{ tag.dateperemption |date('m-d-Y')}}</td>
+                            <td>{{ tag.reference }}</td>
+                            
+                             <td>
+                             <a href="{{ path('gestion_stock_afficher_produit', {'code': tag.codebarre}) }}"><button class="btn btn-info btn-xs"><span class="glyphicon glyphicon-list"></span></button></a>
+                             <a href="{{ path('gestion_stock_modifier_produit', {'codebarre': tag.codebarre}) }}"><button class="btn btn-info btn-xs"><span class="glyphicon glyphicon-edit"></span></button></a>
+                             <a href="{{ path('gestion_stock_supprimer_produit', {'codebarre': tag.codebarre}) }}"><button class="btn btn-info btn-xs"><span class="glyphicon glyphicon-trash"></span></button></a>
+                             </td>
                         </tr>
                     {% endfor %}
                 </tbody>

@@ -67,7 +67,6 @@ class ComposerStaticInitb82f97cdf82207d6cccfcbd6127982e6
         'K' => 
         array (
             'Knp\\Menu\\' => 9,
-            'Knp\\Bundle\\SnappyBundle\\' => 24,
             'Knp\\Bundle\\MenuBundle\\' => 22,
         ),
         'I' => 
@@ -234,10 +233,6 @@ class ComposerStaticInitb82f97cdf82207d6cccfcbd6127982e6
         array (
             0 => __DIR__ . '/..' . '/knplabs/knp-menu/src/Knp/Menu',
         ),
-        'Knp\\Bundle\\SnappyBundle\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/knplabs/knp-snappy-bundle',
-        ),
         'Knp\\Bundle\\MenuBundle\\' => 
         array (
             0 => __DIR__ . '/..' . '/knplabs/knp-menu-bundle',
@@ -338,13 +333,6 @@ class ComposerStaticInitb82f97cdf82207d6cccfcbd6127982e6
             'Metadata\\' => 
             array (
                 0 => __DIR__ . '/..' . '/jms/metadata/src',
-            ),
-        ),
-        'K' => 
-        array (
-            'Knp\\Snappy' => 
-            array (
-                0 => __DIR__ . '/..' . '/knplabs/knp-snappy/src',
             ),
         ),
         'J' => 

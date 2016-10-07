@@ -1,0 +1,25 @@
+{% extends "::base.html.twig" %}
+{%block tilte%}
+	{{ parent() }}
+{%endblock%}
+
+{% block body %}
+
+{{parent()}}
+
+	<h1>Modification d'une categorie </h1>
+
+	<form action="" method="post" {{ form_enctype(form) }}>
+		{{form_start(form)}}
+			{{form_errors(form)}}
+
+			{{form_label(form.libelle)}}
+			{{form_widget(form.libelle)}}
+
+	    {{form_end(form)}}
+		
+	</form>
+	<p><a href="{{ path('gestion_stock_categorie_lister') }}">Retour à la liste des categorie</a></p>
+
+{% endblock %}
+

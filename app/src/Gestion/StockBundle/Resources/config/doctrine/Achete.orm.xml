@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Gestion\StockBundle\Entity\Achete" table="achete">
+    <indexes>
+      <index name="IDX_6AFD8FC3C29D63C1" columns="idproduit_id"/>
+      <index name="IDX_6AFD8FC367F0C0D4" columns="idclient_id"/>
+    </indexes>
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="date" type="date" column="date" nullable="false"/>
+    <field name="heure" type="integer" column="heure" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="montant" type="decimal" column="montant" precision="10" scale="0" nullable="false"/>
+    <many-to-one field="idproduit" target-entity="Produit" fetch="LAZY">
+      <join-columns>
+        <join-column name="idproduit_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idclient" target-entity="Client" fetch="LAZY">
+      <join-columns>
+        <join-column name="idclient_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

@@ -7,65 +7,70 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Produit
  *
- * @ORM\Table(name="produit")
- * @ORM\Entity(repositoryClass="Gestion\StockBundle\Repository\ProduitRepository")
+ * @ORM\Table(name="produit", indexes={@ORM\Index(name="IDX_E618D5BBBCF5E72D", columns={"categorie_id"})})
+ * @ORM\Entity
  */
 class Produit
 {
     /**
-     * @var int
+     * @var integer
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="libelle", type="string", length=255)
+     * @ORM\Column(name="libelle", type="string", length=100, nullable=false)
      */
     private $libelle;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="quantite", type="integer")
-     */
-    private $quantite;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="prixUnitaire", type="integer")
-     */
-    private $prixUnitaire;
-
-    /**
      * @var string
      *
-     * @ORM\Column(name="codebarre", type="string", length=255, nullable=true, unique=true)
+     * @ORM\Column(name="codeBarre", type="string", length=40, nullable=false)
      */
     private $codebarre;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="type", type="string", length=255)
+     * @ORM\Column(name="prixUnitaire", type="decimal", precision=10, scale=0, nullable=false)
      */
-    private $type;
-
+    private $prixunitaire;
 
     /**
-     * Get id
+     * @var \DateTime
      *
-     * @return int
+     * @ORM\Column(name="datePeremption", type="date", nullable=false)
      */
-    public function getId()
-    {
-        return $this->id;
-    }
+    private $dateperemption;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="reference", type="string", length=50, nullable=false)
+     */
+    private $reference;
+
+    /**
+     * @var Gestion\StockBundle\Entity\Categorie
+     *
+     * @ORM\ManyToOne(targetEntity="Gestion\StockBundle\Entity\Categorie")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="categorie_id", referencedColumnName="id")
+     * })
+     */
+    private $categorie;
+
+
+    /**  
+    * @var integer
+    */
+    public $cate;
 
     /**
      * Set libelle
@@ -89,54 +94,6 @@ class Produit
     public function getLibelle()
     {
         return $this->libelle;
-    }
-
-    /**
-     * Set quantite
-     *
-     * @param integer $quantite
-     *
-     * @return Produit
-     */
-    public function setQuantite($quantite)
-    {
-        $this->quantite = $quantite;
-
-        return $this;
-    }
-
-    /**
-     * Get quantite
-     *
-     * @return int
-     */
-    public function getQuantite()
-    {
-        return $this->quantite;
-    }
-
-    /**
-     * Set prixUnitaire
-     *
-     * @param integer $prixUnitaire
-     *
-     * @return Produit
-     */
-    public function setPrixUnitaire($prixUnitaire)
-    {
-        $this->prixUnitaire = $prixUnitaire;
-
-        return $this;
-    }
-
-    /**
-     * Get prixUnitaire
-     *
-     * @return int
-     */
-    public function getPrixUnitaire()
-    {
-        return $this->prixUnitaire;
     }
 
     /**
@@ -164,27 +121,129 @@ class Produit
     }
 
     /**
-     * Set type
+     * Set prixunitaire
      *
-     * @param string $type
+     * @param string $prixunitaire
      *
      * @return Produit
      */
-    public function setType($type)
+    public function setPrixunitaire($prixunitaire)
     {
-        $this->type = $type;
+        $this->prixunitaire = $prixunitaire;
 
         return $this;
     }
 
     /**
-     * Get type
+     * Get prixunitaire
      *
      * @return string
      */
-    public function getType()
+    public function getPrixunitaire()
     {
-        return $this->type;
+        return $this->prixunitaire;
     }
-}
 
+    /**
+     * Set dateperemption
+     *
+     * @param \DateTime $dateperemption
+     *
+     * @return Produit
+     */
+    public function setDateperemption($dateperemption)
+    {
+        $this->dateperemption = $dateperemption;
+
+        return $this;
+    }
+
+    /**
+     * Get dateperemption
+     *
+     * @return \DateTime
+     */
+    public function getDateperemption()
+    {
+        return $this->dateperemption;
+    }
+
+    /**
+     * Set reference
+     *
+     * @param string $reference
+     *
+     * @return Produit
+     */
+    public function setReference($reference)
+    {
+        $this->reference = $reference;
+
+        return $this;
+    }
+
+    /**
+     * Get reference
+     *
+     * @return string
+     */
+    public function getReference()
+    {
+        return $this->reference;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set categorie
+     *
+     * @param \Gestion\StockBundle\Entity\Categorie $categorie
+     *
+     * @return Produit
+     */
+    public function setCategorie(\Gestion\StockBundle\Entity\Categorie $categorie)
+    {
+        $this->categorie = $categorie;
+
+        return $this;
+    }
+
+    /**
+     * Get categorie
+     *
+     * @return \Gestion\StockBundle\Entity\Categorie
+     */
+    public function getCategorie()
+    {
+        return $this->categorie;
+    }
+
+    public function __toString()
+    
+    {
+        return $this->getLibelle();
+    }
+
+
+    public function getContent(){
+        return array(
+                "id" => $this->id,
+                "libelle" => $this->libelle,
+                "reference" => $this->reference,
+                "codebarre" => $this->codebarre,
+                "prixunitaire" => $this->prixunitaire,
+                "dateperemption" => $this->dateperemption,
+                "categorie" => $this->categorie->getLibelle()
+            );
+    }
+
+    
+}

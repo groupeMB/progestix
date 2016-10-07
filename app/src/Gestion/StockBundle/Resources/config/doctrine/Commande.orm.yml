@@ -1,0 +1,63 @@
+Gestion\StockBundle\Entity\Commande:
+    type: entity
+    table: commande
+    indexes:
+        IDX_6EEAA67DC29D63C1:
+            columns:
+                - idproduit_id
+        IDX_6EEAA67DB6418165:
+            columns:
+                - idpharmacien_id
+        IDX_6EEAA67D7674E434:
+            columns:
+                - idfournisseur_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        quantite:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+        date:
+            type: date
+            nullable: false
+    manyToOne:
+        idfournisseur:
+            targetEntity: Fournisseur
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idfournisseur_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        idpharmacien:
+            targetEntity: Pharmacien
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idpharmacien_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        idproduit:
+            targetEntity: Produit
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idproduit_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

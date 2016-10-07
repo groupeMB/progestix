@@ -28,7 +28,6 @@ class AppKernel extends Kernel
             new Pharmacie\PharmacienBundle\PharmaciePharmacienBundle(),
             new Administration\PharmacieBundle\AdministrationPharmacieBundle(),
             new Gestion\StockBundle\GestionStockBundle(),
-            new Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
             new Gestion\InventaireBundle\GestionInventaireBundle(),
         );
 

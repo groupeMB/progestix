@@ -2,9 +2,9 @@
 parameters:
     database_host: 127.0.0.1
     database_port: null
-    database_name: pharmages
-    database_user: root
-    database_password: root
+    database_name: mb_progestix
+    database_user: abdoulaye
+    database_password: kamstelecom
     mailer_transport: smtp
     mailer_host: 127.0.0.1
     mailer_user: null
