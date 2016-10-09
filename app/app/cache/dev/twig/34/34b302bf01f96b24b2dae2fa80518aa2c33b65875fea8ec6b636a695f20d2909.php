@@ -15,8 +15,8 @@ class __TwigTemplate_bf13f1903c0cee330b22abde4050e39ef686e91e9ed19c6705fdc6c6596
 
     protected function doDisplay(array $context, array $blocks = array())
     {
-        $__internal_4a924c3229283cbde73c7b7894158aa0c09e1b79bad3c5131e206cb70e3da13c = $this->env->getExtension("native_profiler");
-        $__internal_4a924c3229283cbde73c7b7894158aa0c09e1b79bad3c5131e206cb70e3da13c->enter($__internal_4a924c3229283cbde73c7b7894158aa0c09e1b79bad3c5131e206cb70e3da13c_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "FOSUserBundle:Resetting:reset_content.html.twig"));
+        $__internal_3e31353a4ff780c7e7e552772f72725bc36741afe41c157cfb7de0b2c44eb985 = $this->env->getExtension("native_profiler");
+        $__internal_3e31353a4ff780c7e7e552772f72725bc36741afe41c157cfb7de0b2c44eb985->enter($__internal_3e31353a4ff780c7e7e552772f72725bc36741afe41c157cfb7de0b2c44eb985_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "FOSUserBundle:Resetting:reset_content.html.twig"));
 
         // line 1
         echo         $this->env->getExtension('form')->renderer->renderBlock((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), 'form_start', array("action" => $this->env->getExtension('routing')->getPath("sonata_user_resetting_reset", array("token" => (isset($context["token"]) ? $context["token"] : $this->getContext($context, "token"))))));
@@ -40,7 +40,7 @@ class __TwigTemplate_bf13f1903c0cee330b22abde4050e39ef686e91e9ed19c6705fdc6c6596
         echo "
 ";
         
-        $__internal_4a924c3229283cbde73c7b7894158aa0c09e1b79bad3c5131e206cb70e3da13c->leave($__internal_4a924c3229283cbde73c7b7894158aa0c09e1b79bad3c5131e206cb70e3da13c_prof);
+        $__internal_3e31353a4ff780c7e7e552772f72725bc36741afe41c157cfb7de0b2c44eb985->leave($__internal_3e31353a4ff780c7e7e552772f72725bc36741afe41c157cfb7de0b2c44eb985_prof);
 
     }
 

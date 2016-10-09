@@ -16,20 +16,20 @@ class __TwigTemplate_64809e59ea85988eb0559bb11a94d68e0f86140b3331adaab5311f92d71
 
     protected function doDisplay(array $context, array $blocks = array())
     {
-        $__internal_1310dc94c997f76ef374114fb369834eda2247c57b3a34d874f558048b8656bf = $this->env->getExtension("native_profiler");
-        $__internal_1310dc94c997f76ef374114fb369834eda2247c57b3a34d874f558048b8656bf->enter($__internal_1310dc94c997f76ef374114fb369834eda2247c57b3a34d874f558048b8656bf_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "SonataCoreBundle:Form:colorpicker.html.twig"));
+        $__internal_6103ccdfe5b407e5af3bc0b5a247d6785f7f1e53038a32d10a51ec7cd4a3d6a6 = $this->env->getExtension("native_profiler");
+        $__internal_6103ccdfe5b407e5af3bc0b5a247d6785f7f1e53038a32d10a51ec7cd4a3d6a6->enter($__internal_6103ccdfe5b407e5af3bc0b5a247d6785f7f1e53038a32d10a51ec7cd4a3d6a6_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "SonataCoreBundle:Form:colorpicker.html.twig"));
 
         // line 11
         $this->displayBlock('sonata_type_color_selector_widget', $context, $blocks);
         
-        $__internal_1310dc94c997f76ef374114fb369834eda2247c57b3a34d874f558048b8656bf->leave($__internal_1310dc94c997f76ef374114fb369834eda2247c57b3a34d874f558048b8656bf_prof);
+        $__internal_6103ccdfe5b407e5af3bc0b5a247d6785f7f1e53038a32d10a51ec7cd4a3d6a6->leave($__internal_6103ccdfe5b407e5af3bc0b5a247d6785f7f1e53038a32d10a51ec7cd4a3d6a6_prof);
 
     }
 
     public function block_sonata_type_color_selector_widget($context, array $blocks = array())
     {
-        $__internal_7934cd66296c207c7125d1895829e80646bae9f60ba13d404828e7970aa38c34 = $this->env->getExtension("native_profiler");
-        $__internal_7934cd66296c207c7125d1895829e80646bae9f60ba13d404828e7970aa38c34->enter($__internal_7934cd66296c207c7125d1895829e80646bae9f60ba13d404828e7970aa38c34_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "sonata_type_color_selector_widget"));
+        $__internal_b46ce1266bdcafc3cb5917206f8074770632c34a7bc3369c83a487a72395e744 = $this->env->getExtension("native_profiler");
+        $__internal_b46ce1266bdcafc3cb5917206f8074770632c34a7bc3369c83a487a72395e744->enter($__internal_b46ce1266bdcafc3cb5917206f8074770632c34a7bc3369c83a487a72395e744_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "sonata_type_color_selector_widget"));
 
         // line 12
         echo "    ";
@@ -63,7 +63,7 @@ class __TwigTemplate_64809e59ea85988eb0559bb11a94d68e0f86140b3331adaab5311f92d71
     ";
         echo trim(preg_replace('/>\s+</', '><', ob_get_clean()));
         
-        $__internal_7934cd66296c207c7125d1895829e80646bae9f60ba13d404828e7970aa38c34->leave($__internal_7934cd66296c207c7125d1895829e80646bae9f60ba13d404828e7970aa38c34_prof);
+        $__internal_b46ce1266bdcafc3cb5917206f8074770632c34a7bc3369c83a487a72395e744->leave($__internal_b46ce1266bdcafc3cb5917206f8074770632c34a7bc3369c83a487a72395e744_prof);
 
     }
 

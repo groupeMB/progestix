@@ -15,15 +15,14 @@ class __TwigTemplate_051d34c0ffbb006abd088219db1d322d66ddd36ac8d7e10eecfa03f1e78
 
     protected function doDisplay(array $context, array $blocks = array())
     {
-        $__internal_9ada654ff46bd284cbc8ec73beafc9adb97113c4f96e0acabb42bb362b3b181c = $this->env->getExtension("native_profiler");
-        $__internal_9ada654ff46bd284cbc8ec73beafc9adb97113c4f96e0acabb42bb362b3b181c->enter($__internal_9ada654ff46bd284cbc8ec73beafc9adb97113c4f96e0acabb42bb362b3b181c_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "GestionStockBundle:Default:index.html.twig"));
+        $__internal_1485f95dc6cdddb1d3d73f1f7cd6e4f1e734709155a6cd4cddb1f4d27e7b2aa4 = $this->env->getExtension("native_profiler");
+        $__internal_1485f95dc6cdddb1d3d73f1f7cd6e4f1e734709155a6cd4cddb1f4d27e7b2aa4->enter($__internal_1485f95dc6cdddb1d3d73f1f7cd6e4f1e734709155a6cd4cddb1f4d27e7b2aa4_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "GestionStockBundle:Default:index.html.twig"));
 
         // line 1
         echo "Hello World!
-Bassirou dort
 ";
         
-        $__internal_9ada654ff46bd284cbc8ec73beafc9adb97113c4f96e0acabb42bb362b3b181c->leave($__internal_9ada654ff46bd284cbc8ec73beafc9adb97113c4f96e0acabb42bb362b3b181c_prof);
+        $__internal_1485f95dc6cdddb1d3d73f1f7cd6e4f1e734709155a6cd4cddb1f4d27e7b2aa4->leave($__internal_1485f95dc6cdddb1d3d73f1f7cd6e4f1e734709155a6cd4cddb1f4d27e7b2aa4_prof);
 
     }
 
@@ -38,5 +37,4 @@ Bassirou dort
     }
 }
 /* Hello World!*/
-/* Bassirou dort*/
 /* */

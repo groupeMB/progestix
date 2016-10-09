@@ -15,8 +15,8 @@ class __TwigTemplate_a2eb0ff636d1af568e3e685ebeec12cec701b7fa4a573d8f4247bfcd033
 
     protected function doDisplay(array $context, array $blocks = array())
     {
-        $__internal_a8105436a8bca7ad9f6b4aeba328b1e82d7f8ba699eea8199ea3a8ae047863c9 = $this->env->getExtension("native_profiler");
-        $__internal_a8105436a8bca7ad9f6b4aeba328b1e82d7f8ba699eea8199ea3a8ae047863c9->enter($__internal_a8105436a8bca7ad9f6b4aeba328b1e82d7f8ba699eea8199ea3a8ae047863c9_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "SonataAdminBundle:Helper:short-object-description.html.twig"));
+        $__internal_618e045b49a8c6ce50e0bce99292f4bf6b0d978b0e125a9e4bead2ac85643312 = $this->env->getExtension("native_profiler");
+        $__internal_618e045b49a8c6ce50e0bce99292f4bf6b0d978b0e125a9e4bead2ac85643312->enter($__internal_618e045b49a8c6ce50e0bce99292f4bf6b0d978b0e125a9e4bead2ac85643312_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "SonataAdminBundle:Helper:short-object-description.html.twig"));
 
         // line 1
         echo "<span class=\"inner-field-short-description\">
@@ -41,7 +41,7 @@ class __TwigTemplate_a2eb0ff636d1af568e3e685ebeec12cec701b7fa4a573d8f4247bfcd033
         echo "</span>
 ";
         
-        $__internal_a8105436a8bca7ad9f6b4aeba328b1e82d7f8ba699eea8199ea3a8ae047863c9->leave($__internal_a8105436a8bca7ad9f6b4aeba328b1e82d7f8ba699eea8199ea3a8ae047863c9_prof);
+        $__internal_618e045b49a8c6ce50e0bce99292f4bf6b0d978b0e125a9e4bead2ac85643312->leave($__internal_618e045b49a8c6ce50e0bce99292f4bf6b0d978b0e125a9e4bead2ac85643312_prof);
 
     }
 

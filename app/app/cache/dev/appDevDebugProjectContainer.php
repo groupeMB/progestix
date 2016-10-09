@@ -147,6 +147,7 @@ class appDevDebugProjectContainer extends Container
             'fragment.renderer.hinclude' => 'getFragment_Renderer_HincludeService',
             'fragment.renderer.inline' => 'getFragment_Renderer_InlineService',
             'fragment.renderer.ssi' => 'getFragment_Renderer_SsiService',
+            'gestion.stockbundle.basedd' => 'getGestion_Stockbundle_BaseddService',
             'http_kernel' => 'getHttpKernelService',
             'kernel' => 'getKernelService',
             'kernel.class_cache.cache_warmer' => 'getKernel_ClassCache_CacheWarmerService',
@@ -175,6 +176,7 @@ class appDevDebugProjectContainer extends Container
             'monolog.logger.snappy' => 'getMonolog_Logger_SnappyService',
             'monolog.logger.templating' => 'getMonolog_Logger_TemplatingService',
             'monolog.logger.translation' => 'getMonolog_Logger_TranslationService',
+            'phpexcel' => 'getPhpexcelService',
             'profiler' => 'getProfilerService',
             'profiler_listener' => 'getProfilerListenerService',
             'property_accessor' => 'getPropertyAccessorService',
@@ -819,20 +821,21 @@ class appDevDebugProjectContainer extends Container
     {
         $a = $this->get('annotation_reader');
 
-        $b = new \Doctrine\ORM\Mapping\Driver\SimplifiedXmlDriver(array(($this->targetDirs[3].'/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/config/doctrine') => 'FOS\\UserBundle\\Entity', ($this->targetDirs[3].'/vendor/sonata-project/user-bundle/Resources/config/doctrine') => 'Sonata\\UserBundle\\Entity', ($this->targetDirs[3].'/src/Application/Sonata/UserBundle/Resources/config/doctrine') => 'Application\\Sonata\\UserBundle\\Entity'));
+        $b = new \Doctrine\ORM\Mapping\Driver\SimplifiedXmlDriver(array(($this->targetDirs[3].'/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/config/doctrine') => 'FOS\\UserBundle\\Entity', ($this->targetDirs[3].'/vendor/sonata-project/user-bundle/Resources/config/doctrine') => 'Sonata\\UserBundle\\Entity', ($this->targetDirs[3].'/src/Application/Sonata/UserBundle/Resources/config/doctrine') => 'Application\\Sonata\\UserBundle\\Entity', ($this->targetDirs[3].'/src/Gestion/StockBundle/Resources/config/doctrine') => 'Gestion\\StockBundle\\Entity'));
         $b->setGlobalBasename('mapping');
 
-        $c = new \Doctrine\ORM\Mapping\Driver\AnnotationDriver($a, array(0 => ($this->targetDirs[3].'/src/Administration/PharmacieBundle/Entity'), 1 => ($this->targetDirs[3].'/src/Gestion/StockBundle/Entity')));
+        $c = new \Doctrine\ORM\Mapping\Driver\AnnotationDriver($a, array(0 => ($this->targetDirs[3].'/src/Administration/PharmacieBundle/Entity'), 1 => ($this->targetDirs[3].'/src/Gestion/InventaireBundle/Entity')));
 
         $d = new \Doctrine\Common\Persistence\Mapping\Driver\MappingDriverChain();
         $d->addDriver($b, 'FOS\\UserBundle\\Entity');
         $d->addDriver($b, 'Sonata\\UserBundle\\Entity');
         $d->addDriver($b, 'Application\\Sonata\\UserBundle\\Entity');
+        $d->addDriver($b, 'Gestion\\StockBundle\\Entity');
         $d->addDriver($c, 'Administration\\PharmacieBundle\\Entity');
-        $d->addDriver($c, 'Gestion\\StockBundle\\Entity');
+        $d->addDriver($c, 'Gestion\\InventaireBundle\\Entity');
 
         $e = new \Doctrine\ORM\Configuration();
-        $e->setEntityNamespaces(array('FOSUserBundle' => 'FOS\\UserBundle\\Entity', 'SonataUserBundle' => 'Sonata\\UserBundle\\Entity', 'ApplicationSonataUserBundle' => 'Application\\Sonata\\UserBundle\\Entity', 'AdministrationPharmacieBundle' => 'Administration\\PharmacieBundle\\Entity', 'GestionStockBundle' => 'Gestion\\StockBundle\\Entity'));
+        $e->setEntityNamespaces(array('FOSUserBundle' => 'FOS\\UserBundle\\Entity', 'SonataUserBundle' => 'Sonata\\UserBundle\\Entity', 'ApplicationSonataUserBundle' => 'Application\\Sonata\\UserBundle\\Entity', 'AdministrationPharmacieBundle' => 'Administration\\PharmacieBundle\\Entity', 'GestionStockBundle' => 'Gestion\\StockBundle\\Entity', 'GestionInventaireBundle' => 'Gestion\\InventaireBundle\\Entity'));
         $e->setMetadataCacheImpl($this->get('doctrine_cache.providers.doctrine.orm.default_metadata_cache'));
         $e->setQueryCacheImpl($this->get('doctrine_cache.providers.doctrine.orm.default_query_cache'));
         $e->setResultCacheImpl($this->get('doctrine_cache.providers.doctrine.orm.default_result_cache'));
@@ -2044,6 +2047,19 @@ class appDevDebugProjectContainer extends Container
     }
 
     /**
+     * Gets the 'gestion.stockbundle.basedd' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return \Gestion\StockBundle\Service\BaseDD A Gestion\StockBundle\Service\BaseDD instance
+     */
+    protected function getGestion_Stockbundle_BaseddService()
+    {
+        return $this->services['gestion.stockbundle.basedd'] = new \Gestion\StockBundle\Service\BaseDD($this->get('doctrine.orm.default_entity_manager'));
+    }
+
+    /**
      * Gets the 'http_kernel' service.
      *
      * This service is shared.
@@ -2227,7 +2243,7 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getKnpSnappy_PdfService()
     {
-        return $this->services['knp_snappy.pdf'] = new \Knp\Bundle\SnappyBundle\Snappy\LoggableGenerator(new \Knp\Snappy\Pdf('/usr/bin/wkhtmltopdf.sh', array(), array()), $this->get('monolog.logger.snappy', ContainerInterface::NULL_ON_INVALID_REFERENCE));
+        return $this->services['knp_snappy.pdf'] = new \Knp\Bundle\SnappyBundle\Snappy\LoggableGenerator(new \Knp\Snappy\Pdf('/usr/local/bin/wkhtmltopdf.sh', array(), array()), $this->get('monolog.logger.snappy', ContainerInterface::NULL_ON_INVALID_REFERENCE));
     }
 
     /**
@@ -2487,6 +2503,19 @@ class appDevDebugProjectContainer extends Container
         $instance->pushHandler($this->get('monolog.handler.debug'));
 
         return $instance;
+    }
+
+    /**
+     * Gets the 'phpexcel' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return \Liuggio\ExcelBundle\Factory A Liuggio\ExcelBundle\Factory instance
+     */
+    protected function getPhpexcelService()
+    {
+        return $this->services['phpexcel'] = new \Liuggio\ExcelBundle\Factory();
     }
 
     /**
@@ -2823,7 +2852,7 @@ class appDevDebugProjectContainer extends Container
         $h = new \Symfony\Component\Security\Http\Authentication\DefaultAuthenticationFailureHandler($c, $a, array(), $d);
         $h->setOptions(array('login_path' => '/admin/login', 'failure_path' => NULL, 'failure_forward' => false, 'failure_path_parameter' => '_failure_path'));
 
-        return $this->services['security.firewall.map.context.admin'] = new \Symfony\Bundle\SecurityBundle\Security\FirewallContext(array(0 => $this->get('security.channel_listener'), 1 => $this->get('security.context_listener.0'), 2 => $f, 3 => new \Symfony\Component\Security\Http\Firewall\UsernamePasswordFormAuthenticationListener($b, $e, $this->get('security.authentication.session_strategy'), $a, 'admin', $g, $h, array('use_forward' => false, 'check_path' => '/admin/login_check', 'require_previous_session' => true, 'username_parameter' => '_username', 'password_parameter' => '_password', 'csrf_parameter' => '_csrf_token', 'csrf_token_id' => 'authenticate', 'post_only' => true), $d, $this->get('debug.event_dispatcher', ContainerInterface::NULL_ON_INVALID_REFERENCE), NULL), 4 => new \Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener($b, '57f5665f401943.59722533', $d, $e), 5 => $this->get('security.access_listener')), new \Symfony\Component\Security\Http\Firewall\ExceptionListener($b, $this->get('security.authentication.trust_resolver'), $a, 'admin', new \Symfony\Component\Security\Http\EntryPoint\FormAuthenticationEntryPoint($c, $a, '/admin/login', false), NULL, NULL, $d, false));
+        return $this->services['security.firewall.map.context.admin'] = new \Symfony\Bundle\SecurityBundle\Security\FirewallContext(array(0 => $this->get('security.channel_listener'), 1 => $this->get('security.context_listener.0'), 2 => $f, 3 => new \Symfony\Component\Security\Http\Firewall\UsernamePasswordFormAuthenticationListener($b, $e, $this->get('security.authentication.session_strategy'), $a, 'admin', $g, $h, array('use_forward' => false, 'check_path' => '/admin/login_check', 'require_previous_session' => true, 'username_parameter' => '_username', 'password_parameter' => '_password', 'csrf_parameter' => '_csrf_token', 'csrf_token_id' => 'authenticate', 'post_only' => true), $d, $this->get('debug.event_dispatcher', ContainerInterface::NULL_ON_INVALID_REFERENCE), NULL), 4 => new \Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener($b, '57fa4d05b25b17.25850124', $d, $e), 5 => $this->get('security.access_listener')), new \Symfony\Component\Security\Http\Firewall\ExceptionListener($b, $this->get('security.authentication.trust_resolver'), $a, 'admin', new \Symfony\Component\Security\Http\EntryPoint\FormAuthenticationEntryPoint($c, $a, '/admin/login', false), NULL, NULL, $d, false));
     }
 
     /**
@@ -2865,7 +2894,7 @@ class appDevDebugProjectContainer extends Container
         $h = new \Symfony\Component\Security\Http\Authentication\DefaultAuthenticationFailureHandler($c, $a, array(), $d);
         $h->setOptions(array('login_path' => '/login', 'failure_path' => NULL, 'failure_forward' => false, 'failure_path_parameter' => '_failure_path'));
 
-        return $this->services['security.firewall.map.context.main'] = new \Symfony\Bundle\SecurityBundle\Security\FirewallContext(array(0 => $this->get('security.channel_listener'), 1 => $this->get('security.context_listener.0'), 2 => $f, 3 => new \Symfony\Component\Security\Http\Firewall\UsernamePasswordFormAuthenticationListener($b, $e, $this->get('security.authentication.session_strategy'), $a, 'main', $g, $h, array('use_forward' => false, 'check_path' => '/login_check', 'require_previous_session' => true, 'username_parameter' => '_username', 'password_parameter' => '_password', 'csrf_parameter' => '_csrf_token', 'csrf_token_id' => 'authenticate', 'post_only' => true), $d, $this->get('debug.event_dispatcher', ContainerInterface::NULL_ON_INVALID_REFERENCE), NULL), 4 => new \Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener($b, '57f5665f401943.59722533', $d, $e), 5 => $this->get('security.access_listener')), new \Symfony\Component\Security\Http\Firewall\ExceptionListener($b, $this->get('security.authentication.trust_resolver'), $a, 'main', new \Symfony\Component\Security\Http\EntryPoint\FormAuthenticationEntryPoint($c, $a, '/login', false), NULL, NULL, $d, false));
+        return $this->services['security.firewall.map.context.main'] = new \Symfony\Bundle\SecurityBundle\Security\FirewallContext(array(0 => $this->get('security.channel_listener'), 1 => $this->get('security.context_listener.0'), 2 => $f, 3 => new \Symfony\Component\Security\Http\Firewall\UsernamePasswordFormAuthenticationListener($b, $e, $this->get('security.authentication.session_strategy'), $a, 'main', $g, $h, array('use_forward' => false, 'check_path' => '/login_check', 'require_previous_session' => true, 'username_parameter' => '_username', 'password_parameter' => '_password', 'csrf_parameter' => '_csrf_token', 'csrf_token_id' => 'authenticate', 'post_only' => true), $d, $this->get('debug.event_dispatcher', ContainerInterface::NULL_ON_INVALID_REFERENCE), NULL), 4 => new \Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener($b, '57fa4d05b25b17.25850124', $d, $e), 5 => $this->get('security.access_listener')), new \Symfony\Component\Security\Http\Firewall\ExceptionListener($b, $this->get('security.authentication.trust_resolver'), $a, 'main', new \Symfony\Component\Security\Http\EntryPoint\FormAuthenticationEntryPoint($c, $a, '/login', false), NULL, NULL, $d, false));
     }
 
     /**
@@ -6269,7 +6298,7 @@ class appDevDebugProjectContainer extends Container
         $b = $this->get('security.user_checker.admin');
         $c = $this->get('security.encoder_factory');
 
-        $this->services['security.authentication.manager'] = $instance = new \Symfony\Component\Security\Core\Authentication\AuthenticationProviderManager(array(0 => new \Symfony\Component\Security\Core\Authentication\Provider\DaoAuthenticationProvider($a, $b, 'admin', $c, true), 1 => new \Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider('57f5665f401943.59722533'), 2 => new \Symfony\Component\Security\Core\Authentication\Provider\DaoAuthenticationProvider($a, $b, 'main', $c, true), 3 => new \Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider('57f5665f401943.59722533')), true);
+        $this->services['security.authentication.manager'] = $instance = new \Symfony\Component\Security\Core\Authentication\AuthenticationProviderManager(array(0 => new \Symfony\Component\Security\Core\Authentication\Provider\DaoAuthenticationProvider($a, $b, 'admin', $c, true), 1 => new \Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider('57fa4d05b25b17.25850124'), 2 => new \Symfony\Component\Security\Core\Authentication\Provider\DaoAuthenticationProvider($a, $b, 'main', $c, true), 3 => new \Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider('57fa4d05b25b17.25850124')), true);
 
         $instance->setEventDispatcher($this->get('debug.event_dispatcher'));
 
@@ -6597,8 +6626,9 @@ class appDevDebugProjectContainer extends Container
                 'PharmaciePharmacienBundle' => 'Pharmacie\\PharmacienBundle\\PharmaciePharmacienBundle',
                 'AdministrationPharmacieBundle' => 'Administration\\PharmacieBundle\\AdministrationPharmacieBundle',
                 'GestionStockBundle' => 'Gestion\\StockBundle\\GestionStockBundle',
-                'KnpSnappyBundle' => 'Knp\\Bundle\\SnappyBundle\\KnpSnappyBundle',
                 'GestionInventaireBundle' => 'Gestion\\InventaireBundle\\GestionInventaireBundle',
+                'LiuggioExcelBundle' => 'Liuggio\\ExcelBundle\\LiuggioExcelBundle',
+                'KnpSnappyBundle' => 'Knp\\Bundle\\SnappyBundle\\KnpSnappyBundle',
                 'DebugBundle' => 'Symfony\\Bundle\\DebugBundle\\DebugBundle',
                 'WebProfilerBundle' => 'Symfony\\Bundle\\WebProfilerBundle\\WebProfilerBundle',
                 'SensioDistributionBundle' => 'Sensio\\Bundle\\DistributionBundle\\SensioDistributionBundle',
@@ -7510,9 +7540,10 @@ class appDevDebugProjectContainer extends Container
                 0 => 'Registration',
                 1 => 'Default',
             ),
+            'phpexcel.class' => 'Liuggio\\ExcelBundle\\Factory',
             'knp_snappy.pdf.internal_generator.class' => 'Knp\\Snappy\\Pdf',
             'knp_snappy.pdf.class' => 'Knp\\Bundle\\SnappyBundle\\Snappy\\LoggableGenerator',
-            'knp_snappy.pdf.binary' => '/usr/bin/wkhtmltopdf.sh',
+            'knp_snappy.pdf.binary' => '/usr/local/bin/wkhtmltopdf.sh',
             'knp_snappy.pdf.options' => array(
 
             ),

@@ -26,7 +26,9 @@
         "sonata-project/user-bundle": "3.0.0",
         "friendsofsymfony/rest-bundle": "1.4.0",
         "nelmio/api-doc-bundle": "^2.13",
-        "sonata-project/easy-extends-bundle": "^2.1"
+        "sonata-project/easy-extends-bundle": "^2.1",
+        "knplabs/knp-snappy-bundle": "1.5.x-dev"
+
     },
     "require-dev": {
         "sensio/generator-bundle": "~3.0",

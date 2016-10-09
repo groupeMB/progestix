@@ -4020,5 +4020,258 @@
             "sonata",
             "user"
         ]
+    },
+    {
+        "name": "knplabs/knp-snappy",
+        "version": "0.4.3",
+        "version_normalized": "0.4.3.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/KnpLabs/snappy.git",
+            "reference": "44f7a9b37d5686fd7db4c1e9569a802a5d16923f"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/KnpLabs/snappy/zipball/44f7a9b37d5686fd7db4c1e9569a802a5d16923f",
+            "reference": "44f7a9b37d5686fd7db4c1e9569a802a5d16923f",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.3",
+            "symfony/process": "~2.3|~3.0"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "~4.7"
+        },
+        "suggest": {
+            "h4cc/wkhtmltoimage-amd64": "Provides wkhtmltoimage-amd64 binary for Linux-compatible machines, use version `~0.12` as dependency",
+            "h4cc/wkhtmltoimage-i386": "Provides wkhtmltoimage-i386 binary for Linux-compatible machines, use version `~0.12` as dependency",
+            "h4cc/wkhtmltopdf-amd64": "Provides wkhtmltopdf-amd64 binary for Linux-compatible machines, use version `~0.12` as dependency",
+            "h4cc/wkhtmltopdf-i386": "Provides wkhtmltopdf-i386 binary for Linux-compatible machines, use version `~0.12` as dependency",
+            "wemersonjanuario/wkhtmltopdf-windows": "Provides wkhtmltopdf executable for Windows, use version `~0.12` as dependency"
+        },
+        "time": "2015-11-17 13:16:27",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "0.5.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Knp\\Snappy": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "KnpLabs Team",
+                "homepage": "http://knplabs.com"
+            },
+            {
+                "name": "Symfony Community",
+                "homepage": "http://github.com/KnpLabs/snappy/contributors"
+            }
+        ],
+        "description": "PHP5 library allowing thumbnail, snapshot or PDF generation from a url or a html page. Wrapper for wkhtmltopdf/wkhtmltoimage.",
+        "homepage": "http://github.com/KnpLabs/snappy",
+        "keywords": [
+            "knp",
+            "knplabs",
+            "pdf",
+            "snapshot",
+            "thumbnail",
+            "wkhtmltopdf"
+        ]
+    },
+    {
+        "name": "phpoffice/phpexcel",
+        "version": "1.8.1",
+        "version_normalized": "1.8.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/PHPOffice/PHPExcel.git",
+            "reference": "372c7cbb695a6f6f1e62649381aeaa37e7e70b32"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/PHPOffice/PHPExcel/zipball/372c7cbb695a6f6f1e62649381aeaa37e7e70b32",
+            "reference": "372c7cbb695a6f6f1e62649381aeaa37e7e70b32",
+            "shasum": ""
+        },
+        "require": {
+            "ext-xml": "*",
+            "ext-xmlwriter": "*",
+            "php": ">=5.2.0"
+        },
+        "time": "2015-05-01 07:00:55",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "PHPExcel": "Classes/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "LGPL"
+        ],
+        "authors": [
+            {
+                "name": "Maarten Balliauw",
+                "homepage": "http://blog.maartenballiauw.be"
+            },
+            {
+                "name": "Mark Baker"
+            },
+            {
+                "name": "Franck Lefevre",
+                "homepage": "http://blog.rootslabs.net"
+            },
+            {
+                "name": "Erik Tilt"
+            }
+        ],
+        "description": "PHPExcel - OpenXML - Read, Create and Write Spreadsheet documents in PHP - Spreadsheet engine",
+        "homepage": "http://phpexcel.codeplex.com",
+        "keywords": [
+            "OpenXML",
+            "excel",
+            "php",
+            "spreadsheet",
+            "xls",
+            "xlsx"
+        ]
+    },
+    {
+        "name": "knplabs/knp-snappy-bundle",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/KnpLabs/KnpSnappyBundle.git",
+            "reference": "f32454f8505dffae3414a771494da5d694177d41"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/KnpLabs/KnpSnappyBundle/zipball/f32454f8505dffae3414a771494da5d694177d41",
+            "reference": "f32454f8505dffae3414a771494da5d694177d41",
+            "shasum": ""
+        },
+        "require": {
+            "knplabs/knp-snappy": "~0.1",
+            "php": ">=5.3.2",
+            "symfony/finder": "~2.3|~3.0",
+            "symfony/framework-bundle": "~2.3|~3.0",
+            "symfony/validator": "~2.3|~3.0"
+        },
+        "time": "2016-05-26 11:25:10",
+        "type": "symfony-bundle",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.5.x-dev"
+            }
+        },
+        "installation-source": "source",
+        "autoload": {
+            "psr-4": {
+                "Knp\\Bundle\\SnappyBundle\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "KnpLabs Team",
+                "homepage": "http://knplabs.com"
+            },
+            {
+                "name": "Symfony Community",
+                "homepage": "http://github.com/KnpLabs/KnpSnappyBundle/contributors"
+            }
+        ],
+        "description": "Easily create PDF and images in Symfony2 by converting Twig/HTML templates.",
+        "homepage": "http://github.com/KnpLabs/KnpSnappyBundle",
+        "keywords": [
+            "bundle",
+            "knp",
+            "knplabs",
+            "pdf",
+            "snappy"
+        ]
+    },
+    {
+        "name": "liuggio/ExcelBundle",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/liuggio/ExcelBundle.git",
+            "reference": "b4fe94b64449490a1b5fbbce827c2501be335126"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/liuggio/ExcelBundle/zipball/b4fe94b64449490a1b5fbbce827c2501be335126",
+            "reference": "b4fe94b64449490a1b5fbbce827c2501be335126",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.2",
+            "phpoffice/phpexcel": "~1.8.1",
+            "symfony/framework-bundle": "~2.6|~3.0"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "~4.6",
+            "sensio/framework-extra-bundle": "~2.3|~3.0",
+            "symfony/browser-kit": "~2.6|~3.0",
+            "symfony/class-loader": "~2.6|~3.0",
+            "symfony/finder": "~2.6|~3.0",
+            "symfony/form": "~2.6|~3.0",
+            "symfony/validator": "~2.6|~3.0"
+        },
+        "time": "2016-06-20 17:11:22",
+        "type": "symfony-bundle",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "2.0.x-dev"
+            }
+        },
+        "installation-source": "source",
+        "autoload": {
+            "exclude-from-classmap": [
+                "/Tests/"
+            ],
+            "psr-4": {
+                "Liuggio\\ExcelBundle\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "ExcelBundle Contributors",
+                "homepage": "https://github.com/liuggio/ExcelBundle#contributors"
+            },
+            {
+                "name": "Giulio De Donato",
+                "email": "liuggio@gmail.com"
+            }
+        ],
+        "description": "This is a Symfony2 Bundle helps you to read and write Excel files (including pdf, xlsx, odt), thanks to the PHPExcel library",
+        "homepage": "http://www.welcometothebundle.com",
+        "keywords": [
+            "Symfony2",
+            "bundle",
+            "excel",
+            "xls"
+        ]
     }
 ]

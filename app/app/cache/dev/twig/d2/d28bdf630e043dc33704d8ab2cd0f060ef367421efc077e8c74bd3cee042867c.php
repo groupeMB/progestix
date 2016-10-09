@@ -15,8 +15,8 @@ class __TwigTemplate_d0e5540ec0db37445eebb6a2ae4ed24581ef3373d1d98902566f5fd443f
 
     protected function doDisplay(array $context, array $blocks = array())
     {
-        $__internal_e903736cd126407667fb21f88c7ecf0afd56f77724861374403aecc1ea388790 = $this->env->getExtension("native_profiler");
-        $__internal_e903736cd126407667fb21f88c7ecf0afd56f77724861374403aecc1ea388790->enter($__internal_e903736cd126407667fb21f88c7ecf0afd56f77724861374403aecc1ea388790_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "FOSUserBundle:ChangePassword:changePassword_content.html.twig"));
+        $__internal_b52c9d4893d60398528fc830b04dd0b76d92b981b349be53af4f27a98b88ebea = $this->env->getExtension("native_profiler");
+        $__internal_b52c9d4893d60398528fc830b04dd0b76d92b981b349be53af4f27a98b88ebea->enter($__internal_b52c9d4893d60398528fc830b04dd0b76d92b981b349be53af4f27a98b88ebea_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "FOSUserBundle:ChangePassword:changePassword_content.html.twig"));
 
         // line 1
         echo         $this->env->getExtension('form')->renderer->renderBlock((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), 'form_start', array("action" => $this->env->getExtension('routing')->getPath("sonata_user_change_password")));
@@ -40,7 +40,7 @@ class __TwigTemplate_d0e5540ec0db37445eebb6a2ae4ed24581ef3373d1d98902566f5fd443f
         echo "
 ";
         
-        $__internal_e903736cd126407667fb21f88c7ecf0afd56f77724861374403aecc1ea388790->leave($__internal_e903736cd126407667fb21f88c7ecf0afd56f77724861374403aecc1ea388790_prof);
+        $__internal_b52c9d4893d60398528fc830b04dd0b76d92b981b349be53af4f27a98b88ebea->leave($__internal_b52c9d4893d60398528fc830b04dd0b76d92b981b349be53af4f27a98b88ebea_prof);
 
     }
 

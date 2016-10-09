@@ -27,13 +27,12 @@ class ProduitController extends Controller
         {
             if ($form->get('Ajouter')->isClicked())  
             {
-
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($entite_produit);
                 $em->flush();
                 return $this->redirect($this->generateUrl('gestion_stock_lister_produit'));
             }
-
+            
         }
 
         if ($form->get('Annuler')->isClicked())  

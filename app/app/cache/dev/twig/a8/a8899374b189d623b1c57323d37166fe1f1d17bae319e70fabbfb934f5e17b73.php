@@ -21,20 +21,20 @@ class __TwigTemplate_f9e2311745a28f723bdb37cc3723239d8ce5c329fed62241bdeae4b905c
 
     protected function doDisplay(array $context, array $blocks = array())
     {
-        $__internal_3124f277aa62517438539268bba775b5cee53dd063f8f802c8a1ef1c89363dc2 = $this->env->getExtension("native_profiler");
-        $__internal_3124f277aa62517438539268bba775b5cee53dd063f8f802c8a1ef1c89363dc2->enter($__internal_3124f277aa62517438539268bba775b5cee53dd063f8f802c8a1ef1c89363dc2_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "GestionStockBundle:Produit:ajouter.html.twig"));
+        $__internal_7433097321c64b53a4d9c4bf81a748a33bb36dd1229b54ae1977824cc7b721dc = $this->env->getExtension("native_profiler");
+        $__internal_7433097321c64b53a4d9c4bf81a748a33bb36dd1229b54ae1977824cc7b721dc->enter($__internal_7433097321c64b53a4d9c4bf81a748a33bb36dd1229b54ae1977824cc7b721dc_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "GestionStockBundle:Produit:ajouter.html.twig"));
 
         $this->parent->display($context, array_merge($this->blocks, $blocks));
         
-        $__internal_3124f277aa62517438539268bba775b5cee53dd063f8f802c8a1ef1c89363dc2->leave($__internal_3124f277aa62517438539268bba775b5cee53dd063f8f802c8a1ef1c89363dc2_prof);
+        $__internal_7433097321c64b53a4d9c4bf81a748a33bb36dd1229b54ae1977824cc7b721dc->leave($__internal_7433097321c64b53a4d9c4bf81a748a33bb36dd1229b54ae1977824cc7b721dc_prof);
 
     }
 
     // line 2
     public function block_contenu($context, array $blocks = array())
     {
-        $__internal_9084e71d68f62697542a152dfa3f68d3593efa41efed0f92e8327328d0c1a13e = $this->env->getExtension("native_profiler");
-        $__internal_9084e71d68f62697542a152dfa3f68d3593efa41efed0f92e8327328d0c1a13e->enter($__internal_9084e71d68f62697542a152dfa3f68d3593efa41efed0f92e8327328d0c1a13e_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "contenu"));
+        $__internal_c691e83e3c582b1b37c911cdbdea7a9d188763d8c63ffda6b1f5d0a683d5a81d = $this->env->getExtension("native_profiler");
+        $__internal_c691e83e3c582b1b37c911cdbdea7a9d188763d8c63ffda6b1f5d0a683d5a81d->enter($__internal_c691e83e3c582b1b37c911cdbdea7a9d188763d8c63ffda6b1f5d0a683d5a81d_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "contenu"));
 
         // line 3
         echo "\t <br><br>
@@ -73,20 +73,20 @@ class __TwigTemplate_f9e2311745a28f723bdb37cc3723239d8ce5c329fed62241bdeae4b905c
 \t\t    ";
         // line 22
         echo "\t\t    ";
-        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["formulaire"]) ? $context["formulaire"] : $this->getContext($context, "formulaire")), "quantite", array()), 'label', array("label_attr" => array("class" => "col-sm-4 control-label"), "label" => "Quantité produit"));
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["formulaire"]) ? $context["formulaire"] : $this->getContext($context, "formulaire")), "codebarre", array()), 'label', array("label_attr" => array("class" => "col-sm-4 control-label"), "label" => "Code barre"));
         echo "
 
 \t\t    ";
         // line 25
         echo "\t\t    ";
-        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["formulaire"]) ? $context["formulaire"] : $this->getContext($context, "formulaire")), "quantite", array()), 'errors');
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["formulaire"]) ? $context["formulaire"] : $this->getContext($context, "formulaire")), "codebarre", array()), 'errors');
         echo "
 
 \t\t    <div class=\"col-sm-4\">
 \t\t        ";
         // line 29
         echo "\t\t        ";
-        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["formulaire"]) ? $context["formulaire"] : $this->getContext($context, "formulaire")), "quantite", array()), 'widget', array("attr" => array("class" => "form-control")));
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["formulaire"]) ? $context["formulaire"] : $this->getContext($context, "formulaire")), "codebarre", array()), 'widget', array("attr" => array("class" => "form-control")));
         echo "
 \t\t    </div>
 \t\t</div>
@@ -94,20 +94,20 @@ class __TwigTemplate_f9e2311745a28f723bdb37cc3723239d8ce5c329fed62241bdeae4b905c
 \t\t    ";
         // line 34
         echo "\t\t    ";
-        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["formulaire"]) ? $context["formulaire"] : $this->getContext($context, "formulaire")), "prixUnitaire", array()), 'label', array("label_attr" => array("class" => "col-sm-4 control-label"), "label" => "Prix Unitaire"));
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["formulaire"]) ? $context["formulaire"] : $this->getContext($context, "formulaire")), "prixunitaire", array()), 'label', array("label_attr" => array("class" => "col-sm-4 control-label"), "label" => "Prix Unitaire"));
         echo "
 
 \t\t    ";
         // line 37
         echo "\t\t    ";
-        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["formulaire"]) ? $context["formulaire"] : $this->getContext($context, "formulaire")), "prixUnitaire", array()), 'errors');
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["formulaire"]) ? $context["formulaire"] : $this->getContext($context, "formulaire")), "prixunitaire", array()), 'errors');
         echo "
 
 \t\t    <div class=\"col-sm-4\">
 \t\t        ";
         // line 41
         echo "\t\t        ";
-        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["formulaire"]) ? $context["formulaire"] : $this->getContext($context, "formulaire")), "prixUnitaire", array()), 'widget', array("attr" => array("class" => "form-control")));
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["formulaire"]) ? $context["formulaire"] : $this->getContext($context, "formulaire")), "prixunitaire", array()), 'widget', array("attr" => array("class" => "form-control")));
         echo "
 \t\t    </div>
 \t\t</div>
@@ -115,20 +115,20 @@ class __TwigTemplate_f9e2311745a28f723bdb37cc3723239d8ce5c329fed62241bdeae4b905c
 \t\t    ";
         // line 46
         echo "\t\t    ";
-        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["formulaire"]) ? $context["formulaire"] : $this->getContext($context, "formulaire")), "codeBarre", array()), 'label', array("label_attr" => array("class" => "col-sm-4 control-label"), "label" => "CodeBarre"));
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["formulaire"]) ? $context["formulaire"] : $this->getContext($context, "formulaire")), "dateperemption", array()), 'label', array("label_attr" => array("class" => "col-sm-4 control-label"), "label" => "Date de péremption"));
         echo "
 
 \t\t    ";
         // line 49
         echo "\t\t    ";
-        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["formulaire"]) ? $context["formulaire"] : $this->getContext($context, "formulaire")), "codeBarre", array()), 'errors');
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["formulaire"]) ? $context["formulaire"] : $this->getContext($context, "formulaire")), "dateperemption", array()), 'errors');
         echo "
 
 \t\t    <div class=\"col-sm-4\">
 \t\t        ";
         // line 53
         echo "\t\t        ";
-        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["formulaire"]) ? $context["formulaire"] : $this->getContext($context, "formulaire")), "codeBarre", array()), 'widget', array("attr" => array("class" => "form-control")));
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["formulaire"]) ? $context["formulaire"] : $this->getContext($context, "formulaire")), "dateperemption", array()), 'widget', array("attr" => array("class" => "form-control")));
         echo "
 \t\t    </div>
 \t\t</div>
@@ -136,42 +136,68 @@ class __TwigTemplate_f9e2311745a28f723bdb37cc3723239d8ce5c329fed62241bdeae4b905c
 \t\t    ";
         // line 58
         echo "\t\t    ";
-        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["formulaire"]) ? $context["formulaire"] : $this->getContext($context, "formulaire")), "type", array()), 'label', array("label_attr" => array("class" => "col-sm-4 control-label"), "label" => "Catégorie produit"));
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["formulaire"]) ? $context["formulaire"] : $this->getContext($context, "formulaire")), "reference", array()), 'label', array("label_attr" => array("class" => "col-sm-4 control-label"), "label" => "Réference du produit"));
         echo "
 
 \t\t    ";
         // line 61
         echo "\t\t    ";
-        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["formulaire"]) ? $context["formulaire"] : $this->getContext($context, "formulaire")), "type", array()), 'errors');
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["formulaire"]) ? $context["formulaire"] : $this->getContext($context, "formulaire")), "reference", array()), 'errors');
         echo "
 
 \t\t    <div class=\"col-sm-4\">
 \t\t        ";
         // line 65
         echo "\t\t        ";
-        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["formulaire"]) ? $context["formulaire"] : $this->getContext($context, "formulaire")), "type", array()), 'widget', array("attr" => array("class" => "form-control")));
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["formulaire"]) ? $context["formulaire"] : $this->getContext($context, "formulaire")), "reference", array()), 'widget', array("attr" => array("class" => "form-control")));
         echo "
 \t\t    </div>
 \t\t</div>
 
-\t\t";
-        // line 70
-        echo "        <span style=\"margin-left:30%\">";
-        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["formulaire"]) ? $context["formulaire"] : $this->getContext($context, "formulaire")), "Ajouter", array()), 'widget', array("attr" => array("class" => "btn btn-primary")));
+\t\t<div class=\"form-group\">
+\t\t    ";
+        // line 71
+        echo "\t\t    ";
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["formulaire"]) ? $context["formulaire"] : $this->getContext($context, "formulaire")), "categorie", array()), 'label', array("label_attr" => array("class" => "col-sm-4 control-label"), "label" => "Categorie du produit"));
+        echo "
+
+\t\t    ";
+        // line 74
+        echo "\t\t    ";
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["formulaire"]) ? $context["formulaire"] : $this->getContext($context, "formulaire")), "categorie", array()), 'errors');
+        echo "
+
+\t\t    <div class=\"col-sm-4\">
+\t\t        ";
+        // line 78
+        echo "\t\t        ";
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["formulaire"]) ? $context["formulaire"] : $this->getContext($context, "formulaire")), "categorie", array()), 'widget', array("attr" => array("class" => "form-control")));
+        echo "
+\t\t    </div>
+\t\t</div>
+
+        <span style=\"margin-left:30%\">";
+        // line 82
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["formulaire"]) ? $context["formulaire"] : $this->getContext($context, "formulaire")), "Ajouter", array()), 'widget', array("attr" => array("class" => "btn btn-success")));
+        echo "</span>
+
+         <span style=\"margin-left:25%\">";
+        // line 84
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["formulaire"]) ? $context["formulaire"] : $this->getContext($context, "formulaire")), "Annuler", array()), 'widget', array("label" => "Annuler", "attr" => array("class" => "btn btn-warning")));
         echo "</span>
 
 \t\t";
-        // line 72
+        // line 86
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock((isset($context["formulaire"]) ? $context["formulaire"] : $this->getContext($context, "formulaire")), 'widget');
         echo "
 \t\t ";
-        // line 73
+        // line 87
         echo         $this->env->getExtension('form')->renderer->renderBlock((isset($context["formulaire"]) ? $context["formulaire"] : $this->getContext($context, "formulaire")), 'form_end');
         echo "\t
 \t\t </div>
 \t";
         
-        $__internal_9084e71d68f62697542a152dfa3f68d3593efa41efed0f92e8327328d0c1a13e->leave($__internal_9084e71d68f62697542a152dfa3f68d3593efa41efed0f92e8327328d0c1a13e_prof);
+        $__internal_c691e83e3c582b1b37c911cdbdea7a9d188763d8c63ffda6b1f5d0a683d5a81d->leave($__internal_c691e83e3c582b1b37c911cdbdea7a9d188763d8c63ffda6b1f5d0a683d5a81d_prof);
 
     }
 
@@ -187,7 +213,7 @@ class __TwigTemplate_f9e2311745a28f723bdb37cc3723239d8ce5c329fed62241bdeae4b905c
 
     public function getDebugInfo()
     {
-        return array (  169 => 73,  165 => 72,  159 => 70,  151 => 65,  144 => 61,  138 => 58,  130 => 53,  123 => 49,  117 => 46,  109 => 41,  102 => 37,  96 => 34,  88 => 29,  81 => 25,  75 => 22,  67 => 17,  60 => 13,  54 => 10,  49 => 7,  45 => 6,  40 => 3,  34 => 2,  11 => 1,);
+        return array (  195 => 87,  191 => 86,  186 => 84,  181 => 82,  173 => 78,  166 => 74,  160 => 71,  151 => 65,  144 => 61,  138 => 58,  130 => 53,  123 => 49,  117 => 46,  109 => 41,  102 => 37,  96 => 34,  88 => 29,  81 => 25,  75 => 22,  67 => 17,  60 => 13,  54 => 10,  49 => 7,  45 => 6,  40 => 3,  34 => 2,  11 => 1,);
     }
 }
 /* {% extends "GestionStockBundle::template.html.twig" %}*/
@@ -211,55 +237,69 @@ class __TwigTemplate_f9e2311745a28f723bdb37cc3723239d8ce5c329fed62241bdeae4b905c
 /* 		</div>*/
 /* 		<div class="form-group">*/
 /* 		    {# Génération du label. #}*/
-/* 		    {{ form_label(formulaire.quantite, "Quantité produit", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}*/
+/* 		    {{ form_label(formulaire.codebarre, "Code barre", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}*/
 /* */
 /* 		    {# Affichage des erreurs pour ce champ précis. #}*/
-/* 		    {{ form_errors(formulaire.quantite) }}*/
+/* 		    {{ form_errors(formulaire.codebarre) }}*/
 /* */
 /* 		    <div class="col-sm-4">*/
 /* 		        {# Génération de l'input. #}*/
-/* 		        {{ form_widget(formulaire.quantite, {'attr': {'class': 'form-control'}}) }}*/
+/* 		        {{ form_widget(formulaire.codebarre, {'attr': {'class': 'form-control'}}) }}*/
 /* 		    </div>*/
 /* 		</div>*/
 /* 		<div class="form-group">*/
 /* 		    {# Génération du label. #}*/
-/* 		    {{ form_label(formulaire.prixUnitaire, "Prix Unitaire", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}*/
+/* 		    {{ form_label(formulaire.prixunitaire, "Prix Unitaire", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}*/
 /* */
 /* 		    {# Affichage des erreurs pour ce champ précis. #}*/
-/* 		    {{ form_errors(formulaire.prixUnitaire) }}*/
+/* 		    {{ form_errors(formulaire.prixunitaire) }}*/
 /* */
 /* 		    <div class="col-sm-4">*/
 /* 		        {# Génération de l'input. #}*/
-/* 		        {{ form_widget(formulaire.prixUnitaire, {'attr': {'class': 'form-control'}}) }}*/
+/* 		        {{ form_widget(formulaire.prixunitaire, {'attr': {'class': 'form-control'}}) }}*/
 /* 		    </div>*/
 /* 		</div>*/
 /* 		<div class="form-group">*/
 /* 		    {# Génération du label. #}*/
-/* 		    {{ form_label(formulaire.codeBarre, "CodeBarre", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}*/
+/* 		    {{ form_label(formulaire.dateperemption, "Date de péremption", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}*/
 /* */
 /* 		    {# Affichage des erreurs pour ce champ précis. #}*/
-/* 		    {{ form_errors(formulaire.codeBarre) }}*/
+/* 		    {{ form_errors(formulaire.dateperemption) }}*/
 /* */
 /* 		    <div class="col-sm-4">*/
 /* 		        {# Génération de l'input. #}*/
-/* 		        {{ form_widget(formulaire.codeBarre, {'attr': {'class': 'form-control'}}) }}*/
+/* 		        {{ form_widget(formulaire.dateperemption, {'attr': {'class': 'form-control'}}) }}*/
 /* 		    </div>*/
 /* 		</div>*/
 /* 		<div class="form-group">*/
 /* 		    {# Génération du label. #}*/
-/* 		    {{ form_label(formulaire.type, "Catégorie produit", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}*/
+/* 		    {{ form_label(formulaire.reference, "Réference du produit", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}*/
 /* */
 /* 		    {# Affichage des erreurs pour ce champ précis. #}*/
-/* 		    {{ form_errors(formulaire.type) }}*/
+/* 		    {{ form_errors(formulaire.reference) }}*/
 /* */
 /* 		    <div class="col-sm-4">*/
 /* 		        {# Génération de l'input. #}*/
-/* 		        {{ form_widget(formulaire.type, {'attr': {'class': 'form-control'}}) }}*/
+/* 		        {{ form_widget(formulaire.reference, {'attr': {'class': 'form-control'}}) }}*/
 /* 		    </div>*/
 /* 		</div>*/
 /* */
-/* 		{# Pour le bouton, pas de label ni d'erreur, on affiche juste le widget #}*/
-/*         <span style="margin-left:30%">{{ form_widget(formulaire.Ajouter, {'attr': {'class': 'btn btn-primary'}}) }}</span>*/
+/* 		<div class="form-group">*/
+/* 		    {# Génération du label. #}*/
+/* 		    {{ form_label(formulaire.categorie, "Categorie du produit", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}*/
+/* */
+/* 		    {# Affichage des erreurs pour ce champ précis. #}*/
+/* 		    {{ form_errors(formulaire.categorie) }}*/
+/* */
+/* 		    <div class="col-sm-4">*/
+/* 		        {# Génération de l'input. #}*/
+/* 		        {{ form_widget(formulaire.categorie, {'attr': {'class': 'form-control'}}) }}*/
+/* 		    </div>*/
+/* 		</div>*/
+/* */
+/*         <span style="margin-left:30%">{{ form_widget(formulaire.Ajouter, {'attr': {'class': 'btn btn-success'}}) }}</span>*/
+/* */
+/*          <span style="margin-left:25%">{{ form_widget(formulaire.Annuler, {'label': 'Annuler', 'attr': {'class': 'btn btn-warning'}}) }}</span>*/
 /* */
 /* 		{{ form_widget(formulaire) }}*/
 /* 		 {{ form_end(formulaire) }}	*/

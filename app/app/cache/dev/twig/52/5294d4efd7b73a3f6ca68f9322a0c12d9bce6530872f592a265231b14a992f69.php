@@ -15,8 +15,8 @@ class __TwigTemplate_0ce6686116120dba0317f5e02d82ffa56df0525d5c4d49fea0092cf27a3
 
     protected function doDisplay(array $context, array $blocks = array())
     {
-        $__internal_2e1a8c8629bf0e4f43256c88766c53206579e53c4e3a7e1ee1396ba83382295a = $this->env->getExtension("native_profiler");
-        $__internal_2e1a8c8629bf0e4f43256c88766c53206579e53c4e3a7e1ee1396ba83382295a->enter($__internal_2e1a8c8629bf0e4f43256c88766c53206579e53c4e3a7e1ee1396ba83382295a_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "SonataUserBundle:Profile:edit_authentication.html.twig"));
+        $__internal_bafc7308d56ba943a9cb5106bf4d1358277fe1f509cf9e67a8a0e22a0a22e47a = $this->env->getExtension("native_profiler");
+        $__internal_bafc7308d56ba943a9cb5106bf4d1358277fe1f509cf9e67a8a0e22a0a22e47a->enter($__internal_bafc7308d56ba943a9cb5106bf4d1358277fe1f509cf9e67a8a0e22a0a22e47a_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "SonataUserBundle:Profile:edit_authentication.html.twig"));
 
         // line 11
         echo "
@@ -63,7 +63,7 @@ class __TwigTemplate_0ce6686116120dba0317f5e02d82ffa56df0525d5c4d49fea0092cf27a3
 </div>
 ";
         
-        $__internal_2e1a8c8629bf0e4f43256c88766c53206579e53c4e3a7e1ee1396ba83382295a->leave($__internal_2e1a8c8629bf0e4f43256c88766c53206579e53c4e3a7e1ee1396ba83382295a_prof);
+        $__internal_bafc7308d56ba943a9cb5106bf4d1358277fe1f509cf9e67a8a0e22a0a22e47a->leave($__internal_bafc7308d56ba943a9cb5106bf4d1358277fe1f509cf9e67a8a0e22a0a22e47a_prof);
 
     }
 

@@ -21,35 +21,64 @@ class __TwigTemplate_d3d711bfb1d9d3decf25265c8f23363043e38cee47c067386d72c8db667
 
     protected function doDisplay(array $context, array $blocks = array())
     {
-        $__internal_926829ca7ee75a1c6eb2a65e77fecfab8ec6e5afa7b36b3cc7ee82339f2f77e4 = $this->env->getExtension("native_profiler");
-        $__internal_926829ca7ee75a1c6eb2a65e77fecfab8ec6e5afa7b36b3cc7ee82339f2f77e4->enter($__internal_926829ca7ee75a1c6eb2a65e77fecfab8ec6e5afa7b36b3cc7ee82339f2f77e4_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "GestionInventaireBundle:Inventaire:index.html.twig"));
+        $__internal_574f2c4247503c3d82126697a07ba8300e82507f6f423d9919347c4a9285aaa8 = $this->env->getExtension("native_profiler");
+        $__internal_574f2c4247503c3d82126697a07ba8300e82507f6f423d9919347c4a9285aaa8->enter($__internal_574f2c4247503c3d82126697a07ba8300e82507f6f423d9919347c4a9285aaa8_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "GestionInventaireBundle:Inventaire:index.html.twig"));
 
         $this->parent->display($context, array_merge($this->blocks, $blocks));
         
-        $__internal_926829ca7ee75a1c6eb2a65e77fecfab8ec6e5afa7b36b3cc7ee82339f2f77e4->leave($__internal_926829ca7ee75a1c6eb2a65e77fecfab8ec6e5afa7b36b3cc7ee82339f2f77e4_prof);
+        $__internal_574f2c4247503c3d82126697a07ba8300e82507f6f423d9919347c4a9285aaa8->leave($__internal_574f2c4247503c3d82126697a07ba8300e82507f6f423d9919347c4a9285aaa8_prof);
 
     }
 
-    // line 3
+    // line 2
     public function block_contenu($context, array $blocks = array())
     {
-        $__internal_4e9bea38f7c432734cef26f8e910f9ae10dd0f8ef0d4e7851fee6aaf5e63de79 = $this->env->getExtension("native_profiler");
-        $__internal_4e9bea38f7c432734cef26f8e910f9ae10dd0f8ef0d4e7851fee6aaf5e63de79->enter($__internal_4e9bea38f7c432734cef26f8e910f9ae10dd0f8ef0d4e7851fee6aaf5e63de79_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "contenu"));
+        $__internal_314a2dbf532fcbadba97f8f3962d94c469477edd80630ee11d54ebb6a483c873 = $this->env->getExtension("native_profiler");
+        $__internal_314a2dbf532fcbadba97f8f3962d94c469477edd80630ee11d54ebb6a483c873->enter($__internal_314a2dbf532fcbadba97f8f3962d94c469477edd80630ee11d54ebb6a483c873_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "contenu"));
 
-        // line 4
-        echo "<div class=\"col-md-12\" >
-    <div class=\"row\">
-        <div class=\"col-sm-6 col-md-4\">
-            <div class=\"thumbnail\">
-                <h1>Bng</h1>
-                bassirou ngom
-            </div>
-        </div>
-    </div>
+        // line 3
+        echo "    <br>
+     <button type=\"button\" class=\"btn btn-primary btn-lg\" data-toggle=\"modal\" data-target=\"#myModal\">
+         Faire l'inventaire
+     </button>
 
-";
+     <!-- Modal -->
+     <div class=\"modal fade\" id=\"myModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" aria-hidden=\"true\">
+         <div class=\"modal-dialog\" role=\"document\">
+             <div class=\"modal-content\">
+                 <form method=\"post\" ";
+        // line 12
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), 'enctype');
+        echo ">
+                 <div class=\"modal-header\">
+                     <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">
+                         <span aria-hidden=\"true\">&times;</span>
+                     </button>
+                     <h4 class=\"modal-title\" id=\"myModalLabel\">Faire l'inventaire</h4>
+                 </div>
+                 <div class=\"modal-body\">
+                     <div class=\"well\">
+                             ";
+        // line 21
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), 'widget');
+        echo "
+                     </div>
+                 </div>
+                 <div class=\"modal-footer\">
+                     <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Fermer</button>
+                     <button type=\"submit\" class=\"btn btn-primary\">executer</button>
+                 </div>
+                 </form>
+             </div>
+         </div>
+     </div>
+
+     <br>
+
+
+ ";
         
-        $__internal_4e9bea38f7c432734cef26f8e910f9ae10dd0f8ef0d4e7851fee6aaf5e63de79->leave($__internal_4e9bea38f7c432734cef26f8e910f9ae10dd0f8ef0d4e7851fee6aaf5e63de79_prof);
+        $__internal_314a2dbf532fcbadba97f8f3962d94c469477edd80630ee11d54ebb6a483c873->leave($__internal_314a2dbf532fcbadba97f8f3962d94c469477edd80630ee11d54ebb6a483c873_prof);
 
     }
 
@@ -65,20 +94,42 @@ class __TwigTemplate_d3d711bfb1d9d3decf25265c8f23363043e38cee47c067386d72c8db667
 
     public function getDebugInfo()
     {
-        return array (  40 => 4,  34 => 3,  11 => 1,);
+        return array (  63 => 21,  51 => 12,  40 => 3,  34 => 2,  11 => 1,);
     }
 }
 /* {% extends "GestionInventaireBundle::template.html.twig" %}*/
+/*  {% block contenu %}*/
+/*     <br>*/
+/*      <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">*/
+/*          Faire l'inventaire*/
+/*      </button>*/
 /* */
-/* {% block contenu %}*/
-/* <div class="col-md-12" >*/
-/*     <div class="row">*/
-/*         <div class="col-sm-6 col-md-4">*/
-/*             <div class="thumbnail">*/
-/*                 <h1>Bng</h1>*/
-/*                 bassirou ngom*/
-/*             </div>*/
-/*         </div>*/
-/*     </div>*/
+/*      <!-- Modal -->*/
+/*      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">*/
+/*          <div class="modal-dialog" role="document">*/
+/*              <div class="modal-content">*/
+/*                  <form method="post" {{ form_enctype(form) }}>*/
+/*                  <div class="modal-header">*/
+/*                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">*/
+/*                          <span aria-hidden="true">&times;</span>*/
+/*                      </button>*/
+/*                      <h4 class="modal-title" id="myModalLabel">Faire l'inventaire</h4>*/
+/*                  </div>*/
+/*                  <div class="modal-body">*/
+/*                      <div class="well">*/
+/*                              {{ form_widget(form) }}*/
+/*                      </div>*/
+/*                  </div>*/
+/*                  <div class="modal-footer">*/
+/*                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>*/
+/*                      <button type="submit" class="btn btn-primary">executer</button>*/
+/*                  </div>*/
+/*                  </form>*/
+/*              </div>*/
+/*          </div>*/
+/*      </div>*/
 /* */
-/* {% endblock%}*/
+/*      <br>*/
+/* */
+/* */
+/*  {%endblock%}*/

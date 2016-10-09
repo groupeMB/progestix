@@ -1,8 +1,34 @@
 gestion_inventaire_homepage:
-    path:     /inventaire
+    path:     /
     defaults: { _controller: GestionInventaireBundle:Inventaire:index }
+
+gestion_inventaire_lister:
+    path:     /lister
+    defaults: { _controller: GestionInventaireBundle:Inventaire:listerInventaire }
+
+
+gestion_inventaire_ajouter_type:
+    path:     /ajouter/type
+    defaults: { _controller: GestionInventaireBundle:TypeInventaire:ajouterTypeInventaire }
+
+gestion_inventaire_modifier_type:
+    path:     /modifier/type/{id}
+    defaults: { _controller: GestionInventaireBundle:TypeInventaire:modifierTypeInventaire }
+
+
+gestion_inventaire_lister_type:
+    path:     /lister/type
+    defaults: { _controller: GestionInventaireBundle:TypeInventaire:listerTypeInventaire }
+
+gestion_inventaire_supprimer_type:
+    path:     /supprimer/type/{id}
+    defaults: { _controller: GestionInventaireBundle:TypeInventaire:supprimerTypeInventaire }
 
 
 generer_pdf_inventaire:
-    path:     /inventaire/pdf
-    defaults: { _controller: GestionInventaireBundle:Inventaire:pdf }
+    path:     /download/pdf/{filename}
+    defaults: { _controller: GestionInventaireBundle:Inventaire:download }
+
+generer_excel_inventaire:
+    path:     /download/excel/
+    defaults: { _controller: GestionInventaireBundle:Inventaire:test }

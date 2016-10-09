@@ -28,8 +28,9 @@
       <parameter key="PharmaciePharmacienBundle">Pharmacie\PharmacienBundle\PharmaciePharmacienBundle</parameter>
       <parameter key="AdministrationPharmacieBundle">Administration\PharmacieBundle\AdministrationPharmacieBundle</parameter>
       <parameter key="GestionStockBundle">Gestion\StockBundle\GestionStockBundle</parameter>
-      <parameter key="KnpSnappyBundle">Knp\Bundle\SnappyBundle\KnpSnappyBundle</parameter>
       <parameter key="GestionInventaireBundle">Gestion\InventaireBundle\GestionInventaireBundle</parameter>
+      <parameter key="LiuggioExcelBundle">Liuggio\ExcelBundle\LiuggioExcelBundle</parameter>
+      <parameter key="KnpSnappyBundle">Knp\Bundle\SnappyBundle\KnpSnappyBundle</parameter>
       <parameter key="DebugBundle">Symfony\Bundle\DebugBundle\DebugBundle</parameter>
       <parameter key="WebProfilerBundle">Symfony\Bundle\WebProfilerBundle\WebProfilerBundle</parameter>
       <parameter key="SensioDistributionBundle">Sensio\Bundle\DistributionBundle\SensioDistributionBundle</parameter>
@@ -883,9 +884,10 @@
       <parameter>Registration</parameter>
       <parameter>Default</parameter>
     </parameter>
+    <parameter key="phpexcel.class">Liuggio\ExcelBundle\Factory</parameter>
     <parameter key="knp_snappy.pdf.internal_generator.class">Knp\Snappy\Pdf</parameter>
     <parameter key="knp_snappy.pdf.class">Knp\Bundle\SnappyBundle\Snappy\LoggableGenerator</parameter>
-    <parameter key="knp_snappy.pdf.binary">/usr/bin/wkhtmltopdf.sh</parameter>
+    <parameter key="knp_snappy.pdf.binary">/usr/local/bin/wkhtmltopdf.sh</parameter>
     <parameter key="knp_snappy.pdf.options" type="collection"/>
     <parameter key="knp_snappy.pdf.env" type="collection"/>
     <parameter key="knp_snappy.image.internal_generator.class">Knp\Snappy\Image</parameter>
@@ -2627,7 +2629,7 @@
         </argument>
         <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-            <argument>57f5665f401943.59722533</argument>
+            <argument>57fa4d05b25b17.25850124</argument>
           </service>
         </argument>
         <argument type="service">
@@ -2641,7 +2643,7 @@
         </argument>
         <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-            <argument>57f5665f401943.59722533</argument>
+            <argument>57fa4d05b25b17.25850124</argument>
           </service>
         </argument>
       </argument>
@@ -3050,7 +3052,7 @@
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
             <argument type="service" id="security.token_storage"/>
-            <argument>57f5665f401943.59722533</argument>
+            <argument>57fa4d05b25b17.25850124</argument>
             <argument type="service" id="monolog.logger.security" on-invalid="null"/>
             <argument type="service" id="security.authentication.manager"/>
           </service>
@@ -3162,7 +3164,7 @@
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
             <argument type="service" id="security.token_storage"/>
-            <argument>57f5665f401943.59722533</argument>
+            <argument>57fa4d05b25b17.25850124</argument>
             <argument type="service" id="monolog.logger.security" on-invalid="null"/>
             <argument type="service" id="security.authentication.manager"/>
           </service>
@@ -3660,6 +3662,7 @@
               <argument key="ApplicationSonataUserBundle">Application\Sonata\UserBundle\Entity</argument>
               <argument key="AdministrationPharmacieBundle">Administration\PharmacieBundle\Entity</argument>
               <argument key="GestionStockBundle">Gestion\StockBundle\Entity</argument>
+              <argument key="GestionInventaireBundle">Gestion\InventaireBundle\Entity</argument>
             </argument>
           </call>
           <call method="setMetadataCacheImpl">
@@ -3681,6 +3684,7 @@
                         <argument key="/var/www/html/progestix/app/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/config/doctrine">FOS\UserBundle\Entity</argument>
                         <argument key="/var/www/html/progestix/app/vendor/sonata-project/user-bundle/Resources/config/doctrine">Sonata\UserBundle\Entity</argument>
                         <argument key="/var/www/html/progestix/app/src/Application/Sonata/UserBundle/Resources/config/doctrine">Application\Sonata\UserBundle\Entity</argument>
+                        <argument key="/var/www/html/progestix/app/src/Gestion/StockBundle/Resources/config/doctrine">Gestion\StockBundle\Entity</argument>
                       </argument>
                       <call method="setGlobalBasename">
                         <argument>mapping</argument>
@@ -3696,6 +3700,7 @@
                         <argument key="/var/www/html/progestix/app/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/config/doctrine">FOS\UserBundle\Entity</argument>
                         <argument key="/var/www/html/progestix/app/vendor/sonata-project/user-bundle/Resources/config/doctrine">Sonata\UserBundle\Entity</argument>
                         <argument key="/var/www/html/progestix/app/src/Application/Sonata/UserBundle/Resources/config/doctrine">Application\Sonata\UserBundle\Entity</argument>
+                        <argument key="/var/www/html/progestix/app/src/Gestion/StockBundle/Resources/config/doctrine">Gestion\StockBundle\Entity</argument>
                       </argument>
                       <call method="setGlobalBasename">
                         <argument>mapping</argument>
@@ -3711,6 +3716,7 @@
                         <argument key="/var/www/html/progestix/app/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/config/doctrine">FOS\UserBundle\Entity</argument>
                         <argument key="/var/www/html/progestix/app/vendor/sonata-project/user-bundle/Resources/config/doctrine">Sonata\UserBundle\Entity</argument>
                         <argument key="/var/www/html/progestix/app/src/Application/Sonata/UserBundle/Resources/config/doctrine">Application\Sonata\UserBundle\Entity</argument>
+                        <argument key="/var/www/html/progestix/app/src/Gestion/StockBundle/Resources/config/doctrine">Gestion\StockBundle\Entity</argument>
                       </argument>
                       <call method="setGlobalBasename">
                         <argument>mapping</argument>
@@ -3721,11 +3727,27 @@
                 </call>
                 <call method="addDriver">
                   <argument type="service">
+                    <service class="Doctrine\ORM\Mapping\Driver\SimplifiedXmlDriver" public="false">
+                      <argument type="collection">
+                        <argument key="/var/www/html/progestix/app/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/config/doctrine">FOS\UserBundle\Entity</argument>
+                        <argument key="/var/www/html/progestix/app/vendor/sonata-project/user-bundle/Resources/config/doctrine">Sonata\UserBundle\Entity</argument>
+                        <argument key="/var/www/html/progestix/app/src/Application/Sonata/UserBundle/Resources/config/doctrine">Application\Sonata\UserBundle\Entity</argument>
+                        <argument key="/var/www/html/progestix/app/src/Gestion/StockBundle/Resources/config/doctrine">Gestion\StockBundle\Entity</argument>
+                      </argument>
+                      <call method="setGlobalBasename">
+                        <argument>mapping</argument>
+                      </call>
+                    </service>
+                  </argument>
+                  <argument>Gestion\StockBundle\Entity</argument>
+                </call>
+                <call method="addDriver">
+                  <argument type="service">
                     <service class="Doctrine\ORM\Mapping\Driver\AnnotationDriver" public="false">
                       <argument type="service" id="annotation_reader"/>
                       <argument type="collection">
                         <argument>/var/www/html/progestix/app/src/Administration/PharmacieBundle/Entity</argument>
-                        <argument>/var/www/html/progestix/app/src/Gestion/StockBundle/Entity</argument>
+                        <argument>/var/www/html/progestix/app/src/Gestion/InventaireBundle/Entity</argument>
                       </argument>
                     </service>
                   </argument>
@@ -3737,11 +3759,11 @@
                       <argument type="service" id="annotation_reader"/>
                       <argument type="collection">
                         <argument>/var/www/html/progestix/app/src/Administration/PharmacieBundle/Entity</argument>
-                        <argument>/var/www/html/progestix/app/src/Gestion/StockBundle/Entity</argument>
+                        <argument>/var/www/html/progestix/app/src/Gestion/InventaireBundle/Entity</argument>
                       </argument>
                     </service>
                   </argument>
-                  <argument>Gestion\StockBundle\Entity</argument>
+                  <argument>Gestion\InventaireBundle\Entity</argument>
                 </call>
               </service>
             </argument>
@@ -5259,11 +5281,15 @@
         </argument>
       </call>
     </service>
+    <service id="gestion.stockbundle.basedd" class="Gestion\StockBundle\Service\BaseDD">
+      <argument type="service" id="doctrine.orm.default_entity_manager"/>
+    </service>
+    <service id="phpexcel" class="Liuggio\ExcelBundle\Factory"/>
     <service id="knp_snappy.pdf" class="Knp\Bundle\SnappyBundle\Snappy\LoggableGenerator">
       <tag name="monolog.logger" channel="snappy"/>
       <argument type="service">
         <service class="Knp\Snappy\Pdf" public="false">
-          <argument>/usr/bin/wkhtmltopdf.sh</argument>
+          <argument>/usr/local/bin/wkhtmltopdf.sh</argument>
           <argument type="collection"/>
           <argument type="collection"/>
         </service>

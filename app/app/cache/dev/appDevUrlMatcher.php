@@ -105,41 +105,159 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
-        if (0 === strpos($pathinfo, '/inventaire')) {
-            // gestion_inventaire_homepage
-            if ($pathinfo === '/inventaire') {
-                return array (  '_controller' => 'Gestion\\InventaireBundle\\Controller\\InventaireController::indexAction',  '_route' => 'gestion_inventaire_homepage',);
+        if (0 === strpos($pathinfo, '/stock')) {
+            if (0 === strpos($pathinfo, '/stock/produit')) {
+                // gestion_stock_homepage
+                if ($pathinfo === '/stock/produit') {
+                    return array (  '_controller' => 'Gestion\\StockBundle\\Controller\\DefaultController::indexAction',  '_route' => 'gestion_stock_homepage',);
+                }
+
+                if (0 === strpos($pathinfo, '/stock/produit/a')) {
+                    // gestion_stock_ajouter_produit
+                    if ($pathinfo === '/stock/produit/ajouter') {
+                        return array (  '_controller' => 'Gestion\\StockBundle\\Controller\\ProduitController::ajouterAction',  '_route' => 'gestion_stock_ajouter_produit',);
+                    }
+
+                    // gestion_stock_afficher_produit
+                    if (0 === strpos($pathinfo, '/stock/produit/afficher') && preg_match('#^/stock/produit/afficher/(?P<code>[^/]++)$#s', $pathinfo, $matches)) {
+                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'gestion_stock_afficher_produit')), array (  '_controller' => 'Gestion\\StockBundle\\Controller\\ProduitController::afficherAction',));
+                    }
+
+                }
+
+                // gestion_stock_lister_produit
+                if ($pathinfo === '/stock/produit/lister') {
+                    return array (  '_controller' => 'Gestion\\StockBundle\\Controller\\ProduitController::listerAction',  '_route' => 'gestion_stock_lister_produit',);
+                }
+
+                // gestion_stock_modifier_produit
+                if (0 === strpos($pathinfo, '/stock/produit/modifier') && preg_match('#^/stock/produit/modifier/(?P<codebarre>[^/]++)$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'gestion_stock_modifier_produit')), array (  '_controller' => 'Gestion\\StockBundle\\Controller\\ProduitController::modifierAction',));
+                }
+
+                // gestion_stock_supprimer_produit
+                if (0 === strpos($pathinfo, '/stock/produit/supprimer') && preg_match('#^/stock/produit/supprimer/(?P<codebarre>[^/]++)$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'gestion_stock_supprimer_produit')), array (  '_controller' => 'Gestion\\StockBundle\\Controller\\ProduitController::supprimerAction',));
+                }
+
             }
 
-            // generer_pdf_inventaire
-            if ($pathinfo === '/inventaire/pdf') {
-                return array (  '_controller' => 'Gestion\\InventaireBundle\\Controller\\InventaireController::pdfAction',  '_route' => 'generer_pdf_inventaire',);
+            if (0 === strpos($pathinfo, '/stock/stock')) {
+                // gestion_stockage_lister_stock
+                if ($pathinfo === '/stock/stock/lister') {
+                    return array (  '_controller' => 'Gestion\\StockBundle\\Controller\\StockController::listerAction',  '_route' => 'gestion_stockage_lister_stock',);
+                }
+
+                if (0 === strpos($pathinfo, '/stock/stock/a')) {
+                    // gestion_stockage_afficher_stock
+                    if (0 === strpos($pathinfo, '/stock/stock/afficher') && preg_match('#^/stock/stock/afficher/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'gestion_stockage_afficher_stock')), array (  '_controller' => 'Gestion\\StockBundle\\Controller\\StockController::afficherAction',));
+                    }
+
+                    // gestion_stockage_ajouter_stock
+                    if ($pathinfo === '/stock/stock/ajouter') {
+                        return array (  '_controller' => 'Gestion\\StockBundle\\Controller\\StockController::ajouterAction',  '_route' => 'gestion_stockage_ajouter_stock',);
+                    }
+
+                }
+
+                // gestion_stockage_modifier_stock
+                if (0 === strpos($pathinfo, '/stock/stock/modifier') && preg_match('#^/stock/stock/modifier/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'gestion_stockage_modifier_stock')), array (  '_controller' => 'Gestion\\StockBundle\\Controller\\StockController::modifierAction',));
+                }
+
+                // gestion_stockage_supprimer_stock
+                if (0 === strpos($pathinfo, '/stock/stock/supprimer') && preg_match('#^/stock/stock/supprimer/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'gestion_stockage_supprimer_stock')), array (  '_controller' => 'Gestion\\StockBundle\\Controller\\StockController::supprimerAction',));
+                }
+
+            }
+
+            if (0 === strpos($pathinfo, '/stock/categorie')) {
+                // gestion_stock_categorie_ajouter
+                if ($pathinfo === '/stock/categorie/ajouter') {
+                    return array (  '_controller' => 'Gestion\\StockBundle\\Controller\\CategorieController::ajouterAction',  '_route' => 'gestion_stock_categorie_ajouter',);
+                }
+
+                // gestion_stock_categorie_lister
+                if ($pathinfo === '/stock/categorie/lister') {
+                    return array (  '_controller' => 'Gestion\\StockBundle\\Controller\\CategorieController::listerAction',  '_route' => 'gestion_stock_categorie_lister',);
+                }
+
+                // gestion_stock_categorie_modifier
+                if (0 === strpos($pathinfo, '/stock/categorie/modifer') && preg_match('#^/stock/categorie/modifer/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'gestion_stock_categorie_modifier')), array (  '_controller' => 'Gestion\\StockBundle\\Controller\\CategorieController::modifierAction',));
+                }
+
+                // gestion_stock_categorie_supprimer
+                if (0 === strpos($pathinfo, '/stock/categorie/supprimer') && preg_match('#^/stock/categorie/supprimer/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'gestion_stock_categorie_supprimer')), array (  '_controller' => 'Gestion\\StockBundle\\Controller\\CategorieController::supprimerAction',));
+                }
+
+                // gestion_stock_categorie_produit
+                if (0 === strpos($pathinfo, '/stock/categorie/produit') && preg_match('#^/stock/categorie/produit/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'gestion_stock_categorie_produit')), array (  '_controller' => 'Gestion\\StockBundle\\Controller\\CategorieController::produitCategorieAction',));
+                }
+
+            }
+
+            // gestion_stock_dynamique_produit_ajouter
+            if ($pathinfo === '/stock/dynamique/produit/ajouter') {
+                return array (  '_controller' => 'Gestion\\StockBundle\\Controller\\DynamiqueController::produitAjouterAction',  '_route' => 'gestion_stock_dynamique_produit_ajouter',);
             }
 
         }
 
-        if (0 === strpos($pathinfo, '/produit')) {
-            // gestion_stock_homepage
-            if ($pathinfo === '/produit') {
-                return array (  '_controller' => 'Gestion\\StockBundle\\Controller\\DefaultController::indexAction',  '_route' => 'gestion_stock_homepage',);
-            }
-
-            if (0 === strpos($pathinfo, '/produit/a')) {
-                // gestion_stock_ajouter_produit
-                if ($pathinfo === '/produit/ajouter') {
-                    return array (  '_controller' => 'Gestion\\StockBundle\\Controller\\ProduitController::ajouterAction',  '_route' => 'gestion_stock_ajouter_produit',);
+        if (0 === strpos($pathinfo, '/inventaire')) {
+            // gestion_inventaire_homepage
+            if (rtrim($pathinfo, '/') === '/inventaire') {
+                if (substr($pathinfo, -1) !== '/') {
+                    return $this->redirect($pathinfo.'/', 'gestion_inventaire_homepage');
                 }
 
-                // gestion_stock_afficher_produit
-                if (0 === strpos($pathinfo, '/produit/afficher') && preg_match('#^/produit/afficher/(?P<code>[^/]++)$#s', $pathinfo, $matches)) {
-                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'gestion_stock_afficher_produit')), array (  '_controller' => 'Gestion\\StockBundle\\Controller\\ProduitController::afficherAction',));
-                }
-
+                return array (  '_controller' => 'Gestion\\InventaireBundle\\Controller\\InventaireController::indexAction',  '_route' => 'gestion_inventaire_homepage',);
             }
 
-            // gestion_stock_lister_produit
-            if ($pathinfo === '/produit/lister') {
-                return array (  '_controller' => 'Gestion\\StockBundle\\Controller\\ProduitController::listerAction',  '_route' => 'gestion_stock_lister_produit',);
+            // gestion_inventaire_lister
+            if ($pathinfo === '/inventaire/lister') {
+                return array (  '_controller' => 'Gestion\\InventaireBundle\\Controller\\InventaireController::listerInventaireAction',  '_route' => 'gestion_inventaire_lister',);
+            }
+
+            // gestion_inventaire_ajouter_type
+            if ($pathinfo === '/inventaire/ajouter/type') {
+                return array (  '_controller' => 'Gestion\\InventaireBundle\\Controller\\TypeInventaireController::ajouterTypeInventaireAction',  '_route' => 'gestion_inventaire_ajouter_type',);
+            }
+
+            // gestion_inventaire_modifier_type
+            if (0 === strpos($pathinfo, '/inventaire/modifier/type') && preg_match('#^/inventaire/modifier/type/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'gestion_inventaire_modifier_type')), array (  '_controller' => 'Gestion\\InventaireBundle\\Controller\\TypeInventaireController::modifierTypeInventaireAction',));
+            }
+
+            // gestion_inventaire_lister_type
+            if ($pathinfo === '/inventaire/lister/type') {
+                return array (  '_controller' => 'Gestion\\InventaireBundle\\Controller\\TypeInventaireController::listerTypeInventaireAction',  '_route' => 'gestion_inventaire_lister_type',);
+            }
+
+            // gestion_inventaire_supprimer_type
+            if (0 === strpos($pathinfo, '/inventaire/supprimer/type') && preg_match('#^/inventaire/supprimer/type/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'gestion_inventaire_supprimer_type')), array (  '_controller' => 'Gestion\\InventaireBundle\\Controller\\TypeInventaireController::supprimerTypeInventaireAction',));
+            }
+
+            if (0 === strpos($pathinfo, '/inventaire/download')) {
+                // generer_pdf_inventaire
+                if (0 === strpos($pathinfo, '/inventaire/download/pdf') && preg_match('#^/inventaire/download/pdf/(?P<filename>[^/]++)$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'generer_pdf_inventaire')), array (  '_controller' => 'Gestion\\InventaireBundle\\Controller\\InventaireController::downloadAction',));
+                }
+
+                // generer_excel_inventaire
+                if (rtrim($pathinfo, '/') === '/inventaire/download/excel') {
+                    if (substr($pathinfo, -1) !== '/') {
+                        return $this->redirect($pathinfo.'/', 'generer_excel_inventaire');
+                    }
+
+                    return array (  '_controller' => 'Gestion\\InventaireBundle\\Controller\\InventaireController::testAction',  '_route' => 'generer_excel_inventaire',);
+                }
+
             }
 
         }
