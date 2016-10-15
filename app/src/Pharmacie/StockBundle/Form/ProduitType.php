@@ -49,7 +49,10 @@ class ProduitType extends AbstractType
                 )
             ))
             ->add('dateperemption', DateType::class, array(
-                'widget' => 'choice'))
+                'widget' => 'choice',
+                'years' => range(date('Y')+1, date('Y')+10)
+                ))
+
             ->add('reference','text', array(
                 'attr' => array(
                     'placeholder' => 'minimum 2 caracteres',
@@ -61,6 +64,19 @@ class ProduitType extends AbstractType
                 'choice_label' => 'libelle'
             )) //'choice', array('choices' => $res))  //new CategorieType())
 
+            ->add('description','text', array(
+                'attr' => array(
+                    'placeholder' => 'minimum 10 caractères',
+                    'pattern'     => '.{10,}' //minlength
+                )
+            ))
+
+            ->add('posologie','text', array(
+                'attr' => array(
+                    'placeholder' => 'minimum 10 caractères',
+                    'pattern'     => '.{10,}' //minlength
+                )
+            ))
 
             ->add('Valider', 'submit')
             ->add('Annuler', 'submit')

@@ -79,6 +79,32 @@
 		    </div>
 		</div>
 
+		<div class="form-group">
+		    {# Génération du label. #}
+		    {{ form_label(formulaire.description, "Description", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+
+		    {# Affichage des erreurs pour ce champ précis. #}
+		    {{ form_errors(formulaire.description) }}
+
+		    <div class="col-sm-4">
+		        {# Génération de l'input. #}
+		        {{ form_widget(formulaire.description, {'attr': {'class': 'form-control'}}) }}
+		    </div>
+		</div>
+
+		<div class="form-group">
+		    {# Génération du label. #}
+		    {{ form_label(formulaire.posologie, "Posologie", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+
+		    {# Affichage des erreurs pour ce champ précis. #}
+		    {{ form_errors(formulaire.posologie) }}
+
+		    <div class="col-sm-4">
+		        {# Génération de l'input. #}
+		        {{ form_widget(formulaire.posologie, {'attr': {'class': 'form-control'}}) }}
+		    </div>
+		</div>
+
 
 
         <center><span>{{ form_widget(formulaire.Valider, {'attr': {'class': 'btn btn-success'}}) }}</span>
