@@ -1,0 +1,13 @@
+{% extends "PharmacieStockBundle:Produit:lister.html.twig" %}
+{% block table %}
+  <center><h4 class="panel-heading alert-danger">Détails du produit : {{ code.libelle }}</h4></center>
+  <hr class="colorgraph">
+  <ul class="list-group">
+      <li class="list-group-item"><u>Libellé</u> : {{ code.libelle }}</li>
+      <li class="list-group-item"><u>Code barre</u>: {{ code.codebarre }}</li>
+      <li class="list-group-item"><u>Prix</u> : {{ code.prixunitaire}} FCFA</li>
+      <li class="list-group-item"><u>Date de péremption</u> : {{code.dateperemption|date('d-M-Y') }}</li>
+      <li class="list-group-item"><u>Réference</u> : {{code.reference }}</li>
+      <li class="list-group-item"><u>Catégorie</u> : {{code.categorie }}</li>
+  </ul>
+{% endblock%}

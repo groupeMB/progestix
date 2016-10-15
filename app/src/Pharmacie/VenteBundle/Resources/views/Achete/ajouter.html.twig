@@ -1,0 +1,56 @@
+{% extends "GestionVenteBundle::template.html.twig" %}
+	 {% block contenu %}
+         <br><br>
+         <div class="well">
+             <em><center><h2> Achat </h2></center></em>
+             {{ form_start(formulaire, {'attr': {'class': 'form-horizontal'}}) }}
+             {{ form_errors(formulaire) }}
+
+             <div class="form-group">
+                 {# Génération du label. #}
+                 {{ form_label(formulaire.idproduit, "Produit", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+
+                 {# Affichage des erreurs pour ce champ précis. #}
+                 {{ form_errors(formulaire.idproduit) }}
+
+                 <div class="col-sm-4">
+                     {# Génération de l'input. #}
+                     {{ form_widget(formulaire.idproduit, {'attr': {'class': 'form-control'}}) }}
+                 </div>
+             </div>
+             <div class="form-group">
+                 {# Génération du label. #}
+                 {{ form_label(formulaire.idclient, "client", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+
+                 {# Affichage des erreurs pour ce champ précis. #}
+                 {{ form_errors(formulaire.idclient) }}
+
+                 <div class="col-sm-4">
+                     {# Génération de l'input. #}
+                     {{ form_widget(formulaire.idclient, {'attr': {'class': 'form-control'}}) }}
+                 </div>
+             </div>
+
+
+            
+             <div class="form-group">
+                 {# Génération du label. #}
+                 {{ form_label(formulaire.montant, "montant", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+
+                 {# Affichage des erreurs pour ce champ précis. #}
+                 {{ form_errors(formulaire.montant) }}
+
+                 <div class="col-sm-4">
+                     {# Génération de l'input. #}
+                     {{ form_widget(formulaire.montant, {'attr': {'class': 'form-control'}}) }}
+                 </div>
+             </div>
+
+
+             {# Pour le bouton, pas de label ni d'erreur, on affiche juste le widget #}
+             <span style="margin-left:30%">{{ form_widget(formulaire.Ajouter, {'attr': {'class': 'btn btn-primary'}}) }}</span>
+
+             {{ form_widget(formulaire) }}
+             {{ form_end(formulaire) }}
+         </div>
+     {%endblock%}

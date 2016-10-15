@@ -1,0 +1,53 @@
+{% extends "PharmacieStockBundle:Produit:index.html.twig" %}
+{% block main %}
+    <center><h4 class="alert alert-success">Gestion du stock de médicaments de votre pharmacie</h4></center>
+    <hr class="colorgraph">
+    <div class="row">
+       <div class="col-md-9" >
+        {% block table %}
+        <center><h4 class="panel-heading alert-danger">Listes des médicaments existants</h4></center>
+            <hr class="colorgraph">
+        <div class="table-responsive">
+            <table id="mytable" class="table table-bordered ">
+                <thead>
+                    <th>Libellé Produit</th>
+                    <th>Quantité</th>
+                    <th>Seuil Mininum</th>
+                    <th>Fonctions</th>
+                </thead>
+                <tbody>
+                    {% for tag in stocks %}
+                         <tr>
+                            <td>{{ tag.produit }}</td>
+                            <td>{{ tag.quantite }}</td>
+                            <td>{{ tag.seuilMin }}</td>
+                            <td>
+                            <a href="{{ path('gestion_stockage_afficher_stock', {'id': tag.id }) }}"><button class="btn btn-info btn-xs"><span class="glyphicon glyphicon-list"></span></button></a>
+                            <a href="{{ path('gestion_stockage_modifier_stock', {'id': tag.id }) }}"><button class="btn btn-success btn-xs"><span class="glyphicon glyphicon-edit"></span></button></a>
+                            <a href="{{ path('gestion_stockage_supprimer_stock', {'id': tag.id }) }}" data-confirm="Vous êtes sur le point de supprimer le médicament {{tag.produit}} du stock. Etes-vous sûr de bien vouloir effectué cette opération ?"><button class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></span></button></a>
+                            </td>
+                            
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% endblock%}
+        </div>
+        <div class="col-md-3">
+            <center><h4 class="panel-heading alert-danger">Actions à effectuer</h4></center>
+            <hr class="colorgraph">
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <a href="{{ path('gestion_stockage_ajouter_stock')}}"><button type="button" class="btn btn-success btn-block"><span class="glyphicon glyphicon-list"></span> Ajout Nouveau stock</button></a>
+                </li>
+                <li class="list-group-item">
+                    <button type="button" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-edit"></span> Statistiques</button>
+                </li>
+                <li class="list-group-item">
+                    <a href="{{ path('gestion_stockage_lister_stock')}}"><button type="button" class="btn btn-danger btn-block"><span class="glyphicon glyphicon-list"></span> Liste des produits</button></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+{% endblock%}

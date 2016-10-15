@@ -1,0 +1,69 @@
+gestion_vente_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: PharmacieVenteBundle:Default:index }
+
+gestion_vente_vente_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: PharmacieVenteBundle:Default:index }
+
+gestionstock_ajouter_produit:
+    path:     /produit/ajouter
+    defaults: { _controller: PharmacieVenteBundle:Produit:ajouter }
+
+gestionstock_afficher_produit:
+    path:     /produit/afficher/{code}
+    defaults: { _controller:  PharmacieVenteBundle:Produit:afficher }
+
+gestionstock_lister_produit:
+    path:     /produit/lister
+    defaults: { _controller:  PharmacieVenteBundle:Produit:lister }
+
+gestionstock_ajouter_categorie:
+    path:     /categorie/ajouter
+    defaults: { _controller:  PharmacieVenteBundle:categori:ajouter }
+gestionstock_ajouter_client:
+    path:     /client/ajouter
+    defaults: { _controller:  PharmacieVenteBundle:client:ajouter }
+
+
+gestionstock_client_achete:
+    path:     /achat/client
+    defaults: { _controller: PharmacieVenteBundle:Achete:client }
+gestionstock_clientajouter_achete:
+    path:     /achat/clientajouter
+    defaults: { _controller: PharmacieVenteBundle:Achete:clientajouter }
+
+
+gestionstock_ajouter_achete:
+    path:     /achat/ajouter
+    defaults: { _controller: PharmacieVenteBundle:Achete:ajouter }
+
+gestionstock_panier_achete:
+    path:     /achat/panier
+    defaults: { _controller:  PharmacieVenteBundle:Achete:panier }
+
+gestionstock_validerpanier_achete:
+    path:     /valider/panier
+    defaults: { _controller:  PharmacieVenteBundle:Achete:validerpanier }
+gestionstock_valider_achete:
+    path:     /valider1/panier
+    defaults: { _controller:  PharmacieVenteBundle:Achete:valider }
+
+gestionstock_panierajouter_achete:
+    path:     /achat/panierajouter/{id}
+    defaults: { _controller: PharmacieVenteBundle:Achete:panierajouter }
+gestionstock_paier_supprimer:
+    path:     /achat/supprimer/{id}
+    defaults: { _controller:  PharmacieVenteBundle:Achete:supprimer }
+
+gestionstock_lister_achete:
+    path:     /achat/lister
+    defaults: { _controller: PharmacieVenteBundle:Achete:lister }
+gestionstock_recherche_achete:
+    path:     /achat/recherche
+    defaults: { _controller:  PharmacieVenteBundle:Achete:recherche }
+
+gestionstock_affiche_achete:
+    path:     /achat/affiche/{id}
+    defaults: { _controller:  PharmacieVenteBundle:Achete:affiche }
+

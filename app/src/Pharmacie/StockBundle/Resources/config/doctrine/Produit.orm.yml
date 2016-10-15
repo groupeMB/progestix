@@ -1,0 +1,59 @@
+Pharmacie\StockBundle\Entity\Produit:
+    type: entity
+    repositoryClass: Pharmacie\StockBundle\Repository\ProduitRepository 
+    table: produit
+    indexes:
+        IDX_E618D5BBBCF5E72D:
+            columns:
+                - categorie_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        libelle:
+            type: string
+            nullable: false
+            length: 100
+            options:
+                fixed: false
+        codebarre:
+            type: string
+            nullable: false
+            length: 40
+            options:
+                fixed: false
+            column: codeBarre
+        prixunitaire:
+            type: decimal
+            nullable: false
+            precision: 10
+            scale: 0
+            column: prixUnitaire
+        dateperemption:
+            type: date
+            nullable: false
+            column: datePeremption
+        reference:
+            type: string
+            nullable: false
+            length: 50
+            options:
+                fixed: false
+    manyToOne:
+        categorie:
+            targetEntity: Categorie
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                categorie_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

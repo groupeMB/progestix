@@ -1,4 +1,0 @@
-services:
-#    pharmacie_pharmacien.example:
-#        class: Pharmacie\PharmacienBundle\Example
-#        arguments: ["@service_id", "plain_value", %parameter%]

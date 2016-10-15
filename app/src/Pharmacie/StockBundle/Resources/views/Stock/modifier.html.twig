@@ -1,0 +1,54 @@
+{% extends "PharmacieStockBundle:Produit:lister.html.twig" %}
+	 {% block table %}
+	 <div class="">
+        <center><h4 class="panel-heading alert-danger">Mise à jour du stock du produit</h4></center>
+		{{ form_start(formulaire, {'attr': {'class': 'form-horizontal'}}) }}
+		{{ form_errors(formulaire) }}
+		<div class="form-group">
+		    {# Génération du label. #}
+		    {{ form_label(formulaire.quantite, "Quantité", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+
+		    {# Affichage des erreurs pour ce champ précis. #}
+		    {{ form_errors(formulaire.quantite) }}
+
+		    <div class="col-sm-4">
+		        {# Génération de l'input. #}
+		        {{ form_widget(formulaire.quantite, {'attr': {'class': 'form-control'}}) }}
+		    </div>
+		</div>
+
+		<div class="form-group">
+		    {# Génération du label. #}
+		    {{ form_label(formulaire.seuilMin, "Seuil Minimum", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+
+		    {# Affichage des erreurs pour ce champ précis. #}
+		    {{ form_errors(formulaire.seuilMin) }}
+
+		    <div class="col-sm-4">
+		        {# Génération de l'input. #}
+		        {{ form_widget(formulaire.seuilMin, {'attr': {'class': 'form-control'}}) }}
+		    </div>
+		</div>
+
+		<div class="form-group">
+		    {# Génération du label. #}
+		    {{ form_label(formulaire.produit, "Produit ID", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+
+		    {# Affichage des erreurs pour ce champ précis. #}
+		    {{ form_errors(formulaire.produit) }}
+
+		    <div class="col-sm-4">
+		        {# Génération de l'input. #}
+		        {{ form_widget(formulaire.produit, {'attr': {'class': 'form-control'}}) }}
+		    </div>
+		</div>
+	
+	   </br>
+        <span style="margin-left:30%">{{ form_widget(formulaire.Valider, {'label': 'Modifier', 'attr': {'class': 'btn btn-primary'}}) }}</span>
+
+         <span style="margin-left:25%">{{ form_widget(formulaire.Annuler, {'label': 'Annuler', 'attr': {'class': 'btn btn-warning'}}) }}</span>
+
+		{{ form_widget(formulaire) }}
+		 {{ form_end(formulaire) }}	
+		 </div>
+	{%endblock%}

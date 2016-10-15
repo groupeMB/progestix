@@ -1,3 +1,0 @@
-administration_pharmacie_homepage:
-    path:     /
-    defaults: { _controller: AdministrationPharmacieBundle:Default:index }

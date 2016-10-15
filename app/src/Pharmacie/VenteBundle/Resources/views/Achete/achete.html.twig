@@ -1,0 +1,85 @@
+{% extends "PharmacieVenteBundle:Achete:index.html.twig" %}
+
+ {% block main %}
+         <div class="row">
+            <center><h4 class="panel-heading alert-danger">Bienvenue dans votre espace de vente sécurisé</h4></center>
+            <hr class="colorgraph">
+             <div class="col-md-3">
+                <center><h4 class="panel-heading alert-danger">Votre Panier</h4></center>
+                 <div class=" well">
+                     <ul class="nav nav-list">
+                         <li>
+                             <a href="{{ path('gestionstock_panier_achete') }}">
+                                 {% if article==0 %}
+                                     Aucun produit dans votre panier
+                                 {% elseif article==1 %}
+                                     1 produit dans votre panier
+                                 {% else %}
+                                     {{ article }} produits dant votre panier
+                                  {% endif %}
+
+                             </a>
+                        </li>
+                     </ul>
+                    <a href="{{ path('gestionstock_panier_achete') }}" class="btn btn-danger btn-block">Voir Panier</a>
+
+                 </div>
+             </div>
+
+             <div class="col-md-9">
+
+                 <div class="row carousel-holder">
+                     <div class="col-md-12">
+                        <form class="form-search pull-right">
+                            <input id="Search" name="recherche" type="text" class="input-medium search-query">
+                            <button type="submit" class="btn">Rechercher</button>
+                        </form>
+                     </div>
+                 </div>
+                 <hr>
+                 <div class="row">
+                  {% for tag in produits %}
+                     <div class="col-sm-4 col-lg-4 col-md-4">
+                         <div class="thumbnail">
+                             <div class="caption">
+                                 <h4 class="pull-right">{{ tag.prixUnitaire}}Fcf</h4>
+                                 <h6><a href="#">{{ tag.libelle}}</a>
+                                 </h6>
+                                 <p>
+                                     <a href="{{ path('gestionstock_panierajouter_achete',{'id':tag.id}) }}" class="btn btn-primary">Ajouter au panier</a>
+                                     <a href="{{ path('gestionstock_affiche_achete',{'id':tag.id}) }}" class="btn btn-success">Plus Info</a>
+                                 </p>
+                             </div>
+
+                         </div>
+                     </div>
+                  {% endfor %}
+
+
+
+
+                 </div>
+
+                 <div class="col-md-12">
+                     <div class="pagination">
+                         <ul>
+                             <li class="disabled"><span>precedant</span></li>
+                             <li class="disabled"><span>1</span></li>
+                             <li><a href="#">1</a></li>
+                             <li><a href="#">2</a></li>
+                             <li><a href="#">suivant</a></li>
+                         </ul>
+
+                     </div>
+
+                 </div>
+
+             </div>
+
+         </div>
+
+     </div>
+     <!-- /.container -->
+
+
+ {%endblock%}

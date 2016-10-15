@@ -1,0 +1,10 @@
+{% extends "PharmacieStockBundle:Stock:lister.html.twig" %}
+{% block table %}
+  <center><h4 class="panel-heading alert-danger">Détails sur le stock du produit : {{ stock.produit }}</h4></center>
+  <hr class="colorgraph">
+  <ul class="list-group">
+      <li class="list-group-item"><u>Produit</u> : {{ stock.produit }}</li>
+      <li class="list-group-item"><u>Seuil minimum</u>: {{ stock.seuilMin }}</li>
+      <li class="list-group-item"><u>Quantité</u> : {{ stock.quantite}} </li>
+  </ul>
+{% endblock%}

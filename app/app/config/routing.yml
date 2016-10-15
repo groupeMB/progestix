@@ -1,14 +1,14 @@
-gestion_stock:
-    resource: "@GestionStockBundle/Resources/config/routing.yml"
+pharmacie_accueil:
+    resource: "@PharmacieAccueilBundle/Resources/config/routing.yml"
+    prefix:   /
+
+pharmacie_stock:
+    resource: "@PharmacieStockBundle/Resources/config/routing.yml"
     prefix:   /stock
 
-gestion_inventaire:
-    resource: "@GestionInventaireBundle/Resources/config/routing.yml"
-    prefix:   /inventaire
-
-app:
-    resource: "@AppBundle/Controller/"
-    type:     annotation
+pharmacie_vente:
+    resource: "@PharmacieVenteBundle/Resources/config/routing.yml"
+    prefix:   /vente
 
 admin:
     resource: '@SonataAdminBundle/Resources/config/routing/sonata_admin.xml'

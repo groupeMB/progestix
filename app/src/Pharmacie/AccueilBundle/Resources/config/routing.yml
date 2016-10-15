@@ -1,0 +1,7 @@
+pharmacie_accueil_login:
+    path:     /login
+    defaults: { _controller: PharmacieAccueilBundle:Security:login }
+
+pharmacie_accueil_presentation:
+    path:     /
+    defaults: { _controller: PharmacieAccueilBundle:Security:presentation }

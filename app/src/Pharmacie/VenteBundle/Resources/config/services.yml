@@ -1,0 +1,7 @@
+parameters:
+#    gestion_vente.example.class: Gestion\VenteBundle\Example
+
+services:
+#    gestion_vente.example:
+#        class: %gestion_vente.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

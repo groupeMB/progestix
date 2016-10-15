@@ -15,7 +15,6 @@ class AppKernel extends Kernel
             new Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
-            new AppBundle\AppBundle(),
             new Sonata\CoreBundle\SonataCoreBundle(),
             new Sonata\BlockBundle\SonataBlockBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
@@ -25,12 +24,9 @@ class AppKernel extends Kernel
             new Sonata\UserBundle\SonataUserBundle('FOSUserBundle'),
             new Sonata\EasyExtendsBundle\SonataEasyExtendsBundle(),
             new Application\Sonata\UserBundle\ApplicationSonataUserBundle(),
-            new Pharmacie\PharmacienBundle\PharmaciePharmacienBundle(),
-            new Administration\PharmacieBundle\AdministrationPharmacieBundle(),
-            new Gestion\StockBundle\GestionStockBundle(),
-            new Gestion\InventaireBundle\GestionInventaireBundle(),
-            new Liuggio\ExcelBundle\LiuggioExcelBundle(),
-            new Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
+            new Pharmacie\AccueilBundle\PharmacieAccueilBundle(),
+            new Pharmacie\StockBundle\PharmacieStockBundle(),
+            new Pharmacie\VenteBundle\PharmacieVenteBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'), true)) {
