@@ -525,28 +525,4 @@ class Produit
     {
         return $this->keywords;
     }
-
-    /**
-     * Set image
-     *
-     * @param \Pharmacie\StockBundle\Entity\Image $image
-     *
-     * @return Produit
-     */
-    public function setImage(\Pharmacie\StockBundle\Entity\Image $image = null)
-    {
-        $this->image = $image;
-
-        return $this;
-    }
-
-    /**
-     * Get image
-     *
-     * @return \Pharmacie\StockBundle\Entity\Image
-     */
-    public function getImage()
-    {
-        return $this->image;
-    }
 }

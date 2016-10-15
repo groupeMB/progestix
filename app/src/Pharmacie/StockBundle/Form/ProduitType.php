@@ -60,6 +60,8 @@ class ProduitType extends AbstractType
                 'class' => 'PharmacieStockBundle:Categorie',
                 'choice_label' => 'libelle'
             )) //'choice', array('choices' => $res))  //new CategorieType())
+
+
             ->add('Valider', 'submit')
             ->add('Annuler', 'submit')
         ;

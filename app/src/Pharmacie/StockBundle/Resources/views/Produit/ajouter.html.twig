@@ -1,5 +1,6 @@
 {% extends "PharmacieStockBundle:Produit:lister.html.twig" %}
 	 {% block table %}
+
 	 <div class="">
         <center><h4 class="panel-heading alert-danger">Ajouter un nouveau produit pharmaceutique </h4></center>
 		{{ form_start(formulaire, {'attr': {'class': 'form-horizontal'}}) }}
@@ -77,6 +78,8 @@
 		        {{ form_widget(formulaire.categorie, {'attr': {'class': 'form-control'}}) }}
 		    </div>
 		</div>
+
+
 
         <center><span>{{ form_widget(formulaire.Valider, {'attr': {'class': 'btn btn-success'}}) }}</span>
          <span>{{ form_widget(formulaire.Annuler, {'label': 'Annuler', 'attr': {'class': 'btn btn-warning'}}) }}</span></center>
