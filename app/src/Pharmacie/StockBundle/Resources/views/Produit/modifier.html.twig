@@ -5,6 +5,7 @@
         </br>
 		{{ form_start(formulaire, {'attr': {'class': 'form-horizontal'}}) }}
 		{{ form_errors(formulaire) }}
+		
 		<div class="form-group">
 		    {# Génération du label. #}
 		    {{ form_label(formulaire.libelle, "Libellé produit", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
@@ -16,10 +17,14 @@
 		        {# Génération de l'input. #}
 		        {{ form_widget(formulaire.libelle, {'attr': {'class': 'form-control'}}) }}
 		    </div>
+		    <div class="col-sm-2">
+        		<a href="{{ path('gestion_stockage_ajouter_stock')}}" alt="Nouveau Produit"><button type="button" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span></button></a>
+        	</div>
 		</div>
+
 		<div class="form-group">
 		    {# Génération du label. #}
-		    {{ form_label(formulaire.codebarre, "Code Barre", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+		    {{ form_label(formulaire.codebarre, "Code barre", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
 
 		    {# Affichage des erreurs pour ce champ précis. #}
 		    {{ form_errors(formulaire.codebarre) }}
@@ -31,7 +36,7 @@
 		</div>
 		<div class="form-group">
 		    {# Génération du label. #}
-		    {{ form_label(formulaire.prixunitaire, "Prix Unitaire", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+		    {{ form_label(formulaire.prixunitaire, "Prix unitaire", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
 
 		    {# Affichage des erreurs pour ce champ précis. #}
 		    {{ form_errors(formulaire.prixunitaire) }}
@@ -51,31 +56,6 @@
 		    <div class="col-sm-4">
 		        {# Génération de l'input. #}
 		        {{ form_widget(formulaire.dateperemption, {'attr': {'class': 'form-control'}}) }}
-		    </div>
-		</div>
-		<div class="form-group">
-		    {# Génération du label. #}
-		    {{ form_label(formulaire.reference, "Réference du produit", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
-
-		    {# Affichage des erreurs pour ce champ précis. #}
-		    {{ form_errors(formulaire.reference) }}
-
-		    <div class="col-sm-4">
-		        {# Génération de l'input. #}
-		        {{ form_widget(formulaire.reference, {'attr': {'class': 'form-control'}}) }}
-		    </div>
-		</div>
-
-		<div class="form-group">
-		    {# Génération du label. #}
-		    {{ form_label(formulaire.categorie, "Categorie du produit", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
-
-		    {# Affichage des erreurs pour ce champ précis. #}
-		    {{ form_errors(formulaire.categorie) }}
-
-		    <div class="col-sm-4">
-		        {# Génération de l'input. #}
-		        {{ form_widget(formulaire.categorie, {'attr': {'class': 'form-control'}}) }}
 		    </div>
 		</div>
 	

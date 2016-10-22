@@ -29,6 +29,7 @@ gestionstock_ajouter_client:
 gestionstock_client_achete:
     path:     /achat/client
     defaults: { _controller: PharmacieVenteBundle:Achete:client }
+    
 gestionstock_clientajouter_achete:
     path:     /achat/clientajouter
     defaults: { _controller: PharmacieVenteBundle:Achete:clientajouter }

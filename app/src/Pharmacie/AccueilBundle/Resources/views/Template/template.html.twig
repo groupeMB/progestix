@@ -15,6 +15,9 @@
         <link rel="stylesheet" type="text/css" href = "{{ app.request.schemeAndHttpHost ~ asset('bundles/pharmacieaccueil/bower_components/bootstrap/dist/css/bootstrap.min.css') }}"/>
 
         <link rel="stylesheet" type="text/css" href = "{{ app.request.schemeAndHttpHost ~ asset('bundles/pharmacieaccueil/bower_components/datatables/media/css/jquery.dataTables.css') }}"/>
+
+        <link type="text/css" rel="stylesheet" href="{{ app.request.schemeAndHttpHost ~ asset('bundles/pharmaciestock/bower_components/select2/dist/css/select2.css') }}">
+        
     
     <body id="coprsTemplate">
         <div >
@@ -82,6 +85,9 @@
     <script type="text/javascript" src="{{ app.request.schemeAndHttpHost ~ asset('bundles/pharmacieaccueil/bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
     
     <script type="text/javascript" src="{{ app.request.schemeAndHttpHost ~ asset('bundles/pharmacieaccueil/bower_components/datatables/media/js/jquery.dataTables.js')}}"></script>
+
+    <script type="text/javascript" src="{{ app.request.schemeAndHttpHost ~ asset('bundles/pharmaciestock/bower_components/select2/dist/js/select2.min.js') }}"></script>
+  
     
     <script>
         $(document).ready(function(){
@@ -102,5 +108,179 @@
                      return false;
                 });
             });
-        </script>
+    </script>
+
+    <script type="text/javascript">
+        
+        $(document).ready(function() {
+           // $('#keywords').style.display = 'none';
+                //console.log(window.location.pathname.split("/"));
+                var pathname = window.location.pathname.split("/");
+               
+
+                    if( pathname[pathname.length-2]=="stock" && pathname[pathname.length-1]=="ajouter"){
+                        ajouter_keyword();
+                        //ajouter_champ_produit();
+                    }
+                    else if( pathname[pathname.length-2]=="produit" && pathname[pathname.length-1]=="ajouter"){
+                        //ajouter_champ_produit();
+                        $("#libelle").select2({
+                            placeholder: "nom du produit",
+                            allowClear: true
+                        });
+                    }
+                    
+                });
+
+
+
+        function ajouter_keyword(){
+            // On récupère la balise <div> en question qui contient l'attribut « data-prototype » qui nous intéresse.
+            var $container = $('#keywords_div');
+            //
+             //console.log($('#keywords'));
+            console.log("ajoute de keyword");
+
+            
+            if($container){
+                //$container.append($addLink);
+
+                // On définit un compteur unique pour nommer les champs qu'on va ajouter dynamiquement
+                var index = $container.find(':input').length //$container.length; //
+
+                // On ajoute un premier champ automatiquement s'il n'en existe pas déjà un (cas d'une nouvelle annonce par exemple).
+                if (index == 0) {
+                  addCategory($container);
+                } else {
+                  // Pour chaque catégorie déjà existante, on ajoute un lien de suppression
+                  $container.children('div').each(function() {
+                    addDeleteLink($(this));
+                  });
+                }
+
+                // on ajoute l'évènement associé au click du bouton ajoute keyword 
+                var $addLink = $('#ajout_keyword');//$('<a href="#" id="ajout_keyword" class="btn btn-default">Ajouter une clé</a>');
+                $addLink.click(function(e) {
+                    console.log(index);
+                  addCategory($container);
+                  e.preventDefault(); // évite qu'un # apparaisse dans l'URL
+                  return false;
+                });
+
+                // La fonction qui ajoute un formulaire Categorie
+                function addCategory($container) {
+                  // Dans le contenu de l'attribut « data-prototype », on remplace :
+                  // - le texte "__name__label__" qu'il contient par le label du champ
+                  // - le texte "__name__" qu'il contient par le numéro du champ
+                  var $prototype = $($container.attr('data-prototype').replace(/__name__label__/g, '')
+                                                                        .replace(/__name__/g, index));
+
+                  // On ajoute au prototype un lien pour pouvoir supprimer la catégorie
+                  if(index != 0){
+                        addDeleteLink($prototype);
+                        
+                    }else{
+                        $prototype.append('<div class="col-sm-2">\
+                            <a href="" id="ajout_keyword"><button type="button" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span></button></a>\
+                        </div>');
+                    }
+
+                  // On ajoute le prototype modifié à la fin de la balise <div>
+                  $container.append($prototype);
+
+                  // Enfin, on incrémente le compteur pour que le prochain ajout se fasse avec un autre numéro
+                  index++;
+                }
+
+                // La fonction qui ajoute un lien de suppression d'une catégorie
+                function addDeleteLink($prototype) {
+                  // Création du lien
+                  $deleteLink = $('<div class="col-sm-2">\
+                            <a href="" id=""><button type="button" class="btn btn-success"><span class="glyphicon glyphicon-minus"></span></button></a>\
+                        </div>');
+
+                  // Ajout du lien
+                  $prototype.append($deleteLink);
+
+                  // Ajout du listener sur le clic du lien
+                  $deleteLink.click(function(e) {
+                    $prototype.remove();
+                    e.preventDefault(); // évite qu'un # apparaisse dans l'URL
+                    return false;
+                  });
+                }
+            }
+        }
+
+        function ajouter_champ_produit(){
+            // On récupère la balise <div> en question qui contient l'attribut « data-prototype » qui nous intéresse.
+            var $container = $('#champs_div');
+            console.log("ajoute de champ dynamique au produit");
+
+                var index_i = $container.find(':input').length //$container.length; //
+
+                // On ajoute un premier champ automatiquement s'il n'en existe pas déjà un (cas d'une nouvelle annonce par exemple).
+                if (index_i == 0) {
+                  addChamp($container);
+                } else {
+                  // Pour chaque catégorie déjà existante, on ajoute un lien de suppression
+                  $container.children('div').each(function() {
+                    addDeleteLink($(this));
+                  });
+                }
+
+                // on ajoute l'évènement associé au click du bouton ajoute keyword 
+                var $addLink = $('#ajout_champ');//$('<a href="#" id="ajout_keyword" class="btn btn-default">Ajouter une clé</a>');
+                $addLink.click(function(e) {
+                    console.log(index_i);
+                  addCategory($container);
+                  e.preventDefault(); // évite qu'un # apparaisse dans l'URL
+                  return false;
+                });
+
+                function addChamp($container) {
+                  var $prototype = $($container.attr('data-prototype').replace(/__name__label__/g, 'i'+index_i)
+                                                                        .replace(/__name__/g, index_i));
+
+                  // On ajoute au prototype un lien pour pouvoir supprimer la catégorie
+                  if(index_i != 0){
+                        addDeleteLink($prototype);
+                        
+                    }else{
+                        $prototype.append('<div class="col-sm-2">\
+                            <a href="" id="ajout_champ"><button type="button" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span></button></a>\
+                        </div>');
+                    }
+
+                  // On ajoute le prototype modifié à la fin de la balise <div>
+                  $container.append($prototype);
+
+                  // Enfin, on incrémente le compteur pour que le prochain ajout se fasse avec un autre numéro
+                  index_i++;
+                }
+
+                // La fonction qui ajoute un lien de suppression d'une catégorie
+                function addDeleteLink($prototype) {
+                  // Création du lien
+                  $deleteLink = $('<div class="col-sm-2">\
+                            <a href="" id=""><button type="button" class="btn btn-success"><span class="glyphicon glyphicon-minus"></span></button></a>\
+                        </div>');
+
+                  // Ajout du lien
+                  $prototype.append($deleteLink);
+
+                  // Ajout du listener sur le clic du lien
+                  $deleteLink.click(function(e) {
+                    $prototype.remove();
+                    e.preventDefault(); // évite qu'un # apparaisse dans l'URL
+                    return false;
+                  });
+                }
+            
+        }
+
+    </script>
+
+
 </html>
+

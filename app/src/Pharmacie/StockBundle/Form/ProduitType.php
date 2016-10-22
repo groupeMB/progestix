@@ -30,11 +30,9 @@ class ProduitType extends AbstractType
         //     $res = $this->services->getAllCategorie();
 
         $builder
-            ->add('libelle','text', array(
-                'attr' => array(
-                    'placeholder' => 'minimum 2 caracteres',
-                    'pattern'     => '.{2,}' //minlength
-                )
+            ->add('libelle','entity', array(
+                'class' => 'PharmacieStockBundle:Stock',
+                'choice_label' => 'libelle'
             ))
             ->add('codebarre','text', array(
                 'attr' => array(
@@ -52,31 +50,7 @@ class ProduitType extends AbstractType
                 'widget' => 'choice',
                 'years' => range(date('Y')+1, date('Y')+10)
                 ))
-
-            ->add('reference','text', array(
-                'attr' => array(
-                    'placeholder' => 'minimum 2 caracteres',
-                    'pattern'     => '.{2,}' //minlength
-                )
-            ))
-            ->add('categorie','entity', array(
-                'class' => 'PharmacieStockBundle:Categorie',
-                'choice_label' => 'libelle'
-            )) //'choice', array('choices' => $res))  //new CategorieType())
-
-            ->add('description','text', array(
-                'attr' => array(
-                    'placeholder' => 'minimum 10 caractères',
-                    'pattern'     => '.{10,}' //minlength
-                )
-            ))
-
-            ->add('posologie','text', array(
-                'attr' => array(
-                    'placeholder' => 'minimum 10 caractères',
-                    'pattern'     => '.{10,}' //minlength
-                )
-            ))
+ 
 
             ->add('Valider', 'submit')
             ->add('Annuler', 'submit')

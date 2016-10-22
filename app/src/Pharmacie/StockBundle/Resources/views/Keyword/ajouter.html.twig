@@ -1,0 +1,14 @@
+
+
+
+{# Génération du label. #}
+{{ form_label(formulaire.valeur, "Mot clé", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+
+{# Affichage des erreurs pour ce champ précis. #}
+{{ form_errors(formulaire.valeur) }}
+
+<div class="col-sm-4">
+    {# Génération de l'input. #}
+    {{ form_widget(formulaire.valeur, {'attr': {'class': 'form-control'}}) }}
+</div>
+

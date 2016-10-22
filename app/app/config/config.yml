@@ -35,6 +35,7 @@ twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
 
+
 # Doctrine Configuration
 doctrine:
     dbal:
@@ -97,3 +98,4 @@ fos_user:
 sonata_admin:
     title:      PROGESTIX
     title_logo: bundles/administrationpharmacie/img/logo.png
+

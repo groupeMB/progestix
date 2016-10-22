@@ -9,7 +9,6 @@ class ComposerStaticInitb82f97cdf82207d6cccfcbd6127982e6
     public static $files = array (
         '92c8763cd6170fce6fcfe7e26b4e8c10' => __DIR__ . '/..' . '/symfony/phpunit-bridge/bootstrap.php',
         '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
-        '8ac9dba77d5c65db2811440ee8265f5d' => __DIR__ . '/..' . '/sonata-project/block-bundle/Resources/stubs/symfony2.php',
         '5255c38a0faeba867671b61dfda6d864' => __DIR__ . '/..' . '/paragonie/random_compat/lib/random.php',
         'e40631d46120a9c38ea139981f8dab26' => __DIR__ . '/..' . '/ircmaxell/password-compat/lib/password.php',
         '023d27dca8066ef29e6739335ea73bad' => __DIR__ . '/..' . '/symfony/polyfill-php70/bootstrap.php',
@@ -19,6 +18,7 @@ class ComposerStaticInitb82f97cdf82207d6cccfcbd6127982e6
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         '6a47392539ca2329373e0d33e1dba053' => __DIR__ . '/..' . '/symfony/polyfill-intl-icu/bootstrap.php',
         '32dcc8afd4335739640db7d200c1971d' => __DIR__ . '/..' . '/symfony/polyfill-apcu/bootstrap.php',
+        '8ac9dba77d5c65db2811440ee8265f5d' => __DIR__ . '/..' . '/sonata-project/block-bundle/Resources/stubs/symfony2.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -55,6 +55,7 @@ class ComposerStaticInitb82f97cdf82207d6cccfcbd6127982e6
             'Sensio\\Bundle\\GeneratorBundle\\' => 30,
             'Sensio\\Bundle\\FrameworkExtraBundle\\' => 35,
             'Sensio\\Bundle\\DistributionBundle\\' => 33,
+            'Samson\\Bundle\\AutocompleteBundle\\' => 33,
         ),
         'N' => 
         array (
@@ -78,9 +79,14 @@ class ComposerStaticInitb82f97cdf82207d6cccfcbd6127982e6
             'Google\\Authenticator\\Tests\\' => 27,
             'Google\\Authenticator\\' => 21,
         ),
+        'F' => 
+        array (
+            'FOS\\ElasticaBundle\\' => 19,
+        ),
         'E' => 
         array (
             'Exporter\\' => 9,
+            'Elastica\\' => 9,
         ),
         'D' => 
         array (
@@ -221,6 +227,10 @@ class ComposerStaticInitb82f97cdf82207d6cccfcbd6127982e6
         array (
             0 => __DIR__ . '/..' . '/sensio/distribution-bundle',
         ),
+        'Samson\\Bundle\\AutocompleteBundle\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/samson/autocomplete-bundle',
+        ),
         'Negotiation\\' => 
         array (
             0 => __DIR__ . '/..' . '/willdurand/negotiation/src/Negotiation',
@@ -249,9 +259,17 @@ class ComposerStaticInitb82f97cdf82207d6cccfcbd6127982e6
         array (
             0 => __DIR__ . '/..' . '/sonata-project/google-authenticator/lib',
         ),
+        'FOS\\ElasticaBundle\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/friendsofsymfony/elastica-bundle',
+        ),
         'Exporter\\' => 
         array (
             0 => __DIR__ . '/..' . '/sonata-project/exporter/src',
+        ),
+        'Elastica\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/ruflin/elastica/lib/Elastica',
         ),
         'Doctrine\\Instantiator\\' => 
         array (
@@ -300,6 +318,10 @@ class ComposerStaticInitb82f97cdf82207d6cccfcbd6127982e6
             'SensioLabs\\Security' => 
             array (
                 0 => __DIR__ . '/..' . '/sensiolabs/security-checker',
+            ),
+            'Samson\\Bundle\\UnexpectedResponseBundle' => 
+            array (
+                0 => __DIR__ . '/..' . '/samson/unexpected-response-bundle',
             ),
         ),
         'P' => 

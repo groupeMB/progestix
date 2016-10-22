@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Produit
  *
  * @ORM\Entity(repositoryClass="Pharmacie\StockBundle\Repository\ProduitRepository")
- * @ORM\Table(name="produit", indexes={@ORM\Index(name="IDX_E618D5BBBCF5E72D", columns={"categorie_id"})})
+ * @ORM\Table(name="produit")
  * 
  * 
  */
@@ -24,9 +24,12 @@ class Produit
     private $id;
 
     /**
-     * @var string
+     * @var \Stock
      *
-     * @ORM\Column(name="libelle", type="string", length=100, nullable=false)
+     * @ORM\ManyToOne(targetEntity="Stock")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="stock", referencedColumnName="id")
+     * })
      */
     private $libelle;
 
@@ -38,7 +41,7 @@ class Produit
     private $codebarre;
 
     /**
-     * @var string
+     * @var decimal
      *
      * @ORM\Column(name="prixUnitaire", type="decimal", precision=10, scale=0, nullable=false)
      */
@@ -51,29 +54,6 @@ class Produit
      */
     private $dateperemption;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="reference", type="string", length=50, nullable=false)
-     */
-    private $reference;
-
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="description", type="string", length=255, nullable=false)
-     */
-    private $description;
-
-
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="posologie", type="string", length=255, nullable=false)
-     */
-    private $posologie;
 
     /**
      * @var string
@@ -112,65 +92,32 @@ class Produit
 
 
 
-    /**
-     * @var Pharmacie\StockBundle\Entity\Categorie
-     *
-     * @ORM\ManyToOne(targetEntity="Pharmacie\StockBundle\Entity\Categorie")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="categorie_id", referencedColumnName="id")
-     * })
-     */
-    private $categorie;
 
-    /**
-    *
-    * @var Pharmacie\StockBundle\Entity\Keyword
-    * @ORM\OneToMany(targetEntity="Pharmacie\StockBundle\Entity\Keyword", mappedBy="produit", cascade={"remove", "persist", "refresh"})
-    * 
-    */
-    private $keywords;
-
-    /**
-     * @var Pharmacie\StockBundle\Entity\Image
-     *
-     * @ORM\ManyToOne(targetEntity="Pharmacie\StockBundle\Entity\Image")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="image", referencedColumnName="id")
-     * })
-     */
-    private $image;
-
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->keywords = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-    
-    /**
-     * Set libelle
-     *
-     * @param string $libelle
-     *
-     * @return Produit
-     */
-    public function setLibelle($libelle)
-    {
-        $this->libelle = $libelle;
-
-        return $this;
+    public function __toString(){
+        return $this->getLibelle();
     }
 
+
+    public function getContent(){
+        return array(
+                "id" => $this->id,
+                "libelle" => $this->libelle,
+                "codebarre" => $this->codebarre,
+                "prixunitaire" => $this->prixunitaire,
+                "dateperemption" => $this->dateperemption
+            );
+    }
+
+
+
     /**
-     * Get libelle
+     * Get id
      *
-     * @return string
+     * @return integer
      */
-    public function getLibelle()
+    public function getId()
     {
-        return $this->libelle;
+        return $this->id;
     }
 
     /**
@@ -224,7 +171,7 @@ class Produit
     /**
      * Set dateperemption
      *
-     * @param \DateTime $dateperemption
+     * @param \Date $dateperemption
      *
      * @return Produit
      */
@@ -238,137 +185,11 @@ class Produit
     /**
      * Get dateperemption
      *
-     * @return \DateTime
+     * @return \Date
      */
     public function getDateperemption()
     {
         return $this->dateperemption;
-    }
-
-    /**
-     * Set reference
-     *
-     * @param string $reference
-     *
-     * @return Produit
-     */
-    public function setReference($reference)
-    {
-        $this->reference = $reference;
-
-        return $this;
-    }
-
-    /**
-     * Get reference
-     *
-     * @return string
-     */
-    public function getReference()
-    {
-        return $this->reference;
-    }
-
-    /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * Set categorie
-     *
-     * @param \Gestion\StockBundle\Entity\Categorie $categorie
-     *
-     * @return Produit
-     */
-    public function setCategorie(\Pharmacie\StockBundle\Entity\Categorie $categorie)
-    {
-        $this->categorie = $categorie;
-
-        return $this;
-    }
-
-    /**
-     * Get categorie
-     *
-     * @return \Gestion\StockBundle\Entity\Categorie
-     */
-    public function getCategorie()
-    {
-        return $this->categorie;
-    }
-
-    public function __toString()
-    
-    {
-        return $this->getLibelle();
-    }
-
-
-    public function getContent(){
-        return array(
-                "id" => $this->id,
-                "libelle" => $this->libelle,
-                "reference" => $this->reference,
-                "codebarre" => $this->codebarre,
-                "prixunitaire" => $this->prixunitaire,
-                "dateperemption" => $this->dateperemption,
-                "categorie" => $this->categorie->getLibelle()
-            );
-    }
-
-
-    /**
-     * Set description
-     *
-     * @param string $description
-     *
-     * @return Produit
-     */
-    public function setDescription($description)
-    {
-        $this->description = $description;
-
-        return $this;
-    }
-
-    /**
-     * Get description
-     *
-     * @return string
-     */
-    public function getDescription()
-    {
-        return $this->description;
-    }
-
-    /**
-     * Set posologie
-     *
-     * @param string $posologie
-     *
-     * @return Produit
-     */
-    public function setPosologie($posologie)
-    {
-        $this->posologie = $posologie;
-
-        return $this;
-    }
-
-    /**
-     * Get posologie
-     *
-     * @return string
-     */
-    public function getPosologie()
-    {
-        return $this->posologie;
     }
 
     /**
@@ -491,62 +312,27 @@ class Produit
         return $this->champ5;
     }
 
-
     /**
-     * Add keyword
+     * Set libelle
      *
-     * @param \Pharmacie\StockBundle\Entity\Keyword $keyword
+     * @param \Pharmacie\StockBundle\Entity\Stock $libelle
      *
      * @return Produit
      */
-    public function addKeyword(\Pharmacie\StockBundle\Entity\Keyword $keyword)
+    public function setLibelle(\Pharmacie\StockBundle\Entity\Stock $libelle = null)
     {
-        $this->keywords[] = $keyword;
+        $this->libelle = $libelle;
 
         return $this;
     }
 
     /**
-     * Remove keyword
+     * Get libelle
      *
-     * @param \Pharmacie\StockBundle\Entity\Keyword $keyword
+     * @return \Pharmacie\StockBundle\Entity\Stock
      */
-    public function removeKeyword(\Pharmacie\StockBundle\Entity\Keyword $keyword)
+    public function getLibelle()
     {
-        $this->keywords->removeElement($keyword);
-    }
-
-    /**
-     * Get keywords
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getKeywords()
-    {
-        return $this->keywords;
-    }
-
-    /**
-     * Set image
-     *
-     * @param \Pharmacie\StockBundle\Entity\Image $image
-     *
-     * @return Produit
-     */
-    public function setImage(\Pharmacie\StockBundle\Entity\Image $image = null)
-    {
-        $this->image = $image;
-
-        return $this;
-    }
-
-    /**
-     * Get image
-     *
-     * @return \Pharmacie\StockBundle\Entity\Image
-     */
-    public function getImage()
-    {
-        return $this->image;
+        return $this->libelle;
     }
 }

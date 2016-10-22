@@ -69,4 +69,28 @@ class Image
     {
         return $this->libelle;
     }
+
+    /**
+     * Set extension
+     *
+     * @param string $extension
+     *
+     * @return Image
+     */
+    public function setExtension($extension)
+    {
+        $this->extension = $extension;
+
+        return $this;
+    }
+
+    /**
+     * Get extension
+     *
+     * @return string
+     */
+    public function getExtension()
+    {
+        return $this->extension;
+    }
 }

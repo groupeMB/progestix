@@ -29,9 +29,9 @@ class Keyword
     private $valeur;
 
     /**
-     * @var Pharmacie\StockBundle\Entity\Produit
+     * @var Pharmacie\StockBundle\Entity\Stock
      *
-     * @ORM\ManyToOne(targetEntity="Pharmacie\StockBundle\Entity\Produit", inversedBy="keywords", cascade={"remove", "persist", "refresh"})
+     * @ORM\ManyToOne(targetEntity="Pharmacie\StockBundle\Entity\Stock", inversedBy="keywords", cascade={"remove", "persist", "refresh"})
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="produit", referencedColumnName="id")
      * })
@@ -77,11 +77,11 @@ class Keyword
     /**
      * Set produit
      *
-     * @param \Pharmacie\StockBundle\Entity\Produit $produit
+     * @param \Pharmacie\StockBundle\Entity\Stock $produit
      *
      * @return Keyword
      */
-    public function setProduit(\Pharmacie\StockBundle\Entity\Produit $produit = null)
+    public function setProduit(\Pharmacie\StockBundle\Entity\Stock $produit = null)
     {
         $this->produit = $produit;
 
@@ -96,5 +96,9 @@ class Keyword
     public function getProduit()
     {
         return $this->produit;
+    }
+
+    public function __toString(){
+        return $this->getLibelle();
     }
 }

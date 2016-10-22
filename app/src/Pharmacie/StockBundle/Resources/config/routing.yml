@@ -48,6 +48,10 @@ gestion_stockage_supprimer_stock:
     path:     /stock/supprimer/{id}
     defaults: { _controller: PharmacieStockBundle:Stock:supprimer }
 
+gestion_stock_stock_statistiques:
+    path:       /stock/statistiques
+    defaults:   { _controller: PharmacieStockBundle:Stock:statistiques }
+
 
 gestion_stock_categorie:
     path:       /categorie

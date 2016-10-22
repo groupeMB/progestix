@@ -48,21 +48,15 @@ class StockController extends Controller
                  return $this->redirect($this->generateUrl('gestion_stockage_lister_stock'));
             }
 
+   
+
         return $this->render('PharmacieStockBundle:Stock:ajouter.html.twig',array('formulaire' => $form->createView()));
     }
 
-    public function listerAction()
-    {
-    	$em = $this->getDoctrine()->getManager();
+    public function listerAction(){
+        $em = $this->getDoctrine()->getManager();
         $stocks = $em->getRepository('PharmacieStockBundle:Stock')->findAll();
-
-        $res = array();
-        foreach ($stocks as $key => $stock) {
-            $res[$key] = $stock->getContent();
-        }
-
-
-        return $this->render('PharmacieStockBundle:Stock:lister.html.twig', array('stocks' => $res));
+        return $this->render('PharmacieStockBundle:Stock:lister.html.twig', array('stocks' => $stocks));
     }
 
      public function afficherAction($id)
@@ -146,9 +140,60 @@ class StockController extends Controller
         $em->flush();
 
         return $this->redirect($this->generateUrl('gestion_stockage_lister_stock',array('stocks' => $stocks)));
-            
+      
           
     }
+
+    /* 
+    * statistiques associés au stock
+    */
+
+    public function statistiquesAction(){
+
+
+
+        $resultats = array();
+
+        //tous les stocks
+        $stocks = $this->getDoctrine()->getManager()
+                ->getRepository("PharmacieStockBundle:Stock")
+                ->findAll();
+
+
+        foreach ($stocks as $stock_key => $stock){
+
+            //le nombre de produits 
+           $nb_total_produits = 0;
+
+           //l'estiamtion en termes de coût
+           $estimation_cout = 0;
+
+            $nb_total_produits += $stock->getQuantite();
+
+            //les produits dans le stock
+            $produits = $this->getDoctrine()->getManager()
+                        ->getRepository("PharmacieStockBundle:Produit")
+                        ->findByLibelle($stock->getId());
+
+            foreach ($produits as $produit_key => $produit){
+                //l'estimation en termes de coût
+                $estimation_cout +=  $produit->getPrixunitaire();
+            }
+
+            $resultats[$stock_key] = array(
+                'produit' => $stock->getLibelle(),
+                'nb_produits' => $nb_total_produits,
+                'estimation_cout' => $estimation_cout,
+                'id' => $stock->getId()
+            );
+            
+        }
+        
+        return $this->render('PharmacieStockBundle:Stock:statistiques.html.twig', array('stocks' => $resultats));
+
+    }
+
+
 
 
 }

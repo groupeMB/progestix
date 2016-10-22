@@ -87,9 +87,7 @@ class Categorie
         return $this->id;
     }
 
-    public function __toString()
-    
-    {
+    public function __toString(){
         return $this->getLibelle();
     }
 

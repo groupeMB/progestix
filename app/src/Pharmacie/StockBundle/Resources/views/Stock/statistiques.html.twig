@@ -1,0 +1,35 @@
+{% extends "PharmacieStockBundle:Stock:lister.html.twig" %}
+{% block table %}
+<center><h4 class="panel-heading alert-danger">Statistiques du stock</h4></center>
+            <hr class="colorgraph">
+        <div class="table-responsive">
+            <table id="mytable" class="table table-bordered">
+                <thead>
+                    <th>Produit</th>
+                    <th>Nombre total articles</th>
+                    <th>Estimation coût (F CFA)</th>
+                    <th>Graphes</th>
+                    <th></th>
+                </thead>
+                <tbody>
+                    {% for tag in stocks %}
+                         <tr>
+                            <td>{{ tag.produit }}</td>
+                            <td>{{ tag.nb_produits }}</td>
+                            <td>{{ tag.estimation_cout }}</td>
+                            <td></td>
+                            <td>
+                                <a href="{{ path('gestion_stockage_afficher_stock', {'id': tag.id }) }}"><button class="btn btn-info btn-xs"><span class="glyphicon glyphicon-list"></span></button></a>
+                                <a href="{{ path('gestion_stockage_modifier_stock', {'id': tag.id }) }}"><button class="btn btn-success btn-xs"><span class="glyphicon glyphicon-edit"></span></button></a>
+                                <a href="{{ path('gestion_stockage_supprimer_stock', {'id': tag.id }) }}" data-confirm="Vous êtes sur le point de supprimer le médicament {{tag.produit }} du stock. Etes-vous sûr de bien vouloir effectué cette opération ?"><button class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></span></button></a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <br/><br/><br/>
+
+{% endblock %}
+

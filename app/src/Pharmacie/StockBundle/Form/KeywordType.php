@@ -28,4 +28,9 @@ class KeywordType extends AbstractType
             'data_class' => 'Pharmacie\StockBundle\Entity\Keyword'
         ));
     }
+
+     public function getName()
+    {
+        
+    }
 }

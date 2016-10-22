@@ -16,21 +16,31 @@ class ProduitController extends Controller
  	
 
     //Ajouter produit
-    public function ajouterAction(Request $request)
-
-    {
+    public function ajouterAction(Request $request){
         $entite_produit = new Produit();
         $form_produit = new ProduitType();
+
         $form = $this->get('form.factory')->create($form_produit, $entite_produit);
 
         if ($form->handleRequest($request)->isValid()) 
         {
             if ($form->get('Valider')->isClicked())  
             {
-
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($entite_produit);
                 $em->flush();
+
+                //verifier si le stock existe
+                //$entite_produit = $em->getRepository('PharmacieStockBundle:Stock')->findOneBy($entite_produit->getContent());
+                //$stock = $em->getRepository('PharmacieStockBundle:Stock')->findOneBy($entite_produit->get);
+
+                //incrementer le stock
+                $stock = $em->getRepository("PharmacieStockBundle:Stock")
+                        ->find($entite_produit->getLibelle());
+                $stock->setQuantite($stock->getQuantite()+1);
+                $em->persist($stock);
+                $em->flush();
+
                 return $this->redirect($this->generateUrl('gestion_stock_lister_produit'));
             }
 
@@ -57,8 +67,9 @@ class ProduitController extends Controller
     public function listerAction()
     {
         $em = $this->getDoctrine()->getManager();
-        $produit = $em->getRepository('PharmacieStockBundle:Produit')->findAll();
-        return $this->render('PharmacieStockBundle:Produit:lister.html.twig', array('produits' => $produit));
+        $produits = $em->getRepository('PharmacieStockBundle:Produit')->findAll();
+        print_r($produits[0]->getDateperemption());
+        return $this->render('PharmacieStockBundle:Produit:lister.html.twig', array('produits' => $produits ));
     }
      
     //modifier produit
@@ -123,8 +134,6 @@ class ProduitController extends Controller
 
     public function statistiquesAction(){
 
-
-
         $resultats = array();
 
         //selectionner tous les produits
@@ -133,30 +142,48 @@ class ProduitController extends Controller
                     ->findAll();
 
         //le nombre de produits 
-       $nb_total_produits = 0;
+        $nb_total_produits = 0;
 
        //l'estiamtion en termes de coût
        $estimation_cout = 0;
 
+       $indexes = 0;
+       $temps  = array();
+
+
         foreach ($produits as $key => $produit){
 
             //le nombre de produits dans le stock
-            $stock = $this->getDoctrine()->getManager()
-                    ->getRepository("PharmacieStockBundle:Stock")
-                    ->findOneByProduit($produit->getId());
+            $temp = array('libelle' => $produit->getLibelle(),'prixunitaire' => $produit->getPrixunitaire());
+            
+            
+            if( !in_array($temp, $temps)){
+                
+                $temps[$indexes] = array(
+                    'libelle' => $produit->getLibelle(),
+                    'prixunitaire' => $produit->getPrixunitaire()
+                );
 
-            $nb_total_produits += $stock->getQuantite();
+                $resultats[$indexes] = array(
+                    'libelle' => $produit->getLibelle(),
+                    'nb_produits' => 0,
+                    'prixunitaire' => $produit->getPrixunitaire(),
+                    'estimation_cout' => 0
+                );
 
-            //l'estimation en termes de coût
-            $estimation_cout += $stock->getQuantite() * $produit->getPrixunitaire();
+                
 
-            $resultats[$key] = array(
-                'reference' => $produit->getReference(),
-                'libelle' => $produit->getLibelle(),
-                'nb_produits' => $nb_total_produits,
-                'estimation_cout' => $estimation_cout,
-                'codebarre' => $produit->getCodebarre()
-            );
+                foreach ($produits as $a_key => $a_produit) {
+                    if($resultats[$indexes]['libelle'] == $a_produit->getLibelle() && $resultats[$indexes]['prixunitaire'] == $a_produit->getPrixunitaire()){
+                        $resultats[$indexes]['nb_produits']++;
+                        $resultats[$indexes]['estimation_cout'] += $a_produit->getPrixunitaire();
+                    }
+                }
+
+                $indexes++;
+
+            }
+            
         }
         
 

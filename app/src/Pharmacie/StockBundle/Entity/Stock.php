@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Stock
  *
- * @ORM\Table(name="stock", uniqueConstraints={@ORM\UniqueConstraint(name="UNIQ_4B365660F347EFB", columns={"produit_id"})})
+ * @ORM\Table(name="stock")
  * @ORM\Entity
  */
 class Stock
@@ -24,9 +24,9 @@ class Stock
     /**
      * @var integer
      *
-     * @ORM\Column(name="quantite", type="integer", nullable=false)
+     * @ORM\Column(name="quantite", type="integer", nullable=true)
      */
-    private $quantite;
+    private $quantite = 0;
 
     /**
      * @var integer
@@ -35,17 +35,100 @@ class Stock
      */
     private $seuilmin;
 
+
     /**
-     * @var \Produit
+     * @var string
      *
-     * @ORM\ManyToOne(targetEntity="Produit")
+     * @ORM\Column(name="description", type="string", length=255, nullable=false)
+     */
+    private $description;
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="posologie", type="string", length=255, nullable=false)
+     */
+    private $posologie;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="libelle", type="string", length=100, nullable=false)
+     */
+    private $libelle;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="reference", type="string", length=50, nullable=false)
+     */
+    private $reference;
+
+        /**
+     * @var Pharmacie\StockBundle\Entity\Categorie
+     *
+     * @ORM\ManyToOne(targetEntity="Pharmacie\StockBundle\Entity\Categorie")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="produit_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="categorie", referencedColumnName="id")
      * })
      */
-    private $produit;
+    private $categorie;
 
-    public $produitTemp;
+    /**
+    *
+    * @var Pharmacie\StockBundle\Entity\Keyword
+    * @ORM\OneToMany(targetEntity="Pharmacie\StockBundle\Entity\Keyword", mappedBy="produit", cascade={"remove", "persist", "refresh"})
+    * 
+    */
+    private $keywords;
+
+    /**
+     * @var Pharmacie\StockBundle\Entity\Image
+     *
+     * @ORM\ManyToOne(targetEntity="Pharmacie\StockBundle\Entity\Image")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="image", referencedColumnName="id")
+     * })
+     */
+    private $image;
+
+    /**
+    *
+    * @var Pharmacie\StockBundle\Entity\ChampProduit
+    * @ORM\OneToMany(targetEntity="Pharmacie\StockBundle\Entity\ChampProduit", mappedBy="produit", cascade={"remove", "persist", "refresh"})
+    * 
+    */
+    private $champs;
+
+
+    public function getContent(){
+        return  array(
+            'id' => $this->id,
+            'quantite' => $this->quantite,
+            'seuilMin' => $this->seuilmin
+         );
+    }
+
+
+    /**
+     * Constructor
+     */
+    public function __construct(){
+
+        $this->keywords = new \Doctrine\Common\Collections\ArrayCollection();
+
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
     /**
      * Set quantite
@@ -96,47 +179,221 @@ class Stock
     }
 
     /**
-     * Get id
+     * Set description
      *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * Set produit
-     *
-     * @param \Pharmacie\StockBundle\Entity\Produit $produit
+     * @param string $description
      *
      * @return Stock
      */
-    public function setProduit(\Pharmacie\StockBundle\Entity\Produit $produit)
+    public function setDescription($description)
     {
-        $this->produit = $produit;
+        $this->description = $description;
 
         return $this;
     }
 
     /**
-     * Get produit
+     * Get description
      *
-     * @return \Pharmacie\StockBundle\Entity\Produit
+     * @return string
      */
-    public function getProduit()
+    public function getDescription()
     {
-        return $this->produit;
+        return $this->description;
+    }
+
+    /**
+     * Set posologie
+     *
+     * @param string $posologie
+     *
+     * @return Stock
+     */
+    public function setPosologie($posologie)
+    {
+        $this->posologie = $posologie;
+
+        return $this;
+    }
+
+    /**
+     * Get posologie
+     *
+     * @return string
+     */
+    public function getPosologie()
+    {
+        return $this->posologie;
+    }
+
+    /**
+     * Set libelle
+     *
+     * @param string $libelle
+     *
+     * @return Stock
+     */
+    public function setLibelle($libelle)
+    {
+        $this->libelle = $libelle;
+
+        return $this;
+    }
+
+    /**
+     * Get libelle
+     *
+     * @return string
+     */
+    public function getLibelle()
+    {
+        return $this->libelle;
+    }
+
+    /**
+     * Set reference
+     *
+     * @param string $reference
+     *
+     * @return Stock
+     */
+    public function setReference($reference)
+    {
+        $this->reference = $reference;
+
+        return $this;
+    }
+
+    /**
+     * Get reference
+     *
+     * @return string
+     */
+    public function getReference()
+    {
+        return $this->reference;
+    }
+
+    /**
+     * Set categorie
+     *
+     * @param \Pharmacie\StockBundle\Entity\Categorie $categorie
+     *
+     * @return Stock
+     */
+    public function setCategorie(\Pharmacie\StockBundle\Entity\Categorie $categorie = null)
+    {
+        $this->categorie = $categorie;
+
+        return $this;
+    }
+
+    /**
+     * Get categorie
+     *
+     * @return \Pharmacie\StockBundle\Entity\Categorie
+     */
+    public function getCategorie()
+    {
+        return $this->categorie;
+    }
+
+    /**
+     * Add keyword
+     *
+     * @param \Pharmacie\StockBundle\Entity\Keyword $keyword
+     *
+     * @return Stock
+     */
+    public function addKeyword(\Pharmacie\StockBundle\Entity\Keyword $keyword)
+    {
+        $keyword->setProduit($this);
+        $this->keywords[] = $keyword;
+
+        return $this;
+    }
+
+    /**
+     * Remove keyword
+     *
+     * @param \Pharmacie\StockBundle\Entity\Keyword $keyword
+     */
+    public function removeKeyword(\Pharmacie\StockBundle\Entity\Keyword $keyword)
+    {
+        $this->keywords->removeElement($keyword);
+    }
+
+    /**
+     * Get keywords
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getKeywords()
+    {
+        return $this->keywords;
+    }
+
+    /**
+     * Set image
+     *
+     * @param \Pharmacie\StockBundle\Entity\Image $image
+     *
+     * @return Stock
+     */
+    public function setImage(\Pharmacie\StockBundle\Entity\Image $image = null)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return \Pharmacie\StockBundle\Entity\Image
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    public function __toString(){
+        return $this->getLibelle();
     }
 
 
-    public function getContent(){
-        return  array(
-            'id' => $this->id,
-            'quantite' => $this->quantite,
-            'seuilMin' => $this->seuilmin,
-            'produit' => $this->produit->getLibelle()
+    /**
+     * Add champ
+     *
+     * @param \Pharmacie\StockBundle\Entity\ChampProduit $champ
+     *
+     * @return Stock
+     */
+    public function addChamp(\Pharmacie\StockBundle\Entity\ChampProduit $champ)
+    {
+        $champ->setProduit($this);
+        $this->champs[] = $champ;
 
-         );
+        return $this;
+    }
+
+    /**
+     * Remove champ
+     *
+     * @param \Pharmacie\StockBundle\Entity\ChampProduit $champ
+     */
+    public function removeChamp(\Pharmacie\StockBundle\Entity\ChampProduit $champ)
+    {
+        $this->champs->removeElement($champ);
+    }
+
+    /**
+     * Get champs
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getChamps()
+    {
+        return $this->champs;
     }
 }

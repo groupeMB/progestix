@@ -18,7 +18,7 @@ class CategorieController extends Controller
         return $this->render('PharmacieStockBundle:Categorie:index.html.twig');
     }
 
- public function ajouterAction(Request $request)
+    public function ajouterAction(Request $request)
  	{
 		$session = $this->get('session');
 		$session->getFlashBag()->add('confirm','ajout effectuer avec succes');
@@ -35,6 +35,7 @@ class CategorieController extends Controller
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($form->getData());
                 $em->flush();
+
                 return $this->redirect($this->generateUrl('gestion_stock_categorie_lister'));
             }
 
@@ -189,27 +190,34 @@ public function modifierAction(Request $request,$id)
         
         foreach ($categories as $key => $categorie) {
 
-            //les produits
-            $produits = $this->getDoctrine()->getManager()
-                        ->getRepository("PharmacieStockBundle:Produit")
-                        ->findByCategorie($categorie->getId());
-
             //le nombre de produits 
            $nb_total_produits = 0;
 
            //l'estiamtion en termes de coût
            $estimation_cout = 0;
 
-            foreach ($produits as $prod_key => $produit){
 
-                //le nombre de produits dans le stock
-                $stock = $this->getDoctrine()->getManager()
-                        ->getRepository("PharmacieStockBundle:Stock")
-                        ->findOneByProduit($produit->getId());
+            //tous les stocks dans cette catégorie
+            $stocks = $this->getDoctrine()->getManager()
+                    ->getRepository("PharmacieStockBundle:Stock")
+                    ->findByCategorie($categorie->getId());
+
+
+            foreach ($stocks as $stock_key => $stock){
+
                 $nb_total_produits += $stock->getQuantite();
 
-                //l'estimation en termes de coût
-                $estimation_cout += $stock->getQuantite() * $produit->getPrixunitaire();
+                //les produits dans le stock
+                $produits = $this->getDoctrine()->getManager()
+                            ->getRepository("PharmacieStockBundle:Produit")
+                            ->findByLibelle($stock->getId());
+
+                foreach ($produits as $produit_key => $produit){
+                    //l'estimation en termes de coût
+                    $estimation_cout +=  $produit->getPrixunitaire();
+                }
+
+                
             }
             
 

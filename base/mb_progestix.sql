@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Sam 15 Octobre 2016 à 20:17
+-- Généré le: Sam 22 Octobre 2016 à 03:06
 -- Version du serveur: 5.5.52-0ubuntu0.14.04.1
 -- Version de PHP: 5.5.9-1ubuntu4.20
 
@@ -35,35 +35,7 @@ CREATE TABLE IF NOT EXISTS `achete` (
   PRIMARY KEY (`id`),
   KEY `IDX_6AFD8FC3C29D63C1` (`idproduit_id`),
   KEY `IDX_6AFD8FC367F0C0D4` (`idclient_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=23 ;
-
---
--- Contenu de la table `achete`
---
-
-INSERT INTO `achete` (`id`, `idproduit_id`, `idclient_id`, `date`, `montant`) VALUES
-(1, 1, 1, '2016-10-09 00:00:00', 5700),
-(2, 2, 1, '2016-10-09 00:00:00', 5700),
-(3, 1, 1, '2016-10-12 19:51:24', 4340),
-(4, 2, 1, '2016-10-12 19:51:24', 4340),
-(5, 3, 1, '2016-10-12 19:51:24', 4340),
-(6, 5, 1, '2016-10-12 19:51:24', 4340),
-(7, 1, 1, '2016-10-12 19:51:58', 4340),
-(8, 2, 1, '2016-10-12 19:51:58', 4340),
-(9, 3, 1, '2016-10-12 19:51:58', 4340),
-(10, 5, 1, '2016-10-12 19:51:58', 4340),
-(11, 1, 1, '2016-10-12 19:54:25', 4340),
-(12, 2, 1, '2016-10-12 19:54:25', 4340),
-(13, 3, 1, '2016-10-12 19:54:25', 4340),
-(14, 5, 1, '2016-10-12 19:54:25', 4340),
-(15, 1, 1, '2016-10-12 19:55:04', 4340),
-(16, 2, 1, '2016-10-12 19:55:04', 4340),
-(17, 3, 1, '2016-10-12 19:55:04', 4340),
-(18, 5, 1, '2016-10-12 19:55:04', 4340),
-(19, 1, 1, '2016-10-12 19:57:12', 4340),
-(20, 2, 1, '2016-10-12 19:57:12', 4340),
-(21, 3, 1, '2016-10-12 19:57:12', 4340),
-(22, 5, 1, '2016-10-12 19:57:12', 4340);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -183,6 +155,35 @@ INSERT INTO `categorie` (`id`, `libelle`, `description`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `champ_dynamique`
+--
+
+CREATE TABLE IF NOT EXISTS `champ_dynamique` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `typeChamp` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `valeur` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `champ_produit`
+--
+
+CREATE TABLE IF NOT EXISTS `champ_produit` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `produit` int(11) DEFAULT NULL,
+  `typeChamp` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `nom` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `valeur` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `IDX_EF3C3D3A29A5EC27` (`produit`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `client`
 --
 
@@ -289,7 +290,7 @@ CREATE TABLE IF NOT EXISTS `fos_user_user` (
 --
 
 INSERT INTO `fos_user_user` (`id`, `username`, `username_canonical`, `email`, `email_canonical`, `enabled`, `salt`, `password`, `last_login`, `locked`, `expired`, `expires_at`, `confirmation_token`, `password_requested_at`, `roles`, `credentials_expired`, `credentials_expire_at`, `created_at`, `updated_at`, `date_of_birth`, `firstname`, `lastname`, `website`, `biography`, `gender`, `locale`, `timezone`, `phone`, `facebook_uid`, `facebook_name`, `facebook_data`, `twitter_uid`, `twitter_name`, `twitter_data`, `gplus_uid`, `gplus_name`, `gplus_data`, `token`, `two_step_code`) VALUES
-(1, 'admin', 'admin', 'admin@progestix.sn', 'admin@progestix.sn', 1, 'ojv9mw5jwcg0w44s0cgsswg4s8gwcog', 'ft29DJZECGpsHbWyjVzbD3RznmxeJbtQ4f//w1zkImcX7DWOWjDyMq/7tbE0pXohLAWhQoVGJWqUPgs2txxX+g==', '2016-10-15 16:59:48', 0, 0, NULL, NULL, NULL, 'a:1:{i:0;s:16:"ROLE_SUPER_ADMIN";}', 0, NULL, '2016-10-10 17:08:13', '2016-10-15 16:59:48', NULL, NULL, NULL, NULL, NULL, 'u', NULL, NULL, NULL, NULL, NULL, 'null', NULL, NULL, 'null', NULL, NULL, 'null', NULL, NULL);
+(1, 'admin', 'admin', 'admin@progestix.sn', 'admin@progestix.sn', 1, 'ojv9mw5jwcg0w44s0cgsswg4s8gwcog', 'ft29DJZECGpsHbWyjVzbD3RznmxeJbtQ4f//w1zkImcX7DWOWjDyMq/7tbE0pXohLAWhQoVGJWqUPgs2txxX+g==', '2016-10-20 21:05:38', 0, 0, NULL, NULL, NULL, 'a:1:{i:0;s:16:"ROLE_SUPER_ADMIN";}', 0, NULL, '2016-10-10 17:08:13', '2016-10-20 21:05:38', NULL, NULL, NULL, NULL, NULL, 'u', NULL, NULL, NULL, NULL, NULL, 'null', NULL, NULL, 'null', NULL, NULL, 'null', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -397,7 +398,27 @@ CREATE TABLE IF NOT EXISTS `keyword` (
   `produit` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `IDX_5A93713B29A5EC27` (`produit`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=21 ;
+
+--
+-- Contenu de la table `keyword`
+--
+
+INSERT INTO `keyword` (`id`, `valeur`, `produit`) VALUES
+(7, 'ventre', 9),
+(8, 'tete', 9),
+(9, 'tete', 10),
+(10, 'ventre', 10),
+(11, 'yeux', 10),
+(12, 'rhume', 10),
+(13, 'yeux', 11),
+(14, 'tete', 11),
+(15, 'tete', 12),
+(16, 'langue', 12),
+(17, 'fievre', 12),
+(18, 'ventre', 13),
+(19, 'tete', 13),
+(20, 'fievre', 13);
 
 -- --------------------------------------------------------
 
@@ -450,34 +471,29 @@ CREATE TABLE IF NOT EXISTS `pharmacien` (
 
 CREATE TABLE IF NOT EXISTS `produit` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `categorie_id` int(11) DEFAULT NULL,
-  `libelle` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `stock` int(11) DEFAULT NULL,
   `codeBarre` varchar(40) COLLATE utf8_unicode_ci NOT NULL,
   `prixUnitaire` decimal(10,0) NOT NULL,
   `datePeremption` date NOT NULL,
-  `reference` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `description` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `posologie` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `champ1` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `champ2` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `champ3` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `champ4` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `champ5` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `image` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `IDX_E618D5BBBCF5E72D` (`categorie_id`),
-  KEY `IDX_29A5EC27C53D045F` (`image`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=6 ;
+  KEY `IDX_29A5EC274B365660` (`stock`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=14 ;
 
 --
 -- Contenu de la table `produit`
 --
 
-INSERT INTO `produit` (`id`, `categorie_id`, `libelle`, `codeBarre`, `prixUnitaire`, `datePeremption`, `reference`, `description`, `posologie`, `champ1`, `champ2`, `champ3`, `champ4`, `champ5`, `image`) VALUES
-(1, 1, 'ADIXON 50 microgrammes Comprimé', '124524134', 500, '2018-03-16', 'MAI0001', '', '', NULL, NULL, NULL, NULL, '', NULL),
-(2, 1, 'CELESTENE 2 mg Comprimé dispersible', '1324541', 1040, '2021-02-10', 'MAI0002', '', '', NULL, NULL, NULL, NULL, '', NULL),
-(3, 2, 'ACIDE FUSIDIQUE ARROW 2 % Crème Tube de 15 g', '12245', 1300, '2015-01-01', 'MAB0003', '', '', NULL, NULL, NULL, NULL, '', NULL),
-(5, 10, 'BETANOL 0,6 % Collyre Flacon de 3 ml', '1542515110', 1500, '2018-01-01', 'MOPH0001', '', '', NULL, NULL, NULL, NULL, '', NULL);
+INSERT INTO `produit` (`id`, `stock`, `codeBarre`, `prixUnitaire`, `datePeremption`, `champ1`, `champ2`, `champ3`, `champ4`, `champ5`) VALUES
+(9, 3, '10009', 2000, '2017-11-12', NULL, NULL, NULL, NULL, NULL),
+(10, 3, '192881', 1000, '2017-01-01', NULL, NULL, NULL, NULL, NULL),
+(11, 2, '10091', 5000, '2019-01-01', NULL, NULL, NULL, NULL, NULL),
+(12, 3, '7181772', 2000, '2017-01-01', NULL, NULL, NULL, NULL, NULL),
+(13, 4, '11323', 12000, '2017-01-01', NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -491,15 +507,7 @@ CREATE TABLE IF NOT EXISTS `produitvendu` (
   `quantite` varchar(60) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UNIQ_6A830A89C29D63C1` (`idproduit_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
-
---
--- Contenu de la table `produitvendu`
---
-
-INSERT INTO `produitvendu` (`id`, `idproduit_id`, `quantite`) VALUES
-(1, 1, '1'),
-(2, 2, '1');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -513,14 +521,7 @@ CREATE TABLE IF NOT EXISTS `produit_vendu` (
   `quantite` varchar(60) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UNIQ_EF634FEDC29D63C1` (`idproduit_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=6 ;
-
---
--- Contenu de la table `produit_vendu`
---
-
-INSERT INTO `produit_vendu` (`id`, `idproduit_id`, `quantite`) VALUES
-(5, 1, '1');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -549,22 +550,36 @@ CREATE TABLE IF NOT EXISTS `rapport` (
 
 CREATE TABLE IF NOT EXISTS `stock` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `produit_id` int(11) DEFAULT NULL,
-  `quantite` int(11) NOT NULL,
+  `categorie` int(11) DEFAULT NULL,
+  `quantite` int(11) DEFAULT NULL,
   `seuilMin` int(11) NOT NULL,
+  `description` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `posologie` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `libelle` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `reference` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `image` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `UNIQ_4B365660F347EFB` (`produit_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=8 ;
+  KEY `IDX_4B365660497DD634` (`categorie`),
+  KEY `IDX_4B365660C53D045F` (`image`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=14 ;
 
 --
 -- Contenu de la table `stock`
 --
 
-INSERT INTO `stock` (`id`, `produit_id`, `quantite`, `seuilMin`) VALUES
-(3, 5, 345, 2),
-(5, 2, 145, 10),
-(6, 3, 145, 2),
-(7, 1, 244, 10);
+INSERT INTO `stock` (`id`, `categorie`, `quantite`, `seuilMin`, `description`, `posologie`, `libelle`, `reference`, `image`) VALUES
+(2, 11, 1, 1982, 'aspegic', 'aspegic', 'aspegic', '177269', NULL),
+(3, 4, 3, 19, 'actifed llslls', 'actifed llslls', 'actifed', '1728', NULL),
+(4, 4, 1, 20, 'glycineiiii', 'glyciiiiiiiii', 'glycine', '111222', NULL),
+(5, 1, 0, 1982, 'pomme de moi', 'aaaaaaaaaaaaaa', 'produit', '17726778', NULL),
+(6, 1, 0, 1982, 'pomme de moi', 'aaaaaaaaaaaaaa', 'produit_2', '1782', NULL),
+(7, 1, 0, 1982, 'pomme de moi', 'aaaaaaaaaaaaaa', 'produit_2', '1782', NULL),
+(8, 1, 0, 1982, 'pomme de moi', 'aaaaaaaaaaaaaa', 'produit_3', '7888888', NULL),
+(9, 1, 0, 900, 'ppppppppppppp', 'ppppppppppppp', 'produit_4', '222111', NULL),
+(10, 1, 0, 190, 'kammmmmmmmmm', 'kammmmmmmmm', 'kams', '9999911', NULL),
+(11, 1, 0, 1220, 'layessssss', 'layesssssss', 'layes', '99991111', NULL),
+(12, 1, 0, 1922, 'llllllllllllllllll', 'lllllllllllllllllllllll', 'kamssss', '22222', NULL),
+(13, 1, 0, 124, 'lllllllllllllllllllllllll', 'llllllllllllllllllllllllllllll', 'produitsssss', '17726990', NULL);
 
 -- --------------------------------------------------------
 
@@ -637,6 +652,12 @@ ALTER TABLE `acl_object_identity_ancestors`
   ADD CONSTRAINT `FK_825DE299C671CEA1` FOREIGN KEY (`ancestor_id`) REFERENCES `acl_object_identities` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Contraintes pour la table `champ_produit`
+--
+ALTER TABLE `champ_produit`
+  ADD CONSTRAINT `FK_EF3C3D3A29A5EC27` FOREIGN KEY (`produit`) REFERENCES `stock` (`id`);
+
+--
 -- Contraintes pour la table `commande`
 --
 ALTER TABLE `commande`
@@ -659,14 +680,13 @@ ALTER TABLE `inventaire`
 -- Contraintes pour la table `keyword`
 --
 ALTER TABLE `keyword`
-  ADD CONSTRAINT `FK_5A93713B29A5EC27` FOREIGN KEY (`produit`) REFERENCES `produit` (`id`);
+  ADD CONSTRAINT `FK_5A93713B29A5EC27` FOREIGN KEY (`produit`) REFERENCES `stock` (`id`);
 
 --
 -- Contraintes pour la table `produit`
 --
 ALTER TABLE `produit`
-  ADD CONSTRAINT `FK_29A5EC27C53D045F` FOREIGN KEY (`image`) REFERENCES `image` (`id`),
-  ADD CONSTRAINT `FK_E618D5BBBCF5E72D` FOREIGN KEY (`categorie_id`) REFERENCES `categorie` (`id`);
+  ADD CONSTRAINT `FK_29A5EC274B365660` FOREIGN KEY (`stock`) REFERENCES `stock` (`id`);
 
 --
 -- Contraintes pour la table `produitvendu`
@@ -691,7 +711,8 @@ ALTER TABLE `rapport`
 -- Contraintes pour la table `stock`
 --
 ALTER TABLE `stock`
-  ADD CONSTRAINT `FK_4B365660F347EFB` FOREIGN KEY (`produit_id`) REFERENCES `produit` (`id`);
+  ADD CONSTRAINT `FK_4B365660497DD634` FOREIGN KEY (`categorie`) REFERENCES `categorie` (`id`),
+  ADD CONSTRAINT `FK_4B365660C53D045F` FOREIGN KEY (`image`) REFERENCES `image` (`id`);
 
 --
 -- Contraintes pour la table `typevente`
