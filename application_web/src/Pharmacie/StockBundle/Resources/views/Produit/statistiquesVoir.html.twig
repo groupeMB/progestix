@@ -1,0 +1,21 @@
+{% extends "PharmacieStockBundle:Produit:lister.html.twig" %}
+{% block table %}
+
+<script type="text/javascript" src=" {{ app.request.schemeAndHttpHost ~ asset('bundles/pharmacieaccueil/js/jsapi.js') }}"></script>
+
+ <script type="text/javascript" src=" {{ app.request.schemeAndHttpHost ~ asset('bundles/pharmacieaccueil/js/jquery.min.js') }}"></script>
+
+<script type="text/javascript">
+    google.load("visualization", "1", {packages:["corechart", 'table', 'treemap', 'gauge']});
+</script> 
+
+
+<div id="chart5">&nbsp;</div>
+<script>
+$(function() {
+{{ gchart_area_chart(dataTable2, 'chart5', 800, 200, 'Nombre de Produits par Categories de Medicaments') }}
+});
+</script>
+
+
+{% endblock %}

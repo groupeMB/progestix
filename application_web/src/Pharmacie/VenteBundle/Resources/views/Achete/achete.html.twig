@@ -1,0 +1,68 @@
+{% extends "PharmacieVenteBundle:Achete:index.html.twig" %}
+
+ {% block main %}
+         <div class="row">
+            <center><h5 class="panel-heading alert-danger">Espace de vente sécurisé : Ajouter des produits à votre panier pour effectuer une vente </h5></center>
+            <hr class="colorgraph">
+            <div class="col-md-3">
+                <center><h5 class="panel-heading myheading"><span class="glyphicon glyphicon-shopping-cart"></span> Votre Panier</h5></center>
+                 <div class=" well">
+                             <p>
+                                 {% if article==0 %}
+                                     Aucun produit dans votre panier
+                                 {% elseif article==1 %}
+                                     1 produit dans votre panier
+                                 {% else %}
+                                     {{ article }} produits dant votre panier
+                                  {% endif %}
+
+                             </p>
+                            <br>
+                            <a href="{{ path('gestionstock_panier_achete') }}" class="btn btn-success btn-block">Voir Panier <span class="glyphicon glyphicon-chevron-right"></span></a>
+                </div>
+                <div class="well">
+                    <button class="btn btn-block myheading sous-menu-item">
+                        <a href="{{ path('gestionstock_lister_achete_produitVendu') }}" ><span class="glyphicon glyphicon-list"></span> Historique de ventes</a>
+                    </button>
+                </div>
+            </div>
+
+             <div class="col-md-9">
+                 
+                {% for flashMessage in app.session.flashbag.get('succes')%}
+                         <div class="alert alert-success"> {{   flashMessage }}</div>
+                     {% endfor %}
+                     <div class="table-responsive">
+                         <table id="mytable" class="table table-bordered ">
+                             <thead>
+                             <th>Libellé</th>
+                             <th>Quantité en stock</th>
+                             <th>Prix Unitaire</th>
+                             <th>Quantite</th>
+                             <th></th>
+                             </thead>
+                             <tbody>
+                             {% for tag in produits %}
+                                 <tr>
+                                     <form action="{{ path('gestionstock_panierajouter_achete',{'id':tag.produit.id}) }}" method="get">
+                                     <td>{{  tag.produit.libelle }}</td>
+                                     <td>{{  tag.quantite }}</td>
+                                     <td>{{ tag.produit.prixUnitaire}}</td>
+                                     <td>
+                                         <select class="span1" name="quantite">
+                                             {% for i in 1..10 %}
+                                                 <option value="{{ i }}">{{ i }}</option>
+                                             {% endfor %}
+                                         </select>
+                                     </td>
+                                     <td><button class="glyphicon glyphicon-ok"></button></td>
+                                     </form>
+                                 </tr>
+                             {% endfor %}
+                             </tbody>
+                         </table>
+                 </div>
+             </div>
+            </div>
+        </div>
+ {%endblock%}

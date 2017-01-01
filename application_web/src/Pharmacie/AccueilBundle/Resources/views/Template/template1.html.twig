@@ -1,0 +1,260 @@
+{% extends "PharmacieAccueilBundle:Template:template.html.twig" %}
+{% block entete%}
+
+{%endblock%}
+
+{% block titre %}
+    {% if app.user is defined  %}
+        <span class="navbar-brand" style="color: white" href="#">Bienvenue {{ app.user.firstname }} {{ app.user.lastname }}</span>
+    {% endif %}
+{% endblock %}
+
+{% block logout %}
+
+    <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="color: white"><span class="glyphicon glyphicon-envelope"></span><span class="caret"></span></a>
+         <ul class="dropdown-menu dropdown-messages">
+            <li>
+                <a href="#">
+                    <div>
+                        <strong>Simon DIOUF</strong>
+                        <span class="pull-right text-muted">
+                            <em>Hier</em>
+                        </span>
+                    </div>
+                    <div>Bonjour J'aimerais commander 2 Boites de doliprane et... </div>
+                </a>
+            </li>
+            <li class="divider"></li>
+            <li>
+                <a href="#">
+                    <div>
+                        <strong>Ibrahima BA </strong>
+                        <span class="pull-right text-muted">
+                            <em>5 octobre 2016</em>
+                        </span>
+                    </div>
+                    <div>Est-ce que vous avez des complements alimentaires ?</div>
+                </a>
+            </li>
+            <li class="divider"></li>
+            <li>
+                <a href="#">
+                    <div>
+                        <strong>Bassirou NGOM</strong>
+                        <span class="pull-right text-muted">
+                            <em>17 Mai 2016</em>
+                        </span>
+                    </div>
+                    <div>Avez vous un medicament pour faire maigrir une personne...</div>
+                </a>
+            </li>
+            <li class="divider"></li>
+            <li>
+                <a class="text-center" href="#">
+                    <strong>Tous les Messages</strong>
+                    <i class="glyphicon glyphicon-arrow-right"></i>
+                </a>
+            </li>
+        </ul>
+    </li>
+
+    {% if app.user%}
+
+    <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="color: white"><span class="glyphicon glyphicon-user"></span><span class="caret"></span></a>
+       <ul class="dropdown-menu dropdown-user">
+            <li><a href="#"><i class="glyphicon glyphicon-user"></i> {{app.user}} </a>
+            </li>
+            <li><a href="{{path('fos_user_profile_edit')}}"><i class="glyphicon glyphicon-wrench"></i> réglages</a>
+            </li>
+            <li class="divider"></li>
+            <li><a href="{{path('fos_user_security_logout')}}"><i class="glyphicon glyphicon-log-out"></i> Se deconnecter</a>
+            </li>
+        </ul>
+    </li> 
+     {% else%} 
+        <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="color: white"><span class="glyphicon glyphicon-user"></span><span class="caret"></span></a>
+           <ul class="dropdown-menu dropdown-user">
+                <li class="divider"></li>
+                <li><a href="{{path('fos_user_security_logout')}}"><i class="glyphicon glyphicon-log-in"></i> Se connecter</a>
+                </li>
+            </ul>
+    </li>
+    {% endif%}   
+
+{% endblock %}
+
+
+{% block menuLeft %}
+    <div style="margin-top: 1%">
+        <span class="btn btn-block" id="buttonflot" type="button" onclick="menuflottant()" style="width:18.5%; background-color: #ed7d31; color: white; border-radius: 0"><span class="glyphicon glyphicon-chevron-left"></span> Glisser le menu</span>
+        <div class="navbar-default sidebar" role="navigation" style="height: 100%; width:3%; background-color: #ed7d31; display: none; float: left" id="menuCourt">
+            <table>
+                <tr>
+                     <span class="btn-block" data-toggle="tooltip" title="Membre Physique"><a href="#"><button class=" btn btn-block" style="color: white;background-color:#5cb85c; border-radius: 0 "><span class="glyphicon glyphicon-shopping-cart" ></span></button></a></span>   
+                </tr>
+                <tr>
+                     <span class="btn-block" data-toggle="tooltip" title="Membre Morale"><a href="#"><button class="btn btn-block" style="color: white;background-color:#5cb85c; border-radius: 0 "><span class="glyphicon glyphicon-barcode"></span></button></a></span>   
+                </tr>
+                <tr>
+                     <span class="btn-block" data-toggle="tooltip" title="Contrats"><a href="#"><button class="btn btn-block" style="color: white;background-color:#5cb85c; border-radius: 0 "><span class="glyphicon glyphicon-book" ></span></button></a></span>   
+                </tr>
+                <tr>
+                     <span class="btn-block" data-toggle="tooltip" title="Contrats"><a href="#"><button class="btn btn-block" style="color: white;background-color:#5cb85c; border-radius: 0 "><span class="glyphicon glyphicon-stats" ></span></button></a></span>   
+                </tr>
+                <tr>
+                     <span class="btn-block" data-toggle="tooltip" title="Contrats"><a href="#"><button class="btn btn-block" style="color: white;background-color:#5cb85c; border-radius: 0 "><span class="glyphicon glyphicon-wrench" ></span></button></a></span>   
+                </tr>
+                <tr>
+                     <span class="btn-block" data-toggle="tooltip" title="Contrats"><a href="#"><button class="btn btn-block" style="color: white;background-color:#5cb85c; border-radius: 0 "><span class="glyphicon glyphicon-flag" ></span></button></a></span>   
+                </tr>
+            </table>
+        </div>
+        <div id="flotMenu" style="width: 18.5%; float: left;" class="fixe;">
+            <div class="sidebar" role="navigation">
+                <div class="sidebar-nav">
+                    <button class="btn btn-block alert-warning" id="heure"></button>
+                    <ul class="nav menuLeft" id="side-menu">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle titremenu" data-toggle="dropdown" onclick="mycaret(this)">
+                                <i class="fa fa-dashboard fa-fw"></i><span class="glyphicon glyphicon-shopping-cart"></span> Gestion vente
+                                <b class="glyphicon glyphicon-hand-down navbar-right changeIconeDropdownPosition"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <span class="btn-block"><a href="{{ path("gestionstock_ajouter_achete") }}"><i class="glyphicon glyphicon-list-alt"></i> Espace vente </a></span>
+                                </li>
+                                <li>
+                                    <span class="btn-block"><a href="{{ path("gestionstock_lister_achete_produitVendu") }}"><i class="glyphicon glyphicon-calendar"></i> Historique de vente</a></span>
+                                </li>
+                                <li>
+                                    <span class="btn-block"><a href="#"><i class="glyphicon glyphicon-time"></i> Recette journalière</a></span>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle titremenu" data-toggle="dropdown" onclick="mycaret(this)">
+                                <i class="fa fa-dashboard fa-fw"></i><span class="glyphicon glyphicon-barcode"></span> Gestion stock
+                                <b class="glyphicon glyphicon-hand-down navbar-right changeIconeDropdownPosition"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <span class="btn-block"><a href="{{ path("gestion_stock_categorie_lister") }}" ><i class="glyphicon glyphicon-folder-open"></i> Mes catégories</a></span>
+                                </li>
+                                <li>
+                                    <span class="btn-block"><a href="{{ path("gestion_stock_lister_produit") }}"><i class="glyphicon glyphicon-tags"></i> Gestion produits</a></span>
+                                </li>
+                                <li>
+                                    <span class="btn-block"><a href="{{ path("gestion_stockage_lister_stock") }}"><i class="glyphicon glyphicon-saved"></i> Enregistrement stock</a></span>
+                                </li>
+                                <li>
+                                    <span class="btn-block"><a href="#"><i class="glyphicon glyphicon-sort"></i> Etat stock</a></span>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle titremenu" data-toggle="dropdown" onclick="mycaret(this)">
+                                <i class="fa fa-dashboard fa-fw"></i><span class="glyphicon glyphicon-book"></span> Inventaire
+                                <b class="glyphicon glyphicon-hand-down navbar-right changeIconeDropdownPosition"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <span class="btn-block"><a href="#"><i class="glyphicon glyphicon-time"></i> mensuelle</a></span>
+                                </li>
+                                <li>
+                                    <span class="btn-block"><a href="#" ><i class="glyphicon glyphicon-calendar"></i> Annuelle</a></span>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle titremenu">
+                                <i class="fa fa-dashboard fa-fw"></i><span class="glyphicon glyphicon-stats"></span> Statistiques
+                            </a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle titremenu">
+                                <i class="fa fa-dashboard fa-fw"></i><span class="glyphicon glyphicon-wrench"></span> Réglages
+                            </a>
+                        </li>
+                        {% block statistique %}
+                            
+                        {% endblock %}
+                        {% block download %} 
+                            
+                        {% endblock %} 
+                        {% block legende %}    
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle titremenu" data-toggle="dropdown" onclick="mycaret(this)">
+                                    <i class="glyphicon glyphicon-flag"></i> Légendes <b class="glyphicon glyphicon-hand-down navbar-right changeIconeDropdownPosition"></b>
+                                </a>
+                                <ul class="dropdown-menu legende">
+                                    <li>
+                                         <span class="btn-block" data-toggle="tooltip" title="Cette icone indique que les données de l'individu sont erronées ou manquantes. Dans ce cas, il vous faudra opérer des modifications dans SAF afin que l'enregistrement puisse être valide."><button class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash" ></span></button> Suppresion</span>   
+                                    </li>
+                                    <li>
+                                         <span class="btn-block" data-toggle="tooltip" title="Cette icone indique que les données de l'individu sont valides"><button class="btn btn-success btn-xs"><span class="glyphicon glyphicon-edit" ></span></button> Edition</span>   
+                                    </li>
+                                    <li>
+                                         <span class="btn-block" data-toggle="tooltip" title="Cette icone permet de télécharger la fiche de consentement personnalisée du client"><button class="btn btn-info btn-xs"><span class="glyphicon glyphicon-download" ></span></button> Visualisation</span>   
+                                    </li>
+                                    
+                                </ul>
+                            </li>
+                        {% endblock %}
+                    </ul>
+
+                    <div class="logoDashboard" >
+                        <center><img src="{{ asset('bundles/pharmacieaccueil/images/logo.jpg') }}" width="200px" height="120px"></center> 
+                    </div>               
+                </div>  
+            </div>
+            </nav>
+        </div>
+    </div>
+{%endblock%}
+
+{% block contenu %}     
+    <div id="contenuflot" style="width: 79%; float:right;">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <span class="btn-block"><i class="fa fa-users fa-fw"></i> Capital : 215364 FCFA</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <span class="btn-block"><i class="fa fa-users fa-fw"></i> Capital : 215364 FCFA</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="panel panel-danger">
+                    <div class="panel-heading">
+                        <span class="btn-block"><i class="fa fa-users fa-fw"></i> Capital : 215364 FCFA</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="panel panel-warning">
+                    <div class="panel-heading">
+                        <span class="btn-block"><i class="fa fa-users fa-fw"></i> Capital : 215364 FCFA</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-12">
+                
+                {% block main %}
+
+                {% endblock %}
+        </div> 
+    </div>
+        
+    </div>
+{% endblock %}

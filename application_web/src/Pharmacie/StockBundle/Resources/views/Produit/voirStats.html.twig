@@ -1,0 +1,17 @@
+{% extends "PharmacieStockBundle:Produit:lister.html.twig" %}
+{% block table %}
+
+
+<script type="text/javascript" src=" {{ app.request.schemeAndHttpHost ~ asset('bundles/
+pharmacieaccueil/js/jquery.min.js') }}"></script>
+
+<script type="text/javascript" src=" {{ app.request.schemeAndHttpHost ~ asset('bundles/pharmacieaccueil/js/highcharts.js') }}"></script>
+
+<script type="text/javascript" src=" {{ app.request.schemeAndHttpHost ~ asset('bundles/pharmacieaccueil/js/exporting.js') }}"></script>
+ 
+<script type="text/javascript">
+    {{ chart(chart) }}
+</script>
+
+<div id="linechart" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+{% endblock %}

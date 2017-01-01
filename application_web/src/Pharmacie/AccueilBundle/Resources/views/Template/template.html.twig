@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Progestix</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <!-- Encodage en utf-8, en HTML 5 -->
+        <meta charset="utf-8" />
+
+        <!-- Inclusion des fichiers de styles -->
+       
+          <link rel="stylesheet" type="text/css" href = "{{ app.request.schemeAndHttpHost ~ asset('bundles/pharmacieaccueil/bower_components/responsive-tables/responsive-tables.css') }}"/>
+
+        <!-- <link rel="icon" href="asset('bundles/pharmacieaccueil/images/favicon.ico')" /> -->
+        
+        <link rel="stylesheet" type="text/css" href = "{{ app.request.schemeAndHttpHost ~ asset('bundles/pharmacieaccueil/css/style.css') }}"/>
+
+        <link rel="stylesheet" type="text/css" href = "{{ app.request.schemeAndHttpHost ~ asset('bundles/pharmacieaccueil/bower_components/bootstrap/dist/css/bootstrap.min.css') }}"/>
+
+        <link rel="stylesheet" type="text/css" href = "{{ app.request.schemeAndHttpHost ~ asset('bundles/pharmacieaccueil/bower_components/datatables/media/css/jquery.dataTables.css') }}"/>
+         
+
+    
+    <body id="coprsTemplate" onload="date_heure('heure');">
+        <div >
+            <!-- bloc conteneur de la page  -->
+            <div id="container " class="container container-fluid">
+                {% block corps %}
+                    {% block menuHaut %}
+                       <nav class="navbar navbar-fixed-top" style="background-color: #5cb85c" role="navigation">  <!-- #006400 -->
+                            {% block titre %}
+
+                            {% endblock %}
+                            <div class="container">
+                            <!-- Brand and toggle get grouped for better mobile display -->
+                                <div class="navbar-header">
+                                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                                        <span class="sr-only">Toggle navigation</span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                    </button>
+                                    <a class="navbar-brand" href="#">
+                                        {% block entete%}<img src="{{ app.request.schemeAndHttpHost ~ asset('bundles/pharmacieaccueil/images/new_logo.jpg') }}" id="logo">{% endblock %}
+                                    </a>
+                                </div>
+                                <!-- Collect the nav links, forms, and other content for toggling -->
+                                <div id="bs-example-navbar-collapse-1">
+                                    <ul class="nav navbar-nav navbar-right menu-haut">
+                                        <li>
+                                            <a  style="color: white" href="#"><span class="glyphicon glyphicon-home"></span> Accueil</a>
+                                        </li>
+                                        <li>
+                                            <a  style="color: white" href="#"><span class="glyphicon glyphicon-wrench"></span> Administration</a>
+                                        </li>
+                                        <li>
+                                            <a  style="color: white" href="#"><span class="glyphicon glyphicon-globe"></span> Site web</a>
+                                        </li>
+                                        {% block logout %}
+                                
+                                        {% endblock %}
+                                    </ul>
+                                </div>
+                                <!-- /.navbar-collapse -->
+                            </div>
+                            <!-- /.container -->
+                        </nav>    
+                    {% endblock %}
+                    
+                </div>
+
+                <div style="margin-top: 50px;">
+                    
+                    {% block menuLeft %}
+
+                    {% endblock %}            
+                
+                    {% block contenu %}
+
+                    {% endblock %}
+                    <footer class="navbar-fixed-bottom" style="background-color: #ed7d31">
+                        <h5 class="muted credit right" style="color: white"><center>Progestix, votre gestionnaire de pharmacie sécurisée. Copyright &copy; 2017</center></h5>
+                    </footer>
+                </div>
+            {% endblock %}
+        </div>            
+    </body>
+    <script type="text/javascript" src=" {{ app.request.schemeAndHttpHost ~ asset('bundles/pharmacieaccueil/bower_components/jquery/jquery.min.js') }}"></script>
+    
+    <script type="text/javascript" src="{{ app.request.schemeAndHttpHost ~ asset('bundles/pharmacieaccueil/bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+    
+    <script type="text/javascript" src="{{ app.request.schemeAndHttpHost ~ asset('bundles/pharmacieaccueil/bower_components/datatables/media/js/jquery.dataTables.js')}}"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script type="text/javascript" src=" {{ app.request.schemeAndHttpHost ~ asset('bundles/pharmacieaccueil/js/style.js') }}"></script>
+     <script>
+            $(document).ready(function(){
+                $('.dropdown-toggle').dropdown();
+                $('#mytable').DataTable();
+
+                var pathname = window.location.pathname.split("/");
+           
+
+                if( pathname[pathname.length-2]=="stock" && pathname[pathname.length-1]=="ajouter"){
+                    ajouter_keyword();
+                    
+                    ajouter_champ_produit();
+                }
+                else if( pathname[pathname.length-2]=="produit" && pathname[pathname.length-1]=="ajouter"){
+                    //ajouter_champ_produit();
+                    $("#libelle").select2({
+                        placeholder: "nom du produit",
+                        allowClear: true
+                    });
+                }
+
+                    
+            });    
+        </script>
+    <script>
+        $(document).ready(function(){
+                    $('.dropdown-toggle').dropdown();
+                    $('#mytable').DataTable();
+                });    
+    </script>
+    <script>
+            $(function() {
+                    $('a[data-confirm]').click(function(ev) {
+                    var href = $(this).attr('href');
+                    if (!$('#dataConfirmModal').length) {
+                        $('body').append('<div id="dataConfirmModal" class="modal" role="dialog" aria-labelledby="dataConfirmLabel" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button><h3 id="dataConfirmLabel" style="text-align: center; color: white; background-color: #83b719; padding: 5px">Confirmation de l\'opération en cours</h3></div><div class="modal-body"></div><div class="modal-footer"><button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Non</button><a class="btn btn-success" id="dataConfirmOK">Oui</a></div></div></div></div>');
+                    }
+                    $('#dataConfirmModal').find('.modal-body').text($(this).attr('data-confirm'));
+                    $('#dataConfirmOK').attr('href', href);
+                    $('#dataConfirmModal').modal({show:true});
+                     return false;
+                });
+            });
+        </script>
+
+       
+
+                         <!-- Pour les graphes et les statistiques -->
+
+        <script type="text/javascript" src="{{ asset('bundles/pharmacieaccueil/js/highcharts.js') }}">
+        </script>
+
+        <script type="text/javascript" src="{{ asset('bundles/pharmacieaccueil/js/exporting.js') }}">
+        </script> 
+                         <!-- FIN graphes et les statistiques -->
+
+                         
+        <!-- Pour assurer la responsivite -->
+         <script>
+            $(document).ready(function(){
+                $('.collapse').collapse();
+            });
+         </script>
+</html>

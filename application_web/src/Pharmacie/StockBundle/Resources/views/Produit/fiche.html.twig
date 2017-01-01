@@ -1,0 +1,60 @@
+{% extends "PharmacieStockBundle:Produit:lister.html.twig" %}
+{% block table %}
+  <center><h4 class="panel-heading alert-danger">Fiche produit</h4></center>
+  <hr class="colorgraph">
+  <ul class="list-group">
+      <li class="list-group-item"><u>N° article</u> : {{ fiche.produit.id }}</li>
+      
+      <li class="list-group-item"><u>Libellé</u> : {{ fiche.produit.libelle }}</li>
+      <li class="list-group-item"><u>Code barre</u>: {{ fiche.produit.codebarre }}</li>
+      <li class="list-group-item"><u>Prix</u> : {{ fiche.produit.prixunitaire}} FCFA</li>
+      <li class="list-group-item"><u>Date de péremption</u> : {{ fiche.produit.dateperemption|date('d-M-Y') }}</li>
+
+      <li class="list-group-item"><u>N° stock</u> : {{ fiche.stock.id }}</li>
+
+      <li class="list-group-item"><u>Reference</u> : {{ fiche.stock.reference }} </li>
+
+      <li class="list-group-item"><u>Description</u>: {{ fiche.stock.description }}</li>
+      <li class="list-group-item"><u>Posologie</u> : {{ fiche.stock.posologie }} </li>
+      
+      <li class="list-group-item"><u>N° Catégorie</u> : {{ fiche.categorie.id }}</li>
+      <li class="list-group-item"><u>Catégorie</u> : {{ fiche.categorie.libelle }}</li>
+
+      
+
+      {% if fiche.stock.keywords|length != 0 %}
+          {% set keyword = '' %}
+
+          {% for cle, valeur in fiche.stock.keywords %}
+              {% if cle==0 %}
+                {% set keyword = valeur.valeur %}
+              {% else %}
+                {% set keyword = keyword ~ ", " ~ valeur.valeur %}
+              {% endif %}
+          {% endfor %}
+
+          <li class="list-group-item"><u>Mots clés</u> : {{ keyword }} </li>
+      {% else %}
+          <li class="list-group-item"><u>Mots clés</u> :  Pas de mots clés... </li>
+      {% endif %}
+
+      {% if fiche.stock.champs|length != 0 %}
+
+          {% for cle, valeur in fiche.stock.champs %}
+              <li class="list-group-item"><u>{{ valeur.nom }}</u> : {{ valeur.valeur }} </li>
+          {% endfor %}
+
+      {% endif %}
+  </ul>
+  <div>
+  		<h3>Fiche produit</h3>
+  		<div clas="row">
+  			<div class="col-sm-2">
+	  			<button type="button" class="btn btn-success btn-block"><span class="glyphicon glyphicon-list"></span> Voir</button>
+	  		</div>
+	  		<div class="col-sm-2">
+	  			<button type="button" class="btn btn-success btn-block"><span class="glyphicon glyphicon-download-alt"></span> Télécharger</button>
+	  		</div>
+  		</div>
+  </div>
+{% endblock%}

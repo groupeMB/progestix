@@ -1,0 +1,57 @@
+{% extends "PharmacieVenteBundle:Achete:index.html.twig" %}
+
+
+{% block main %}
+	<div class="row">
+    	<div class="col-md-9">
+    			{% set i =0 %}
+		    <center><h5 class="panel-heading alert-danger">Détails de la vente numero : {{ vente.id }}</h5></center>
+		    <hr class="colorgraph">
+		    <div class="table-responsive">
+		    <table class="table table-bordered ">
+                <thead>
+                    <th>Numero vente</th>
+                    <th>Agent</th>
+                    <th>Montant total</th>
+                    <th>Date</th>
+                    <th>Heure</th>
+                </thead>
+                <tbody>
+                	<tr>
+                		<td>{{ vente.id}}</td>
+                		<td>{{ vente.agent}}</td>
+                		<td>{{ vente.montant}} FCFA </td>
+                		<td>{{ vente.dateVente | date('d-m-Y') }}</td>
+                		<td>{{ vente.dateVente | date('H:i:s') }}</td>
+                	</tr>
+                </tbody>
+            </table>
+            <center><h5 class="panel-heading alert-danger">Liste produits vendus</h5></center>
+            <hr class="colorgraph">
+            <table class="table table-bordered ">
+                <thead>
+                    <th>Libellé</th>
+                    <th>Prix Unitaire</th>
+                    <th>Quantite</th>
+                    <th>Total</th>
+                </thead>
+                <tbody>
+                    {% for tag in code %}
+                         <tr>
+                            <td>{{ tag.nomproduit}}</td>
+                            <td>{{ tag.prixunitaire}} FCFA </td>
+                            <td>{{ tag.quantite}}</td>
+                            {% set total = tag.quantite * tag.prixunitaire %}
+                            <td>{{total}} FCFA</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+		</div>
+		<div class="col-md-3">
+            <center><h5 class="panel-heading myheading">Actions à effectuer</h5></center>
+            <hr class="colorgraph">
+        </div>
+	</div>
+{% endblock%}

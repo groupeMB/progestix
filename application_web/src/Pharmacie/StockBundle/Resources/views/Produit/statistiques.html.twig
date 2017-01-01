@@ -1,0 +1,34 @@
+{% extends "PharmacieStockBundle:Produit:lister.html.twig" %}
+{% block table %}
+<center><h4 class="panel-heading alert-danger">Statistiques produit</h4></center>
+            <hr class="colorgraph">
+        <div class="table-responsive">
+            <table id="mytable" class="table table-bordered">
+                <thead>
+                    <th>Libellé</th>
+                    <th>Nombre total produits</th>
+                    <th>Prix Unitaire</th>
+                    <th>Estimation coût (FCFA)</th>
+                    <!-- <th>Visualiser Stats</th> -->
+
+                    
+                </thead>
+                <tbody>
+                    {% for tag in produits %}
+                         <tr>
+
+                            <td>{{ tag.libelle }}</td>
+                            <td>{{ tag.nb_produits }}</td>
+                            <td>{{ tag.prixunitaire }}</td>
+                            <td>{{ tag.estimation_cout }}</td>
+                            <!-- <td>
+                                <a  href="{{path('gestion_stock_produit_statistiques_voir')}}" class="btn btn-info btn-xs glyphicon glyphicon-stats "></a>
+                            </td> -->
+                            
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+{% endblock %}

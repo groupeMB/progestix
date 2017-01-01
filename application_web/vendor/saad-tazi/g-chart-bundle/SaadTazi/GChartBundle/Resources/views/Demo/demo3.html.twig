@@ -1,0 +1,12 @@
+{% extends "SaadTaziGChartBundle::layout.html.twig" %}
+
+{% block content %}
+
+<div id="myArea1">&nbsp;</div>
+<script>
+$(function() {
+    {{ gchart_area_chart(dt, 'myArea1', 500, 400, 'coucou') }}
+});
+</script>
+
+{% endblock %}

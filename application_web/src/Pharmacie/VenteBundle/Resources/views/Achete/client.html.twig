@@ -1,0 +1,61 @@
+{% extends "PharmacieVenteBundle:Achete:index.html.twig" %}
+
+ {% block main %}
+
+         <div class="row">
+
+             <div class="col-md-9">
+                    <center><h5 class="alert alert-success">Espace de vente sécurisé : Associer un client à votre panier</h5></center>
+                     <div class="span4">
+
+                       <form  action="{{ path('gestionstock_clientajouter_achete') }}" method="get">
+                            <table id="mytable" class="table table-striped table-hover">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Nom</th>
+                                        <th>Prénom</th>
+                                        <th>CIN</th>
+                                        <th>Téléphone</th>
+                                        <th>Mail</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for tag in client %}
+                                        <tr>
+                                            <td>
+                                                <input type="radio" name="clients" value="{{ tag.id }}"/>
+                                            </td>
+                                            <td>{{ tag.nom }}</td>
+                                            <td>{{ tag.prenom }}</td>
+                                            <td>{{ tag.cin }}</td>
+                                            <td>{{ tag.tel }}</td>
+                                            <td>{{ tag.mail }}</td>
+                                        </tr>
+                                     {% endfor %}
+                                </tbody>
+                            </table>
+                            <br><hr class="colorgraph">
+                                <button class="btn btn-success pull-right">Valider</button>
+                             </form>
+
+
+                         <div class="btn btn-success">
+                                 <a href="{{ path('gestionstock_panier_achete') }}">Retour</a>
+                         </div>
+
+                     </div>
+
+
+
+
+                 </div>
+
+
+             </div>
+
+         </div>
+
+
+
+ {%endblock%}

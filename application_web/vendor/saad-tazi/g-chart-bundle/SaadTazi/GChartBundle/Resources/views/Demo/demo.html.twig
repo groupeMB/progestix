@@ -1,0 +1,171 @@
+{% extends "SaadTaziGChartBundle::layout.html.twig" %}
+
+{% block content %}
+
+
+<div id="myTableTreeMap" style="width: 1100px;height:500px;">&nbsp;</div>
+<script>
+$(function() {
+{{ gchart_treemap(dt10, 'myTableTreeMap', 1100, 500, '', {
+            'minColor': '#f00',
+            'midColor': '#ddd',
+            'maxColor': '#0d0',
+            'headerHeight': 15,
+            'fontColor': 'black',
+            'showScale': true}) }}
+});
+</script>
+<hr/>
+<h2>QR Code Demo</h2>
+<img src="{{ gchart_get_qrcode_url('hello Montréal') }}"/>
+<hr/>
+<img src="{{ gchart_get_qrcode_url('hello Montréal', {'width':200, 'height': 200, 'encoding': 'ISO-8859-1', 'correctionLevel': 'M'}) }}"/>
+<hr/>
+
+<h2>Visualization Chart Demo</h2>
+
+<div id="chart1">&nbsp;</div>
+<script>
+$(function() {
+{{ gchart_pie_chart(dataTable1, 'chart1', 400, 200, 'coucou') }}
+});
+</script>
+<hr/>
+
+<div id="chart2">&nbsp;</div>
+<script>
+$(function() {
+{{ gchart_column_chart(dataTable2, 'chart2', 400, 200, 'coucou') }}
+});
+</script>
+<hr/>
+
+<div id="chart22">&nbsp;</div>
+<script>
+$(function() {
+{{ gchart_column_chart(dataTable8, 'chart22', 400, 200, 'coucou chart 8') }}
+});
+</script>   
+<hr/>
+
+<h2>linechart with options</h2>
+<div id="chart3">&nbsp;</div>
+<script>
+$(function() {
+{{ gchart_line_chart(dataTable2, 'chart3', 400, 200, 'coucou',{'hAxis': {'title': 'Hello',  'titleTextStyle': {'color': '#FF0000'}}}) }}
+});
+</script>
+<hr/>
+dataTable2
+<div id="chart4">&nbsp;</div>
+<script>
+$(function() {
+{{ gchart_bar_chart(dataTable2, 'chart4', 400, 200, 'coucou') }}
+});
+</script>
+<hr/>
+dataTable5
+<div id="chartfromMatrix5">&nbsp;</div>
+<script>
+$(function() {
+{{ gchart_bar_chart(dataTable5, 'chartfromMatrix5', 400, 200, 'from table5') }}
+});
+</script>
+<hr/>
+
+dataTable6
+<div id="chartfromMatrix6">&nbsp;</div>
+<script>
+$(function() {
+{{ gchart_bar_chart(dataTable6, 'chartfromMatrix6', 400, 200, 'from table6') }}
+});
+</script>
+<hr/>
+
+dataTable2
+<div id="chart5">&nbsp;</div>
+<script>
+$(function() {
+{{ gchart_area_chart(dataTable2, 'chart5', 400, 200, 'coucou') }}
+});
+</script>
+<hr/>
+
+dataTable4
+<div id="chart6">&nbsp;</div>
+<script>
+$(function() {
+{{ gchart_scatter_chart(dataTable4, 'chart6', 400, 200, 'coucou', 'x label', 'y label') }}
+});
+</script>
+<hr/>
+
+dataTable2
+<div id="chart7">&nbsp;</div>
+<script>
+$(function() {
+{{ gchart_combo_chart(dataTable2, 'chart7', 400, 200, 'line', 'combo', {'series': {1: {'type': 'bars'} } }) }}
+});
+</script>
+<hr/>
+
+dataTable1
+<div id="gauge1">&nbsp;</div>
+<script>
+$(function() {
+{{ gchart_gauge(dataTable1, 'gauge1', 400, 200, 'coucou') }}
+});
+</script>
+<hr/>
+
+dataTable2
+<div id="table1">&nbsp;</div>
+<script>
+$(function() {
+{{ gchart_table(dataTable2, 'table1') }}
+});
+</script>
+<hr/>
+
+dataTable7
+<div id="chartfromMatrix7">&nbsp;</div>
+<script>
+$(function() {
+{{ gchart_table(dataTable7, 'chartfromMatrix7', 400, 200, 'from table7') }}
+});
+</script>
+<hr/>
+
+dt
+<div id="myTable1">&nbsp;</div>
+<script>
+$(function() {
+{{ gchart_table(dt, 'myTable1') }}
+});
+</script>
+<hr/>
+
+dt9
+<div id="myTableCandleStick">&nbsp;</div>
+<script>
+$(function() {
+{{ gchart_candlestick_chart(dt9, 'myTableCandleStick', 400, 200) }}
+});
+</script>
+<hr/>
+
+<h2>Simple Chart Demo</h2>
+rawDataTable1
+<img src="{{ gchart_get_pie_chart_url(rawDataTable1, 'chart3', 400, 200, 'simple chart') }}"/>
+<hr/>
+rawDataTable1
+<img src="{{ gchart_get_pie_chart3d_url(rawDataTable1, 'chart3', 400, 200, 'simple chart') }}"/>
+<hr/>
+
+generic gchart_get_icon_url: <img src="{{ gchart_get_icon_url('d_bubble_icon_text_small', 'ski|bb|Wheeee!|FFFFFF|000000') }}"/>
+<img src="{{ gchart_get_icon_url('d_bubble_icon_text_small', ['ski', 'bb', 'Wheeee with array!','FFFFFF','000000']) }}"/>
+<hr/>
+gchart_get_letter_pin_url: <img src="{{ gchart_get_letter_pin_url('ip', 'ffee44', 'cccccc', true) }}"/><br/>
+gchart_get_icon_pin_url: <img src="{{ gchart_get_icon_pin_url('star', 'ffee44') }}"/>
+gchart_get_icon_pin_url: <img src="{{ gchart_get_icon_pin_url('star', 'ffee44', false, 'pin_star') }}"/>
+{% endblock %}

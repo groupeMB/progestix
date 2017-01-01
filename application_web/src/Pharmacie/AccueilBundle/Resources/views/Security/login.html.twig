@@ -1,0 +1,100 @@
+{% extends "PharmacieAccueilBundle:Template:template.html.twig" %}
+{% block contenu %}
+    <br/><br/><br/><br/>
+    {% for type, messages in app.session.flashBag.all %}
+        {% for message in messages %}
+            <div class="{{ type }}">
+                {{ message|trans({}, 'FOSUserBundle') }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+
+	<div class="container">
+		<center>
+		    {% if error %}
+		    	<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+		    {% endif %}
+	    </center>
+   </div >
+	<div class="container " >
+	<div class="row">
+		 <div class="col-md-7 " >
+		 	<div class="panel panel-success">
+  				<div class="panel-heading">
+  					<center><span class="glyphicon glyphicon-home"></span> Pharmacie de l'espoir</center>
+  				</div>
+  			
+	  			<div class="panel-body">
+	  				 <div class="col-md-6 " >
+	  				 		<ul class="list-group">
+	  							<li class="list-group-item"><span class="glyphicon glyphicon-user"></span> Pharmacien : Dr. Abdoul Ndiaye</li>
+	  							<li class="list-group-item"><span class="glyphicon glyphicon-map-marker"></span> Adresse : Fann Hock</li>
+	  							<li class="list-group-item"><span class="glyphicon glyphicon-earphone"></span> Telephone : +221 33 841 25 96</li>
+							</ul>
+	 				</div>
+	 				<div class="col-md-6" >
+	 					<img style="max-width:95%; max-height:95%; background-size: cover" src="{{ app.request.schemeAndHttpHost ~ asset('bundles/pharmacieaccueil/images/pharma.jpg') }}" alt="image de la pharmacie">
+	 				</div>
+	 			</div>
+	 			<div class="panel-footer">Progestix everywhere. Assurez la gestion de votre pharmacie où que vous soyez.</div>
+ 			</div>
+		 </div> 
+
+	    <div class="col-md-5">
+	    	<div class="panel panel-success">
+  				<div class="panel-heading"><center><span class="glyphicon glyphicon-log-in"></span> Accès à votre tableau de bord sécurisé</center></div>
+  				<div class="panel-body">
+		   			<form role="form" action="{{ path("fos_user_security_check") }}" method="post">
+						<fieldset>
+							
+							<div class="form-group">
+			                    <input type="text" name="_username" id="email" class="form-control input" placeholder="Identifiant">
+							</div>
+							<div class="form-group">
+			                    <input type="password" name="_password" id="password" class="form-control input" placeholder="Mot de passe">
+							</div>
+							<a href="" class="btn btn-link pull-right">Mot de passe oublié?</a>
+							</br>
+							<hr class="colorgraph">
+							<div class="row">
+								<div class="col-xs-6 col-sm-6 col-md-6">
+			                        <input type="submit" class="btn btn-success btn-block" value="Connexion">
+								</div>
+								<div class="col-xs-6 col-sm-6 col-md-6">
+									<a href="" class="btn btn-danger btn-block">Reset</a>
+								</div>
+							</div>
+						</fieldset>
+					</form>
+
+			  	</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-4">
+			<div class="panel panel-success">
+  				<div class="panel-heading"><center><span class="glyphicon glyphicon-globe"></span> Présentation de Progestix</center></div>
+  				<div class="panel-body">
+  					<p class="text-justify">PROGESTIX est un progiciel de gestion intégré dedié au secteur pharmaceutique. Il offre un cadre de travail qui allie performance et simplicité. Avec PROGESTIX, simplifiez votre qutoidien.</p>
+  				</div>
+  				<div class="panel-footer">Progestix, une plateforme made in Sénégal <img style="float: right" src="{{ app.request.schemeAndHttpHost ~ asset('bundles/pharmacieaccueil/images/sn.png') }}" alt="image de la pharmacie"></div>
+  			</div>
+		</div>
+		<div class="col-md-4">
+  			<img style="max-width:100%; max-height:100%; background-size: cover" src="{{ app.request.schemeAndHttpHost ~ asset('bundles/pharmacieaccueil/images/comingSoon.gif') }}" alt="image de la pharmacie">
+		</div>
+		<div class="col-md-4">
+			<div class="panel panel-success">
+  				<div class="panel-heading"><center><span class="glyphicon glyphicon-info-sign"></span> Service Assistance 24h/24 7j/7</center></div>
+  				<div class="panel-body">
+  					<p class="text-justify">Pour toute assistance, veuillez contacter le service technique de progestix :<br>
+  						<span class="glyphicon glyphicon-phone-alt "></span> +221 33 827 61 53 <span class="glyphicon glyphicon-phone"></span> +221 77 069 30 57<br>
+  						<span class="glyphicon glyphicon-envelope"></span> support@progestix.com <br>
+  					</p>
+  				</div>
+  				<div class="panel-footer">L'équipe Progestix vous remercie de votre fidélité.</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

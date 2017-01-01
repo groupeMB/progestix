@@ -1,0 +1,12 @@
+{% extends "SaadTaziGChartBundle::layout.html.twig" %}
+
+{% block content %}
+
+<div id="myTable1">&nbsp;</div>
+<script>
+$(function() {
+    {{ gchart_table(dt, 'myTable1') }}
+});
+</script>
+        
+{% endblock %}

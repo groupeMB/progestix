@@ -1,0 +1,43 @@
+{% extends "PharmacieVenteBundle:Achete:index.html.twig" %}
+
+ {% block main %}
+    <div class="row">
+        <center><h5 class="panel-heading alert-danger">Espace de vente sécurisé : Historique des ventes</h5></center>
+        <hr class="colorgraph">
+        <div class="col-md-9">
+             {% for flashMessage in app.session.flashbag.get('succes')%}
+                 <div class="alert alert-success"> {{   flashMessage }}</div>
+             {% endfor %}
+             <div class="table-responsive">
+                <table id="mytable" class="table table-bordered ">
+                     <thead>
+                            <th>Numero de vente</th>
+                            <th>Agent</th>
+                            <th>Date</th>
+                            <th>Heure</th>
+                            <th>Montant (FCFA)</th>
+                            <th><span class="glyphicon glyphicon-eye-open" ></span></th>
+                     </thead>
+                     <tbody>
+                        {% for tag in achat %}
+                            <tr>
+                                <td>{{ tag.id }}</td>
+                                <td>{{ tag.agent}}</td>
+                                <td>{{ tag.dateVente | date('d-m-Y') }}</td>
+                                <td>{{ tag.dateVente | date('H:i:s') }}</td>
+                                <td>{{ tag.montant}}</td>
+                                <td>
+                                    <a href="{{ path('gestionstock_lister_achete_vente', {'id': tag.id}) }}"><button class="btn btn-info btn-xs"><span class="glyphicon glyphicon-list"></span></button></a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <center><h5 class="panel-heading myheading">Statistique de vente</h5></center>
+            <hr class="colorgraph">
+        </div>
+    </div>
+ {%endblock%}
