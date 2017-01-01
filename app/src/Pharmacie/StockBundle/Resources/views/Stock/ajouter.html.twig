@@ -91,6 +91,14 @@
 			    </div>
 			</div>
 
+			<div class="form-group">
+                {{ form_label(formulaire.imageFile, "Image", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+                {{ form_errors(formulaire.imageFile) }}
+                <div class="col-sm-4">
+                    {{ form_widget(formulaire.imageFile, {'attr': {'class': 'form-control'}}) }}
+                </div>
+            </div>
+
 			<div id="keywords_div" data-prototype="
 				{% filter escape %}
 		        <div class='form-group'>

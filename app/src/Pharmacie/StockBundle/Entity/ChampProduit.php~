@@ -26,7 +26,7 @@ class ChampProduit
      *
      * @ORM\Column(name="typeChamp", type="string", length=255)
      */
-    private $typeChamp;
+    private $typeChamp = "string";
 
     /**
      * @var string
@@ -136,5 +136,29 @@ class ChampProduit
 
     public function __toString(){
         return $this->getLibelle();
+    }
+
+    /**
+     * Set nom
+     *
+     * @param string $nom
+     *
+     * @return ChampProduit
+     */
+    public function setNom($nom)
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
+
+    /**
+     * Get nom
+     *
+     * @return string
+     */
+    public function getNom()
+    {
+        return $this->nom;
     }
 }

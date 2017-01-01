@@ -3,12 +3,17 @@
 namespace Pharmacie\StockBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Stock
  *
  * @ORM\Table(name="stock")
  * @ORM\Entity
+ * @Vich\Uploadable
  */
 class Stock
 {
@@ -84,14 +89,27 @@ class Stock
     private $keywords;
 
     /**
-     * @var Pharmacie\StockBundle\Entity\Image
-     *
-     * @ORM\ManyToOne(targetEntity="Pharmacie\StockBundle\Entity\Image")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="image", referencedColumnName="id")
-     * })
+     * 
+     * @Vich\UploadableField(mapping="produit_image", fileNameProperty="imageName")
+     * 
+     * @var File
      */
-    private $image;
+    private $imageFile;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     *
+     * @var string
+     */
+    private $imageName;
+
+    /**
+     * @ORM\Column(type="datetime")
+     *
+     * @var \DateTime
+     */
+    private $updatedAt;
+
 
     /**
     *
@@ -100,6 +118,8 @@ class Stock
     * 
     */
     private $champs;
+
+
 
 
     public function getContent(){
@@ -118,6 +138,11 @@ class Stock
 
         $this->keywords = new \Doctrine\Common\Collections\ArrayCollection();
 
+    }
+
+    public function getUploadRootDir(){
+
+        return __DIR__ . '/../../../web/uploads';
     }
 
     /**
@@ -395,5 +420,85 @@ class Stock
     public function getChamps()
     {
         return $this->champs;
+    }
+
+    /**
+     * Set imageName
+     *
+     * @param string $imageName
+     *
+     * @return Stock
+     */
+    public function setImageName($imageName)
+    {
+        $this->imageName = $imageName;
+
+        return $this;
+    }
+
+    /**
+     * Get imageName
+     *
+     * @return string
+     */
+    public function getImageName()
+    {
+        return $this->imageName;
+    }
+
+    /**
+     * Set updatedAt
+     *
+     * @param \DateTime $updatedAt
+     *
+     * @return Stock
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get updatedAt
+     *
+     * @return \DateTime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     *
+     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $image
+     *
+     * @return Produit
+     */
+    public function setImageFile(File $image = null)
+    {
+        $this->imageFile = $image;
+
+        if ($image) {
+            $this->updatedAt = new \DateTime('now');
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return File|null
+     */
+    public function getImageFile()
+    {
+        return $this->imageFile;
+    }
+
+
+    public function getPathImage(){
+        $helper = $this->container->get('vich_uploader.templating.helper.uploader_helper');
+        $path = $helper->asset($this, 'image');
+        //return $path;
     }
 }

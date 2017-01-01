@@ -25,6 +25,12 @@ class ComposerStaticInitb82f97cdf82207d6cccfcbd6127982e6
         'Z' => 
         array (
             'Zend\\Json\\' => 10,
+            'Zend\\EventManager\\' => 18,
+            'Zend\\Code\\' => 10,
+        ),
+        'V' => 
+        array (
+            'Vich\\UploaderBundle\\' => 20,
         ),
         'S' => 
         array (
@@ -113,6 +119,18 @@ class ComposerStaticInitb82f97cdf82207d6cccfcbd6127982e6
         'Zend\\Json\\' => 
         array (
             0 => __DIR__ . '/..' . '/zendframework/zend-json/src',
+        ),
+        'Zend\\EventManager\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/zendframework/zend-eventmanager/src',
+        ),
+        'Zend\\Code\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/zendframework/zend-code/src',
+        ),
+        'Vich\\UploaderBundle\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/vich/uploader-bundle',
         ),
         'Symfony\\Polyfill\\Util\\' => 
         array (
@@ -344,6 +362,10 @@ class ComposerStaticInitb82f97cdf82207d6cccfcbd6127982e6
         ),
         'P' => 
         array (
+            'ProxyManager\\' => 
+            array (
+                0 => __DIR__ . '/..' . '/ocramius/proxy-manager/src',
+            ),
             'PhpOption\\' => 
             array (
                 0 => __DIR__ . '/..' . '/phpoption/phpoption/src',

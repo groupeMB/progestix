@@ -28,8 +28,9 @@ class AppKernel extends Kernel
             new Pharmacie\StockBundle\PharmacieStockBundle(),
             new Pharmacie\VenteBundle\PharmacieVenteBundle(),
             new Ras\Bundle\FlashAlertBundle\RasFlashAlertBundle(),
-            new Ob\HighchartsBundle\ObHighchartsBundle(),
-            new SaadTazi\GChartBundle\SaadTaziGChartBundle(),
+            new Ob\HighchartsBundle\ObHighchartsBundle(), //graphe
+            new SaadTazi\GChartBundle\SaadTaziGChartBundle(), //graphe
+            new Vich\UploaderBundle\VichUploaderBundle(), //upload de fichiers
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'), true)) {

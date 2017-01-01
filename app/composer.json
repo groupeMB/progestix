@@ -30,7 +30,8 @@
         "ras/flash-alert-bundle": "dev-master",
         "ob/highcharts-bundle": "1.*",
         "saad-tazi/g-chart-bundle": "^1.5",
-        "symfony/process": "^3.2"
+        "symfony/process": "^3.2",
+        "vich/uploader-bundle": "^1.4"
     },
     "require-dev": {
         "sensio/generator-bundle": "~3.0",

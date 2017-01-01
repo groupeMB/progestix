@@ -63,6 +63,8 @@ class StockType extends AbstractType
                 )
             ))
 
+            ->add('imageFile', 'file')
+
             ->add('keywords', CollectionType::class, array(
                 'type' => KeywordType::class,
                 'allow_add' => true,

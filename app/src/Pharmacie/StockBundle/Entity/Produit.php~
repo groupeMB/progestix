@@ -24,9 +24,9 @@ class Produit
     private $id;
 
     /**
-     * @var \Stock
+     * @var Pharmacie\StockBundle\Entity\Stock
      *
-     * @ORM\ManyToOne(targetEntity="Stock")
+     * @ORM\ManyToOne(targetEntity="Pharmacie\StockBundle\Entity\Stock")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="stock", referencedColumnName="id")
      * })
@@ -43,7 +43,7 @@ class Produit
     /**
      * @var decimal
      *
-     * @ORM\Column(name="prixUnitaire", type="decimal", precision=10, scale=0, nullable=false)
+     * @ORM\Column(name="prixUnitaire", type="decimal", precision=10, scale=2, nullable=false)
      */
     private $prixunitaire;
 
@@ -53,42 +53,6 @@ class Produit
      * @ORM\Column(name="datePeremption", type="date", nullable=false)
      */
     private $dateperemption;
-
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="champ1", type="string", length=255, nullable=true)
-     */
-    private $champ1;
-
-        /**
-     * @var string
-     *
-     * @ORM\Column(name="champ2", type="string", length=255, nullable=true)
-     */
-    private $champ2;
-
-        /**
-     * @var string
-     *
-     * @ORM\Column(name="champ3", type="string", length=255, nullable=true)
-     */
-    private $champ3;
-
-        /**
-     * @var string
-     *
-     * @ORM\Column(name="champ4", type="string", length=255, nullable=true)
-     */
-    private $champ4;
-
-        /**
-     * @var string
-     *
-     * @ORM\Column(name="champ5", type="string", length=255, nullable=true)
-     */
-    private $champ5;
 
 
 
@@ -192,125 +156,7 @@ class Produit
         return $this->dateperemption;
     }
 
-    /**
-     * Set champ1
-     *
-     * @param string $champ1
-     *
-     * @return Produit
-     */
-    public function setChamp1($champ1)
-    {
-        $this->champ1 = $champ1;
-
-        return $this;
-    }
-
-    /**
-     * Get champ1
-     *
-     * @return string
-     */
-    public function getChamp1()
-    {
-        return $this->champ1;
-    }
-
-    /**
-     * Set champ2
-     *
-     * @param string $champ2
-     *
-     * @return Produit
-     */
-    public function setChamp2($champ2)
-    {
-        $this->champ2 = $champ2;
-
-        return $this;
-    }
-
-    /**
-     * Get champ2
-     *
-     * @return string
-     */
-    public function getChamp2()
-    {
-        return $this->champ2;
-    }
-
-    /**
-     * Set champ3
-     *
-     * @param string $champ3
-     *
-     * @return Produit
-     */
-    public function setChamp3($champ3)
-    {
-        $this->champ3 = $champ3;
-
-        return $this;
-    }
-
-    /**
-     * Get champ3
-     *
-     * @return string
-     */
-    public function getChamp3()
-    {
-        return $this->champ3;
-    }
-
-    /**
-     * Set champ4
-     *
-     * @param string $champ4
-     *
-     * @return Produit
-     */
-    public function setChamp4($champ4)
-    {
-        $this->champ4 = $champ4;
-
-        return $this;
-    }
-
-    /**
-     * Get champ4
-     *
-     * @return string
-     */
-    public function getChamp4()
-    {
-        return $this->champ4;
-    }
-
-    /**
-     * Set champ5
-     *
-     * @param string $champ5
-     *
-     * @return Produit
-     */
-    public function setChamp5($champ5)
-    {
-        $this->champ5 = $champ5;
-
-        return $this;
-    }
-
-    /**
-     * Get champ5
-     *
-     * @return string
-     */
-    public function getChamp5()
-    {
-        return $this->champ5;
-    }
+    
 
     /**
      * Set libelle

@@ -97,3 +97,15 @@ fos_user:
 sonata_admin:
     title:      PROGESTIX
     title_logo: bundles/administrationpharmacie/img/logo.png
+
+
+vich_uploader:
+    db_driver: orm
+
+    mappings:
+        produit_image:
+            uri_prefix:         /uploads/images/produits
+            upload_destination: '%kernel.root_dir%/../web/uploads/images/produits'  
+            inject_on_load:     false
+            delete_on_update:   true
+            delete_on_remove:   true

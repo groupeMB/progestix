@@ -11,6 +11,7 @@ return array(
     'SensioLabs\\Security' => array($vendorDir . '/sensiolabs/security-checker'),
     'SaadTazi\\GChartBundle' => array($vendorDir . '/saad-tazi/g-chart-bundle'),
     'Ras\\Bundle\\FlashAlertBundle' => array($vendorDir . '/ras/flash-alert-bundle'),
+    'ProxyManager\\' => array($vendorDir . '/ocramius/proxy-manager/src'),
     'PhpOption\\' => array($vendorDir . '/phpoption/phpoption/src'),
     'PhpCollection' => array($vendorDir . '/phpcollection/phpcollection/src'),
     'Nelmio\\ApiDocBundle' => array($vendorDir . '/nelmio/api-doc-bundle'),
