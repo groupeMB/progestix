@@ -1,2 +1,2 @@
-!/app/app/cache/*
-!/app/app/logs/*
+/app/app/cache/*
+/app/app/logs/*
