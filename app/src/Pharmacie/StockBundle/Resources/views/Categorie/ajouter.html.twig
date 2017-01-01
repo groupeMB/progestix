@@ -1,7 +1,7 @@
 {% extends "PharmacieStockBundle:Categorie:lister.html.twig" %}
 {% block table %}
 
-	<center><h4 class="panel-heading alert-danger">Ajout d'une nouvelle catégorie de médicaments </h4></center>
+	<center><h5 class="panel-heading alert-danger">Formulaire d'ajout d'une nouvelle catégorie de médicaments </h5></center>
 
 	{{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
     {# Les erreurs générales du formulaire. #}
@@ -32,13 +32,9 @@
 	    </div>
 	</div>
 
-	{# Pour le bouton, pas de label ni d'erreur, on affiche juste le widget #}
     <center><span>{{ form_widget(form.Valider, {'attr': {'class': 'btn btn-success'}}) }}</span>
     <span>{{ form_widget(form.Annuler, {'attr': {'class': 'btn btn-danger'}}) }}</span></center>
 
-    {# Génération automatique des champs pas encore écrits.
-        Dans cet exemple, ce serait le champ CSRF (géré automatiquement par Symfony !)
-        et tous les champs cachés (type « hidden »). #}
     {{ form_rest(form) }}
 
     {# Fermeture de la balise <form> du formulaire HTML #}

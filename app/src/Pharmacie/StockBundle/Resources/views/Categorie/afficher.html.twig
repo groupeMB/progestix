@@ -1,0 +1,11 @@
+{% extends "PharmacieStockBundle:Categorie:lister.html.twig" %}
+{% block table %}
+  <center><h4 class="panel-heading alert-danger">Détails de la catégorie : {{ categorie.libelle }}</h4></center>
+  <hr class="colorgraph">
+  <ul class="list-group">
+  		<li class="list-group-item"><u>N°</u> : {{ categorie.id }}</li>
+      	<li class="list-group-item"><u>Libellé</u> : {{ categorie.libelle }}</li>
+      	<li class="list-group-item"><u>Description</u>: {{ categorie.description }}</li>
+      	
+ </ul>
+{% endblock%}

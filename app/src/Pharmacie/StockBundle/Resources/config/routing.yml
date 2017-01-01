@@ -78,6 +78,10 @@ gestion_stock_categorie_supprimer:
     path:       /categorie/supprimer/{id}
     defaults:   {_controller: PharmacieStockBundle:Categorie:supprimer}
 
+gestion_stock_produit_afficher:
+    path:     /categorie/afficher/{id}
+    defaults: { _controller: PharmacieStockBundle:Categorie:afficher }
+
 gestion_stock_categorie_produit:
     path:       /categorie/produit/{id}
     defaults:   {_controller: PharmacieStockBundle:Categorie:produitCategorie}

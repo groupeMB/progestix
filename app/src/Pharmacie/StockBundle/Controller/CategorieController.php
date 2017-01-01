@@ -61,10 +61,15 @@ class CategorieController extends Controller
         return $this->render('PharmacieStockBundle:Categorie:lister.html.twig',array('categories'=>$categories));
     }
 
+    
+    public function afficherAction($id){
+        $em = $this->getDoctrine()->getManager();
+        $categorie = $em->getRepository('PharmacieStockBundle:Categorie')->findOneBy( array('id' => $id));
+        return $this->render('PharmacieStockBundle:Categorie:afficher.html.twig', array("categorie"  => $categorie ));
+    }
 
 
-
- public function supprimerAction(Request $request,$id)
+    public function supprimerAction(Request $request,$id)
     {
         
         $em = $this->getDoctrine()
