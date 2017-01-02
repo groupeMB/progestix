@@ -10,22 +10,39 @@ gestionstock_ajouter_client:
 gestionstock_client_achete:
     path:     /achat/client
     defaults: { _controller: PharmacieVenteBundle:Achete:client }
+
 gestionstock_clientajouter_achete:
     path:     /achat/clientajouter
     defaults: { _controller: PharmacieVenteBundle:Achete:clientajouter }
 
 
+# gestionstock_ajouter_achete:
+#     path:     /achat/ajouter
+#     defaults: { _controller: PharmacieVenteBundle:Achete:ajouter }
 gestionstock_ajouter_achete:
     path:     /achat/ajouter
-    defaults: { _controller: PharmacieVenteBundle:Achete:ajouter }
+    defaults: { _controller: PharmacieVenteBundle:Achete:panier }
+
+
+
+# gestionstock_modifier_achete:
+#     path:     /achat/modier/{id}
+#     defaults: { _controller:  PharmacieVenteBundle:Achete:modifier }
 
 gestionstock_modifier_achete:
-    path:     /achat/modier/{id}
+    path:     /achat/modifier/
     defaults: { _controller:  PharmacieVenteBundle:Achete:modifier }
 
 gestionstock_panier_achete:
     path:     /achat/panier
     defaults: { _controller:  PharmacieVenteBundle:Achete:panier }
+
+
+gestionstock_panier_achete_client:
+    path:     /achat/panier/client
+    defaults: { _controller:  PharmacieVenteBundle:Achete:infoClient }
+
+
 
 gestionstock_validerpanier_achete:
     path:     /valider/panier
@@ -37,6 +54,9 @@ gestionstock_valider_achete:
 gestionstock_panierajouter_achete:
     path:     /achat/panierajouter/{id}
     defaults: { _controller: PharmacieVenteBundle:Achete:panierajouter }
+
+
+
 gestionstock_paier_supprimer:
     path:     /achat/supprimer/{id}
     defaults: { _controller:  PharmacieVenteBundle:Achete:supprimer }

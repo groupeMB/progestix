@@ -1,14 +1,15 @@
 {% extends "PharmacieVenteBundle:Achete:index.html.twig" %}
 {% set total=0 %}
+{% block contenu %}
  {% block main %}
      <div class="container">
          <div class="row">
-             <div class="col-md-9">
+             <div class="col-md-9 col-md-offset-1">
                  <div class="row">
-                     <div class="span4">
+                     <div class="span9">
                          <form action="{{ path('gestionstock_modifier_achete',{'id':produits.id}) }}" method="get">
-                           <table class="table table-bordered ">
-                               <thead>
+                           <table class="table montable-bordered table-hover table-responsive" style="border: 1px solid #424242;">
+                               <thead class="monentete2">
                                <th>Libellé</th>
                                <th>Quantité en stock</th>
                                <th>Prix Unitaire</th>
@@ -17,17 +18,15 @@
                                </thead>
                                <tbody>
                                   <tr>
-                                      <td>{{ produits.libelle}}</td>
-                                      <td> {{ stock.quantite }}</td>
-                                      <td>{{ produits.prixUnitaire}}</td>
-                                      <td>
-                                          <select class="span1" name="quantite">
-                                              {% for i in 1..10 %}
-                                                  <option value="{{ i }}">{{ i }}</option>
-                                              {% endfor %}
-                                          </select>
+                                      <td style="vertical-align: middle;">{{ produits.libelle}}</td>
+                                      <td style="vertical-align: middle;"> {{ stock.quantite }}</td>
+                                      <td style="vertical-align: middle;">{{ produits.prixUnitaire}}</td>
+                                      <td style="vertical-align: middle;">
+                                        <center>  
+                                          <input class="form-control input-sm" type="number" value="1" name="quantite" min="1" max={{ stock.quantite }}></input>
+                                        </center>
                                       </td>
-                                      <td><button class="btn btn-success pull-right" class="glyphicon glyphicon-ok"> </button></td>
+                                      <td style="vertical-align: middle;"><button class="btn btn-default btn-sm"><span class="glyphicon glyphicon-ok"></span> </button></td>
                                   </tr>
                                </tbody>
                            </table>
@@ -39,3 +38,4 @@
      </div>
      <!-- /.container -->
  {%endblock%}
+{% endblock %}

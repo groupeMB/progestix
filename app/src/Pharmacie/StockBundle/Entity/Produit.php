@@ -179,6 +179,9 @@ class Produit
      */
     public function getLibelle()
     {
+        
         return $this->libelle;
     }
+
+
 }

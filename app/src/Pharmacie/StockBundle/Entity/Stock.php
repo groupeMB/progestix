@@ -122,6 +122,7 @@ class Stock
 
 
 
+
     public function getContent(){
         return  array(
             'id' => $this->id,

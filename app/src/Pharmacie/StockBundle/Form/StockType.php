@@ -43,6 +43,8 @@ class StockType extends AbstractType
                 'class' => 'PharmacieStockBundle:Categorie',
                 'choice_label' => 'libelle'
             ))
+
+            
             ->add('seuilMin', 'integer', array(
                     'attr' => array(
                     'placeholder' => 'minimum 0',

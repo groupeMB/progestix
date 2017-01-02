@@ -1,68 +1,312 @@
 {% extends "PharmacieVenteBundle:Achete:index.html.twig" %}
+{% set total = 0 %}
+{% block contenu %}
+    {% block main %}
+        {% block menuLeft %}
+        {% endblock %}
+        <br/><br/>
+        <div class="row">
+            <!-- <center><h5 class="panel-heading alert-danger">Espace de vente sécurisé : Ajouter des produits à votre panier pour effectuer une vente </h5></center>
+            <hr class="colorgraph"> -->
 
- {% block main %}
-         <div class="row">
-            <center><h5 class="panel-heading alert-danger">Espace de vente sécurisé : Ajouter des produits à votre panier pour effectuer une vente </h5></center>
-            <hr class="colorgraph">
-            <div class="col-md-3">
-                <center><h5 class="panel-heading myheading"><span class="glyphicon glyphicon-shopping-cart"></span> Votre Panier</h5></center>
-                 <div class=" well">
-                             <p>
-                                 {% if article==0 %}
-                                     Aucun produit dans votre panier
-                                 {% elseif article==1 %}
-                                     1 produit dans votre panier
-                                 {% else %}
-                                     {{ article }} produits dant votre panier
-                                  {% endif %}
+            <div class="col-md-9 col-md-offset-1" id="panier">
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-md-4" id="infoClient">
+                                <b>Client : ?</b>
+                            </div>
+                            <div class="col-md-5" id="coordClient">
 
-                             </p>
-                            <br>
-                            <a href="{{ path('gestionstock_panier_achete') }}" class="btn btn-success btn-block">Voir Panier <span class="glyphicon glyphicon-chevron-right"></span></a>
-                </div>
-                <div class="well">
-                    <button class="btn btn-block myheading sous-menu-item">
-                        <a href="{{ path('gestionstock_lister_achete_produitVendu') }}" ><span class="glyphicon glyphicon-list"></span> Historique de ventes</a>
-                    </button>
-                </div>
-            </div>
+                            </div>
+                            <div class="col-md-3">
+                                Produits dans le panier <span class="badge pull-right"> {{ article }} </span>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="panel-body">
+                        <form action="">
+                            <table id="monpanier" class="table montable-bordered table-hover table-responsive table-condensed" style="border: 1px solid #424242;">
+                                <thead class="monentete-success">
+                                <tr>
+                                    <th>Référence</th>
+                                    <th>Quantite</th>
+                                    <th>Prix unitaire</th>
+                                    <th>Prix HT</th>
+                                    <th>Actions</th>
+                                </tr>
+                                </thead>
+                                <tbody>
 
-             <div class="col-md-9">
+                                {% if listeproduits | length==0 %}
+                                    <tr>
+                                    <td colspan="6"><center>Aucun produit dans votre panier</center></td>
+                                   </tr>
+                                {% endif %}
+
+                                {% set i = 1 %}
+                                {% for p in listeproduits %}
+                                    {% set j = i * 500 %}
+                                    <form action="{{ path('gestionstock_panier_achete',{'id':p.id}) }}" method="get">
+                                    <tr>
+                                        <td style="vertical-align: middle;">{{ p.libelle }}</td>
+                                        <td style="vertical-align: middle;"><span id={{i}}> {{ panier[p.id] }} </span> </td>
+                                        <td style="vertical-align: middle;">  {{ p.prixUnitaire }} FCFA</td>
+                                        <td style="vertical-align: middle;"><span id={{j}}> {{ p.prixUnitaire*panier[p.id] }} </span>FCFA</td>
+                                        <td style="vertical-align: middle; background:#F4EEEE;"> 
+                                            <center>
+                                            <button type="button" class="btn btn-default btn-sm" onclick="modifierquantite({{ p.id }}, {{ panier[p.id] }}, {{ i }}, {{ p.prixUnitaire }})"><i class="glyphicon glyphicon-edit"></i></button>
+                                            
+                                            <button type="button" class="btn btn-default btn-sm">
+                                            <a href="{{ path('gestionstock_paier_supprimer',{'id':p.id}) }} " style="color:red;text-decoration:none"><i class="glyphicon glyphicon-remove"></i></a>
+                                            </button>
+                                            </center>
+                                        </td>
+
+                                    </tr>
+                                    </form>
+                                    {% set i = i + 1 %}
+                                    {% set total=total + ( p.prixUnitaire*panier[p.id]) %}
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </form>
+
+
+{% if client | length!=0 %}
+                    <div class="span6" >
+                        <h5 class="monentete"><strong>Client :</strong> {{ client.prenom }} {{ client.nom }}. <strong> Tél:</strong> {{ client.tel }}</h5><br/><br/>
+                    </div>
+                {% endif %}
+
+                {% if listeproduits | length!=0 %}
+
+
+                 {% if client | length!=0 %}
+                  <button type="button" class="monbtn pull-right" style="margin-right:5px;"> <span class="glyphicon glyphicon-user"></span>
+                    <a href="{{ path('gestionstock_validerpanier_achete')}}" style="color:black;text-decoration:none">Facturer le client</a>
+                  </button>
+                 {% else %}
+                 <!-- <div class="btn-group btn-group-md"> -->
+                  <select id="client" name="clients" class="btn btn-default monselect" style="height: 38px;" onchange="rechercherclient()">
+                    <option selected value="0"> Sélectionner le client </option>
+                      {% for client in listeclients %}
+                        <option value={{ client.id }}> {{ client.prenom }} {{ client.nom }} </option>
+                      {% endfor %}
+
+                  </select>
+
+                  <button type="button" class="monbtn"> <span class="glyphicon glyphicon-user"></span>
+                    <a href="{{ path('gestionstock_client_achete')}}" style="color:black;text-decoration:none"> Ajouter un client</a>
+                  </button>
+                  <br>
+                  <br>
                  
-                {% for flashMessage in app.session.flashbag.get('succes')%}
-                         <div class="alert alert-success"> {{   flashMessage }}</div>
-                     {% endfor %}
-                     <div class="table-responsive">
-                         <table id="mytable" class="table table-bordered ">
-                             <thead>
-                             <th>Libellé</th>
-                             <th>Quantité en stock</th>
-                             <th>Prix Unitaire</th>
-                             <th>Quantite</th>
-                             <th></th>
-                             </thead>
-                             <tbody>
-                             {% for tag in produits %}
-                                 <tr>
-                                     <form action="{{ path('gestionstock_panierajouter_achete',{'id':tag.produit.id}) }}" method="get">
-                                     <td>{{  tag.produit.libelle }}</td>
-                                     <td>{{  tag.quantite }}</td>
-                                     <td>{{ tag.produit.prixUnitaire}}</td>
-                                     <td>
-                                         <select class="span1" name="quantite">
-                                             {% for i in 1..10 %}
-                                                 <option value="{{ i }}">{{ i }}</option>
-                                             {% endfor %}
-                                         </select>
-                                     </td>
-                                     <td><button class="glyphicon glyphicon-ok"></button></td>
-                                     </form>
-                                 </tr>
-                             {% endfor %}
-                             </tbody>
-                         </table>
-                 </div>
-             </div>
+                 <!-- </div> -->
+                 {% endif %}
+                 {% endif %}
+
+
+
+
+
+
+
+                    </div>
+                    <div class="panel-footer">
+                        <div class="row">
+                            <div class="col-md-4" style="padding-top: 7px;">
+                                Net à payer : <strong> {{ total }} </strong> FCFA
+                            </div>
+                            <div class="col-md-4" style="padding-top: 7px;">
+                                Monnaie à rendre : <span id="monnaie">?</span>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="input-group">                     
+                                    <input id="somme" type="number" placeholder="Somme reçue" class="form-control" oninput="monnaie()" min={{ total }}></input>
+
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-success">
+                                            <span class="glyphicon glyphicon-ok"></span>
+                                            <a href="{{ path('gestionstock_valider_achete')}}" style="color:white;text-decoration:none"> Valider le panier</a>
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                                        <button type="button" class="btn btn-success">
+                                            <span class="glyphicon glyphicon-ok"></span>
+                                            <a href="{{ path('gestionstock_validerpanier_achete')}}" style="color:white;text-decoration:none"> Valider le panier du client</a>
+                                        </button>
+
+                        
+                        
+                    </div>
+                </div>
             </div>
-        </div>
- {%endblock%}
+
+
+
+
+
+            <div class="col-md-9 col-md-offset-1">
+                <center>
+                <div class="hidden btn-group btn-group-md">
+                    <button type="button" class="monbtn"> <span class="glyphicon glyphicon-shopping-cart"></span>
+                    <a href="{{ path('gestionstock_panier_achete') }}" style="color:black;text-decoration:none" data-toggle="tooltip" title="Listes des produits dans la facture"> Produits dans votre panier </a>
+                    <span class="badge"> {{ article }} </span>
+                    </button>
+                    
+                    <button type="button" class="monbtn"> <span class="glyphicon glyphicon-th-list"></span> <a href="{{ path('gestionstock_lister_achete_produitVendu') }}" style="color:black;text-decoration:none" data-toggle="tooltip" title="Liste des ventes effectuées aujourd'hui"> Historique des ventes </a></button>
+
+                </div>
+                </center>
+                <br/>
+<!--                 {% for flashMessage in app.session.flashbag.get('succes')%}
+                    <div class="alert alert-success alert-dismissible">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">
+                        <img src="{{ asset('bundles/pharmacieaccueil/images/close_green4.png') }}">
+                        </a>
+                        <center><h5> {{ flashMessage }} </h5></center>
+                    </div>
+                {% endfor %} -->
+                <div> <!-- class="well well-lg" -->
+                     <table id="mytable" class="table montable-bordered table-hover table-responsive table-condensed" style="border: 1px solid #424242;">
+                         <thead class="monentete-success">
+                         <th>Libellé</th>
+                         <th>Quantité en stock</th>
+                         <th>Prix Unitaire (F CFA)</th>
+                         <th>Quantite</th>
+                         <th>Action</th>
+                         </thead>
+                         <tbody>
+                         {% for tag in produits %}
+                             <tr>
+                                 <form action="{{ path('gestionstock_panierajouter_achete',{'id':tag.id}) }}" method="get">
+                                 <td style="vertical-align: middle;">{{ tag.libelle  }}</td>
+                                 <td style="vertical-align: middle;">{{ tag.decompte }}</td>
+                                 <td style="vertical-align: middle;">{{ tag.prixUnitaire }}</td>
+                                 <td style="vertical-align: middle;">
+                                     <!-- <center> -->
+                                        <input class="form-control input-sm" type="number" value="1" name="quantite" min="1" max={{ tag.decompte }}></input>
+                                     <!-- </center> --> </td>
+                                 <td style="vertical-align: middle; background:#F4EEEE;">
+                                    <center>
+                                        <button class="btn btn-default btn-sm"><img src="{{ asset('bundles/pharmacieaccueil/images/cart2.png') }}"></button>
+                                    </center>
+                                 </td>
+                                 </form>
+                             </tr>
+                         {% endfor %}
+                         </tbody>
+                     </table>
+                </div>
+            </div> <!-- col-md- -->
+            
+
+
+        </div> <!-- row -->
+
+        <script>
+            $(document).ready(function() {
+                $('#mytable').DataTable( {
+                    columnDefs: [
+                        {
+                            targets: [ 0, 1, 2 ],
+                            className: 'mdl-data-table__cell--non-numeric'
+                        }
+                    ]
+                } );
+            } );
+        </script>
+
+
+     <script>
+
+        function ajouterclient(){
+             $.ajax({
+                 url: "{{ path('gestionstock_clientajouter_achete') }}",
+                 type: "POST",
+                 data: { "idclient" : document.getElementById('client').value },
+                 success: function(data) {
+
+                 },
+                 error: function(XMLHttpRequest, textStatus, errorThrown) {
+
+                 }
+             });
+        }
+
+
+        function rechercherclient(){
+             $.ajax({
+                 url: "{{ path('gestionstock_panier_achete_client') }}",
+                 type: "POST",
+                 data: { "id" : document.getElementById('client').value },
+                 success: function(data) {
+                     var i = JSON.parse(data);      // Conversion en un objet Javascript dee l'obbjet JSON (JavaScript Object Notation)
+
+                     document.getElementById("infoClient" ).innerHTML = '<strong>Client : </strong> ' + i.prenom + ' ' + i.nom;
+                     document.getElementById("coordClient" ).innerHTML = '<strong>Tél : </strong>' + i.tel + '&emsp;<strong>Mail : </strong> ' + i.mail;
+
+                     
+                     $("#infoClient").show();
+                     $("#coordClient").show();
+                 },
+                 error: function(XMLHttpRequest, textStatus, errorThrown)
+                 {
+                     // alert('Error: ' +  errorThrown);
+                     $("#infoClient").hide();
+                     $("#coordClient").hide();
+                 }
+             });
+             // setTimeout(rechercherclient, 1000);
+             if (document.getElementById('client').value != 0) {
+                ajouterclient();
+             }
+        }
+
+        function monnaie(){
+          var total = {{ total }};
+          var somme = $("#somme").val();
+          if(somme >= total)
+            document.getElementById("monnaie" ).innerHTML = (somme - total);
+          else
+            document.getElementById("monnaie" ).innerHTML = '?';
+        }
+
+        function modifierquantite(id, oldQte, idZoneQteNew, prixUnitaire){
+          var quantite = Math.trunc(prompt("Modification de la quantité",oldQte));
+          if (!isNaN(quantite) && quantite != null && quantite > 0) {
+            $.ajax({
+              url: "{{ path('gestionstock_modifier_achete') }}",
+                type: "POST",
+                data: { "id" : id, "quantite" : quantite },
+                success: function(data) {
+                  document.getElementById(idZoneQteNew).innerHTML = quantite;
+                  document.getElementById(idZoneQteNew*500).innerHTML = quantite*prixUnitaire;
+                  document.getElementById("total").innerHTML = {{ total }} - (oldQte*prixUnitaire) + (quantite*prixUnitaire);
+                  monnaie();
+                  // alert('La quantité maximale doit être ' + i.stock);
+                  },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                     // alert('Error: ' +  errorThrown);
+                  
+                }
+            });
+          }
+          else if (quantite != null)
+            alert('Vous devez saisir un entier positif');
+        }
+
+        $(document).ready(function() {
+          // setTimeout(rechercherclient, 1000);
+          $('#client').on('change', function(){rechercherclient();});
+          // $('#client').on('change textchange input keypress keyup keydown paste', function(){monnaie();});
+        });
+    </script>
+
+    <br/><br/><br/><br/>
+    {%endblock%}
+{%endblock%}
