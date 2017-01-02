@@ -2,3 +2,10 @@
 -> graphe pour produit de categorie
 -> photo pour les produits avec le bundle vich/uploader-bundle
 -> intégration bundle vente
+->Gestion catégorie de produits
+	-> CRUD catégorie
+	-> Listing catégorie
+	-> Statistiques catégories
+-> Gestion des produits
+	-> CRUD produits
+	-> Listing produits

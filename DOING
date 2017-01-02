@@ -1,2 +1,12 @@
-
--> 
+-> Gestion catégorie de produits
+	-> Téléchargement catégories
+-> Gestion sous-catégorie de produits
+	-> CRUD sous-catégorie
+	-> Listing sous-catégorie
+	-> Statistiques sous-catégories
+	-> Assignation sous-catégories à catégorie
+	-> Téléchargement fiche sous-catégorie
+-> Gestion des produits
+	-> Assignation produit à sous-catégorie ou catégorie
+	-> Statistiques produits
+	-> Téléchargement fiche produit
