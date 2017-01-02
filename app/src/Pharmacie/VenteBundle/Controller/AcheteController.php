@@ -476,7 +476,7 @@ class AcheteController extends Controller
         $id = $request->request->get('id');
         $em = $this->getDoctrine()->getManager();
         $produit = $em->getRepository('PharmacieStockBundle:Produit')->findOneBy( array('id' => $id));
-        $stock = $em->getRepository('PharmacieStockBundle:Stock')->findOneBy( array('produit' => $produit));
+        $stock = $em->getRepository('PharmacieStockBundle:Stock')->findOneBy( array('id' => $produit->getLibelle()));
         return $this->render('PharmacieVenteBundle:Achete:produit.html.twig', array('produits' => $produit ,'stock'=>$stock));
     }
 
