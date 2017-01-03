@@ -13,6 +13,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ORM\Table(name="stock")
  * @ORM\Entity
+ * @Vich\Uploadable
  */
 class Stock
 {
@@ -117,6 +118,7 @@ class Stock
     * 
     */
     private $champs;
+
 
 
 
@@ -467,5 +469,37 @@ class Stock
     public function getUpdatedAt()
     {
         return $this->updatedAt;
+    }
+
+    /**
+     *
+     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $image
+     *
+     * @return Produit
+     */
+    public function setImageFile(File $image = null)
+    {
+        $this->imageFile = $image;
+
+        if ($image) {
+            $this->updatedAt = new \DateTime('now');
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return File|null
+     */
+    public function getImageFile()
+    {
+        return $this->imageFile;
+    }
+
+
+    public function getPathImage(){
+        $helper = $this->container->get('vich_uploader.templating.helper.uploader_helper');
+        $path = $helper->asset($this, 'image');
+        //return $path;
     }
 }
