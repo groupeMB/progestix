@@ -14,8 +14,24 @@ class SousCategorieType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('libelle')
-            ->add('description')
+            ->add(
+                'libelle',
+                'text', 
+                array(
+                    'attr' => array(
+                    'placeholder' => 'minimum 2 caractères',
+                    'pattern'     => '.{2,}' 
+                    )
+                )
+            )
+            ->add('description',
+                'text', 
+                array(
+                    'attr' => array(
+                    'placeholder' => 'minimum 10 caractères',
+                    'pattern'     => '.{10,}' 
+                    )
+                ))
             ->add('categorie')
             ->add('Valider', 'submit')
             ->add('Annuler','reset')

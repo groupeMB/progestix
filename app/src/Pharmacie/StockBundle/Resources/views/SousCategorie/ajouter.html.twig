@@ -1,0 +1,48 @@
+{% extends "PharmacieStockBundle:SousCategorie:lister.html.twig" %}
+{% block table %}
+
+	<center><h5 class="panel-heading alert-danger">Formulaire d'ajout d'une nouvelle sous catégorie de médicaments </h5></center>
+
+	{{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+    {# Les erreurs générales du formulaire. #}
+    {{ form_errors(form) }}
+    <hr>
+    <div class="form-group">
+    	{# Génération du label. #}
+	    {{ form_label(form.libelle, "Libellé", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+
+	    {# Affichage des erreurs pour ce champ précis. #}
+	    {{ form_errors(form.libelle) }}
+
+	    <div class="col-sm-6">
+	        {# Génération de l'input. #}
+	        {{ form_widget(form.libelle, {'attr': {'class': 'form-control'}}) }}
+	    </div>
+	</div>
+
+	<div class="form-group">
+	    {{ form_label(form.description, "Description", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+	    {{ form_errors(form.description) }}
+	    <div class="col-sm-6">
+	        {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
+	    </div>
+	</div>
+
+	<div class="form-group">
+	    {{ form_label(form.categorie, "Catégorie", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+	    {{ form_errors(form.categorie) }}
+	    <div class="col-sm-6">
+	        {{ form_widget(form.categorie, {'attr': {'class': 'form-control'}}) }}
+	    </div>
+	</div>
+
+    <center><span>{{ form_widget(form.Valider, {'attr': {'class': 'btn btn-success'}}) }}</span>
+    <span>{{ form_widget(form.Annuler, {'attr': {'class': 'btn btn-danger'}}) }}</span></center>
+
+    {{ form_rest(form) }}
+
+    {# Fermeture de la balise <form> du formulaire HTML #}
+    {{ form_end(form) }}
+
+{% endblock %}
+

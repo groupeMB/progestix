@@ -1,0 +1,36 @@
+{% extends "PharmacieStockBundle:SousCategorie:lister.html.twig" %}
+{% block table %}
+<center><h4 class="panel-heading alert-danger">Statistiques catégorie</h4></center>
+            <hr class="colorgraph">
+        <div class="table-responsive">
+            <table id="mytable" class="table table-bordered">
+                <thead>
+                    <th>Categorie</th>
+                    <th>Nombre total produits</th>
+                    <th>Estimation coût (F CFA)</th>
+                    <th>Graphes</th>
+                    <th></th>
+                </thead>
+                <tbody>
+                    {% for tag in categories %}
+                         <tr>
+                            <td>{{ tag.categorie }}</td>
+                            <td>{{ tag.nb_produits }}</td>
+                            <td>{{ tag.estimation_cout }}</td>
+                            <td></td>
+                            <td>
+                                <a href="{{ path('gestion_stock_categorie_modifier', { 'id': tag.id }) }}"><button class="btn btn-success btn-xs"><span class="glyphicon glyphicon-edit"></span></button></a>
+
+                                <a href="{{ path('gestion_stock_categorie_produit', { 'id': tag.id }) }}"><button class="btn btn-info btn-xs"><span class="glyphicon glyphicon-eye-open"></span></button></a>
+
+                                <a href="{{ path('gestion_stock_categorie_supprimer', { 'id': tag.id }) }}" data-confirm="Vous êtes sur le point de supprimer la catégorie {{tag.categorie }}. Etes-vous sûr de bien vouloir effectué cette opération ?"><button class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></span></button></a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <br/><br/><br/>
+{% endblock %}
+

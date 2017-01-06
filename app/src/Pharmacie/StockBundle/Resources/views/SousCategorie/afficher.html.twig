@@ -1,0 +1,11 @@
+{% extends "PharmacieStockBundle:SousCategorie:lister.html.twig" %}
+{% block table %}
+  <center><h4 class="panel-heading alert-danger">Détails de la Sous-catégorie : {{ souscategorie.libelle }}</h4></center>
+  <hr class="colorgraph">
+  <ul class="list-group">
+  		<li class="list-group-item"><u>N°</u> : {{ souscategorie.id }}</li>
+      	<li class="list-group-item"><u>Libellé</u> : {{ souscategorie.libelle }}</li>
+      	<li class="list-group-item"><u>Description</u>: {{ souscategorie.description }}</li>
+      	<li class="list-group-item"><u>Catégorie</u>: {{ souscategorie.categorie }}</li>
+ </ul>
+{% endblock%}

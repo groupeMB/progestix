@@ -15,17 +15,20 @@ class SousCategorieController extends Controller
 {
 	 public function indexAction()
     {
-        return $this->render('PharmacieStockBundle:Categorie:index.html.twig');
+        return $this->render('PharmacieStockBundle:SousCategorie:index.html.twig');
     }
 
+    /* 
+    * ajout de sous categorie 
+    */
     public function ajouterAction(Request $request)
     {
         $session = $this->get('session');
         $session->getFlashBag()->add('confirm','ajout effectuer avec succes');
 
-        $categorie = new Categorie();
+        $souscategorie = new SousCategorie();
 
-        $form = $this->get('form.factory')->create(new CategorieType(),$categorie);
+        $form = $this->get('form.factory')->create(new SousCategorieType(),$souscategorie);
 
         if ($form->handleRequest($request)->isValid()) 
         {
@@ -36,36 +39,40 @@ class SousCategorieController extends Controller
                 $em->persist($form->getData());
                 $em->flush();
 
-                return $this->redirect($this->generateUrl('gestion_stock_categorie_lister'));
+                return $this->redirect($this->generateUrl('gestion_stock_souscategorie_lister'));
             }
 
         }
 
 
-        return $this->render('PharmacieStockBundle:Categorie:ajouter.html.twig',array('form' => $form->createView()));
+        return $this->render('PharmacieStockBundle:SousCategorie:ajouter.html.twig',array('form' => $form->createView()));
     }
 
 
-
+    /*
+    *   lister tous les sous categories
+    */
     public function listerAction()
     {
         
-        $categories=$this->getDoctrine()
+        $souscategories=$this->getDoctrine()
             ->getManager()
-            ->getRepository("PharmacieStockBundle:Categorie")
+            ->getRepository("PharmacieStockBundle:SousCategorie")
             ->findAll();
 
-        if(!$categories){       
-                        throw $this->createNotFoundException( 'Aucune Categorie touvée ');
+        if(!$souscategories){       
+                        throw $this->createNotFoundException( 'Aucune Sous catégorie touvée ');
                       } 
-        return $this->render('PharmacieStockBundle:Categorie:lister.html.twig',array('categories'=>$categories));
+        return $this->render('PharmacieStockBundle:SousCategorie:lister.html.twig',array('souscategories'=>$souscategories));
     }
 
-    
+    /*
+    *   afficher une sous catégorie
+    */    
     public function afficherAction($id){
         $em = $this->getDoctrine()->getManager();
-        $categorie = $em->getRepository('PharmacieStockBundle:Categorie')->findOneBy( array('id' => $id));
-        return $this->render('PharmacieStockBundle:Categorie:afficher.html.twig', array("categorie"  => $categorie ));
+        $souscategorie = $em->getRepository('PharmacieStockBundle:SousCategorie')->findOneBy( array('id' => $id));
+        return $this->render('PharmacieStockBundle:SousCategorie:afficher.html.twig', array("souscategorie"  => $souscategorie ));
     }
 
 
@@ -76,41 +83,45 @@ class SousCategorieController extends Controller
             ->getManager()
         ;   
         //recuperer  la categorie corresponde a l'id
-        $categorie= $em->getRepository("PharmacieStockBundle:Categorie")->findOneBy(array('id' => $id));
+        $souscategorie= $em->getRepository("PharmacieStockBundle:SousCategorie")->findOneBy(array('id' => $id));
         
-        if(!$categorie)
+        if(!$souscategorie)
             {
-                throw $this->createNotFoundException( 'Aucune Categorie touvée pour l id'.$id);
+                throw $this->createNotFoundException( 'Aucune sous catégorie trouvée pour l id'.$id);
             }   
-        $em->remove($categorie);
+        $em->remove($souscategorie);
         $em->flush();   
 
         //recuperer tous les categorie pour les afficher
-        $categories = $em->getRepository("PharmacieStockBundle:Categorie")->findAll();
-        if(!$categories){       
-                        throw $this->createNotFoundException( 'Aucune Categorie touvée ');
-                       }    
-        return $this->render('PharmacieStockBundle:Categorie:lister.html.twig',array('categories'=>$categories));
+        $souscategories = $em->getRepository("PharmacieStockBundle:SousCategorie")->findAll();
+
+        if(!$souscategories){       
+            throw $this->createNotFoundException( 'Aucune sous catégorie trouvée ');
+        }
+
+        return $this->render('PharmacieStockBundle:SousCategorie:lister.html.twig',array('souscategories'=>$souscategories));
     }       
 
 
-public function modifierAction(Request $request,$id)
-    {
+    /*
+    * Modification de la sous categorie
+    */
+    public function modifierAction(Request $request,$id){
 
         $em = $this->getDoctrine()
             ->getManager()
-            ->getRepository("PharmacieStockBundle:Categorie")
+            ->getRepository("PharmacieStockBundle:SousCategorie")
         ;
         
-        $categorie = $em->find($id);    
+        $souscategorie = $em->find($id);    
 
-        if(!$categorie)
+        if(!$souscategorie)
         {
             throw $this->createNotFoundException("Aucun Objet Trouvé");
             
         }
 
-        $form = $this->get('form.factory')->create(new CategorieType(),$categorie);
+        $form = $this->get('form.factory')->create(new SousCategorieType(),$souscategorie);
 
         if ($form->handleRequest($request)->isValid()) 
         {
@@ -120,13 +131,13 @@ public function modifierAction(Request $request,$id)
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($form->getData());
                 $em->flush();
-                return $this->redirect($this->generateUrl('gestion_stock_categorie_lister'));
+                return $this->redirect($this->generateUrl('gestion_stock_souscategorie_lister'));
             }
 
         }
 
-        return $this->render('PharmacieStockBundle:Categorie:modifier.html.twig',array(
-                    'form' => $form->createView(), 'categorie' => $categorie    
+        return $this->render('PharmacieStockBundle:SousCategorie:modifier.html.twig',array(
+                    'form' => $form->createView(), 'souscategorie' => $souscategorie    
             ));
 
     }   

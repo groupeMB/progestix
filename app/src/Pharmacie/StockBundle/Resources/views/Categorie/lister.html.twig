@@ -25,7 +25,7 @@
                             <td>
                             	<a href="{{ path('gestion_stock_categorie_modifier', { 'id': tag.id }) }}"><button class="btn btn-success btn-xs"><span class="glyphicon glyphicon-edit"></span></button></a>
 
-                                <a href="{{ path('gestion_stock_produit_afficher', { 'id': tag.id }) }}"><button class="btn btn-info btn-xs"><span class="glyphicon glyphicon-eye-open"></span></button></a>
+                                <a href="{{ path('gestion_stock_categorie_afficher', { 'id': tag.id }) }}"><button class="btn btn-info btn-xs"><span class="glyphicon glyphicon-eye-open"></span></button></a>
 
                             	<a href="{{ path('gestion_stock_categorie_supprimer', { 'id': tag.id }) }}" data-confirm="Vous êtes sur le point de supprimer la catégorie {{tag.libelle}}. Etes-vous sûr de bien vouloir effectué cette opération ?"><button class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></span></button></a>
                             </td>

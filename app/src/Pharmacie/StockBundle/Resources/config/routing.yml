@@ -2,6 +2,7 @@ gestion_stock_homepage:
     path:     /produit
     defaults: { _controller: PharmacieStockBundle:Produit:index }
 
+#  produit
 gestion_stock_ajouter_produit:
     path:     /produit/ajouter
     defaults: { _controller: PharmacieStockBundle:Produit:ajouter }
@@ -26,13 +27,11 @@ gestion_stock_produit_statistiques:
     path:       /produit/statistiques
     defaults:   { _controller: PharmacieStockBundle:Produit:VoirStats1 }
 
-# gestion_stock_produit_statistiques:
-#     path:       /produit/statistiques
-#     defaults:   { _controller: PharmacieStockBundle:Produit:statistiques }
 
 
 
-    
+
+# stock    
 gestion_stockage_lister_stock:
     path:     /stock/lister
     defaults: { _controller: PharmacieStockBundle:Stock:lister }
@@ -58,6 +57,7 @@ gestion_stock_stock_statistiques:
     defaults:   { _controller: PharmacieStockBundle:Stock:statistiques }
 
 
+# categorie
 gestion_stock_categorie:
     path:       /categorie
     defaults:   {_controller: PharmacieStockBundle:Categorie:index}
@@ -78,7 +78,7 @@ gestion_stock_categorie_supprimer:
     path:       /categorie/supprimer/{id}
     defaults:   {_controller: PharmacieStockBundle:Categorie:supprimer}
 
-gestion_stock_produit_afficher:
+gestion_stock_categorie_afficher:
     path:     /categorie/afficher/{id}
     defaults: { _controller: PharmacieStockBundle:Categorie:afficher }
 
@@ -95,3 +95,31 @@ gestion_stock_categorie_statistiques:
 gestion_stock_dynamique_produit_ajouter:
     path:       /dynamique/produit/ajouter
     defaults:   { _controller: PharmacieStockBundle:Dynamique:produitAjouter }
+
+
+
+# gestion sous-categorie
+gestion_stock_souscategorie:
+    path:       /souscategorie
+    defaults:   {_controller: PharmacieStockBundle:SousCategorie:index}
+
+gestion_stock_souscategorie_ajouter:
+    path:       /souscategorie/ajouter
+    defaults:   {_controller: PharmacieStockBundle:SousCategorie:ajouter}
+
+gestion_stock_souscategorie_lister:
+    path:       /souscategorie/lister
+    defaults:   {_controller: PharmacieStockBundle:SousCategorie:lister}
+
+gestion_stock_souscategorie_modifier:
+    path:       /souscategorie/modifer/{id}
+    defaults:   {_controller: PharmacieStockBundle:SousCategorie:modifier}
+
+gestion_stock_souscategorie_supprimer:
+    path:       /souscategorie/supprimer/{id}
+    defaults:   {_controller: PharmacieStockBundle:SousCategorie:supprimer}
+
+gestion_stock_souscategorie_afficher:
+    path:       /souscategorieafficher/{id}
+    defaults:   {_controller: PharmacieStockBundle:SousCategorie:afficher}
+
