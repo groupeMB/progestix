@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Lun 02 Janvier 2017 à 03:32
+-- Généré le: Sam 07 Janvier 2017 à 17:59
 -- Version du serveur: 5.5.53-0ubuntu0.14.04.1
 -- Version de PHP: 5.5.9-1ubuntu4.20
 
@@ -323,7 +323,7 @@ CREATE TABLE IF NOT EXISTS `fos_user_user` (
 --
 
 INSERT INTO `fos_user_user` (`id`, `username`, `username_canonical`, `email`, `email_canonical`, `enabled`, `salt`, `password`, `last_login`, `locked`, `expired`, `expires_at`, `confirmation_token`, `password_requested_at`, `roles`, `credentials_expired`, `credentials_expire_at`, `created_at`, `updated_at`, `date_of_birth`, `firstname`, `lastname`, `website`, `biography`, `gender`, `locale`, `timezone`, `phone`, `facebook_uid`, `facebook_name`, `facebook_data`, `twitter_uid`, `twitter_name`, `twitter_data`, `gplus_uid`, `gplus_name`, `gplus_data`, `token`, `two_step_code`) VALUES
-(1, 'admin', 'admin', 'admin@progestix.sn', 'admin@progestix.sn', 1, 'ojv9mw5jwcg0w44s0cgsswg4s8gwcog', 'ft29DJZECGpsHbWyjVzbD3RznmxeJbtQ4f//w1zkImcX7DWOWjDyMq/7tbE0pXohLAWhQoVGJWqUPgs2txxX+g==', '2017-01-02 02:24:40', 0, 0, NULL, NULL, NULL, 'a:1:{i:0;s:16:"ROLE_SUPER_ADMIN";}', 0, NULL, '2016-10-10 17:08:13', '2017-01-02 02:24:40', NULL, NULL, NULL, NULL, NULL, 'u', NULL, NULL, NULL, NULL, NULL, 'null', NULL, NULL, 'null', NULL, NULL, 'null', NULL, NULL);
+(1, 'admin', 'admin', 'admin@progestix.sn', 'admin@progestix.sn', 1, 'ojv9mw5jwcg0w44s0cgsswg4s8gwcog', 'ft29DJZECGpsHbWyjVzbD3RznmxeJbtQ4f//w1zkImcX7DWOWjDyMq/7tbE0pXohLAWhQoVGJWqUPgs2txxX+g==', '2017-01-07 17:00:18', 0, 0, NULL, NULL, NULL, 'a:1:{i:0;s:16:"ROLE_SUPER_ADMIN";}', 0, NULL, '2016-10-10 17:08:13', '2017-01-07 17:00:18', NULL, NULL, NULL, NULL, NULL, 'u', NULL, NULL, NULL, NULL, NULL, 'null', NULL, NULL, 'null', NULL, NULL, 'null', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -524,7 +524,7 @@ CREATE TABLE IF NOT EXISTS `produit` (
   `datePeremption` date NOT NULL,
   PRIMARY KEY (`id`),
   KEY `IDX_29A5EC274B365660` (`stock`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=32 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=37 ;
 
 --
 -- Contenu de la table `produit`
@@ -553,7 +553,12 @@ INSERT INTO `produit` (`id`, `stock`, `codeBarre`, `prixUnitaire`, `datePerempti
 (28, 2, '10091', 1987.98, '2017-01-01'),
 (29, 2, '1L1OQ2', 2019.68, '2017-01-01'),
 (30, 18, '190001', 2009.65, '2018-01-01'),
-(31, 22, '14526', 1524.00, '2019-01-01');
+(31, 22, '14526', 1524.00, '2019-01-01'),
+(32, 2, '1452688', 1782.00, '2018-01-01'),
+(33, 25, '1111222', 1529.00, '2019-01-01'),
+(34, NULL, '1122112211', 1345.00, '2018-01-01'),
+(35, 25, '1122112211', 1345.00, '2018-01-01'),
+(36, 25, '11221122112', 2222.00, '2018-01-01');
 
 -- --------------------------------------------------------
 
@@ -617,6 +622,28 @@ CREATE TABLE IF NOT EXISTS `rapport` (
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `sous_categorie`
+--
+
+CREATE TABLE IF NOT EXISTS `sous_categorie` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `libelle` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `description` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `categorie` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `IDX_52743D7B497DD634` (`categorie`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=6 ;
+
+--
+-- Contenu de la table `sous_categorie`
+--
+
+INSERT INTO `sous_categorie` (`id`, `libelle`, `description`, `categorie`) VALUES
+(5, 'souscat1', 'ssssssssssssssssssss', 10);
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `stock`
 --
 
@@ -640,7 +667,7 @@ CREATE TABLE IF NOT EXISTS `stock` (
 --
 
 INSERT INTO `stock` (`id`, `categorie`, `quantite`, `seuilMin`, `description`, `posologie`, `libelle`, `reference`, `image_name`, `updated_at`) VALUES
-(2, 11, 2, 1982, 'aspegic', 'aspegic', 'aspegic', '177269', '', '0000-00-00 00:00:00'),
+(2, 11, 3, 1982, 'aspegic', 'aspegic', 'aspegic', '177269', '', '0000-00-00 00:00:00'),
 (3, 4, -1, 19, 'actifed llslls', 'actifed llslls', 'actifed', '1728', '', '0000-00-00 00:00:00'),
 (4, 4, 1, 20, 'glycineiiii', 'glyciiiiiiiii', 'glycine', '111222', '', '0000-00-00 00:00:00'),
 (5, 1, 0, 1982, 'pomme de moi', 'aaaaaaaaaaaaaa', 'produit', '17726778', '', '0000-00-00 00:00:00'),
@@ -662,7 +689,7 @@ INSERT INTO `stock` (`id`, `categorie`, `quantite`, `seuilMin`, `description`, `
 (22, 1, 1, 5, 'aaaaaaaaaaaaaaaaaaaa', 'aaaaaaaaaaaaaaaa', 'newproduit', '12111', '', '0000-00-00 00:00:00'),
 (23, 1, 0, 17, 'aaaaaaaaaaaaaaaaaaaaaaaaaa', 'aaaaaaaaaaaaaaaaaaaaaaaa', 'AKAKAKA', 'A11111', '', '0000-00-00 00:00:00'),
 (24, 1, 0, 10, 'aaaaaaaaaaaaaaaaaaaa', 'aaaaaaaaaaaaaaaaaaaaaa', 'B111111111', 'B111111', 'log ucad.png', '2017-01-01 23:02:27'),
-(25, 1, 0, 15, 'c''est la description', 'c''est la posologie', 'actifed', '1A1A1A', 'med120.jpg', '2017-01-02 03:22:29');
+(25, 1, 3, 15, 'c''est la description', 'c''est la posologie', 'actifed', '1A1A1A', 'med120.jpg', '2017-01-02 03:22:29');
 
 -- --------------------------------------------------------
 
@@ -807,6 +834,12 @@ ALTER TABLE `produitvendu`
 ALTER TABLE `rapport`
   ADD CONSTRAINT `FK_BE34A09CCE430A85` FOREIGN KEY (`inventaire_id`) REFERENCES `inventaire` (`id`),
   ADD CONSTRAINT `FK_BE34A09CF347EFB` FOREIGN KEY (`produit_id`) REFERENCES `produit` (`id`);
+
+--
+-- Contraintes pour la table `sous_categorie`
+--
+ALTER TABLE `sous_categorie`
+  ADD CONSTRAINT `FK_52743D7B497DD634` FOREIGN KEY (`categorie`) REFERENCES `categorie` (`id`);
 
 --
 -- Contraintes pour la table `stock`
