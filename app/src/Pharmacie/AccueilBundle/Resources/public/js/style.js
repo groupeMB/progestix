@@ -243,3 +243,69 @@ function ajouter_champ_produit(){
     }
     
 }
+
+
+/************************************************************************************************************************************************/
+/*  Rendu dynamique pour avoir la liste des sous categorie lorsque la catégorie change, la liste des produits lorsque la sous-catégorie change  */
+/*                                                                                                                                              */
+/************************************************************************************************************************************************/
+
+function appelAjaxCategorie(element, id_element, url){
+  //console.log(element+"-"+id_element+"-"+url);
+  $.ajax({
+      url: url,
+      method: "GET",
+      data: 'id_element='+id_element+'&element='+element,
+      dataType: 'json',
+      contentType: "application/json; charset=utf-8"
+
+    }).done(function(recu){
+      //recu = JSON.parse(recu);
+      console.log(recu);
+      if(recu.categories){
+        var cat = $('.select_categorie')[0];
+        while(cat.getElementsByTagName('option')[0]) {
+            cat.removeChild(cat.getElementsByTagName('option')[0]);
+        }
+
+        for (var i = recu.categories.length - 1; i >= 0; i--) {
+            var option = document.createElement("option");
+            option.value = recu.categories[i].id;
+            option.innerText = recu.categories[i].libelle;
+            cat.appendChild(option);
+        }
+
+       // console.log(cat.getElementsByTagName('option'))
+      }
+
+      if(recu.souscategories){
+        var cat = $('.select_souscategorie')[0];
+        while(cat.getElementsByTagName('option')[0]) {
+            cat.removeChild(cat.getElementsByTagName('option')[0]);
+        }
+
+        for (var i = recu.souscategories.length - 1; i >= 0; i--) {
+            var option = document.createElement("option");
+            option.value = recu.souscategories[i].id;
+            option.innerText = recu.souscategories[i].libelle;
+            cat.appendChild(option);
+        }
+      }
+      
+      if(recu.produits){
+        console.log("existe");
+        var cat = $('.select_produit')[0];
+        while(cat.getElementsByTagName('option')[0]) {
+            cat.removeChild(cat.getElementsByTagName('option')[0]);
+        }
+
+        for (var i = recu.produits.length - 1; i >= 0; i--) {
+            var option = document.createElement("option");
+            option.value = recu.produits[i].id;
+            option.innerText = recu.produits[i].libelle;
+            cat.appendChild(option);
+        }
+      }
+
+    })
+}

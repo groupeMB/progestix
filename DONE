@@ -3,9 +3,8 @@
 -> photo pour les produits avec le bundle vich/uploader-bundle
 -> intégration bundle vente
 ->Gestion catégorie de produits
-	-> CRUD catégorie
-	-> Listing catégorie
-	-> Statistiques catégories
+	-> CRUD sous catégorie
+	-> Assignation sous-catégories à catégorie
 -> Gestion des produits
 	-> CRUD produits
 	-> Listing produits

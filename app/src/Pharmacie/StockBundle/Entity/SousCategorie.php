@@ -35,12 +35,16 @@ class SousCategorie
      */
     private $description;
 
-    /**
-     * @var string
+        /**
+     * @var Pharmacie\StockBundle\Entity\Categorie
      *
-     * @ORM\Column(name="categorie", type="string", length=255)
+     * @ORM\ManyToOne(targetEntity="Pharmacie\StockBundle\Entity\Categorie")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="categorie", referencedColumnName="id", nullable=false)
+     * })
      */
     private $categorie;
+
 
 
     /**

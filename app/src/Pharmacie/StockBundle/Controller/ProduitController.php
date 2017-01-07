@@ -8,6 +8,7 @@ use Pharmacie\StockBundle\Form\ProduitType as ProduitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\SecurityContext;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 use Ob\HighchartsBundle\Highcharts\Highchart; //Pour les graphes
 
@@ -298,6 +299,109 @@ class ProduitController extends Controller
         );
 
         return $this->render('PharmacieStockBundle:Produit:fiche.html.twig', array("fiche"  => $resultat ));
+    }
+
+    /*
+    * Retourne dynamique la liste des produits(ie stocks) lorsque la catégorie/sous-categorie change
+    *
+    */
+    public function whenCategorieChangeAction(){
+        $request = $this->container->get('request');
+        if($request->isXmlHttpRequest()){
+
+            $em = $this->getDoctrine()->getManager();
+            //echo $request->request->get('element');
+            $element = $request->query->get('element');
+            $id_element = $request->query->get('id_element');
+
+
+            //selectionner toutes les sous-categories de cette catégorie, et les stocks de chaque sous-categories
+            if($element == "categorie"){ 
+
+                if($id_element=="*"){
+                    $req="SELECT * FROM categorie";
+                    $statement = $em->getConnection()->prepare($req);
+                    $statement->execute();
+                    $categories = $statement->fetchAll();
+
+                    $req="SELECT * FROM sous_categorie";
+                    $statement = $em->getConnection()->prepare($req);
+                    $statement->execute();
+                    $souscategories = $statement->fetchAll();
+
+                    $req="SELECT * FROM stock";
+                    $statement = $em->getConnection()->prepare($req);
+                    $statement->execute();
+                    $produits = $statement->fetchAll();
+
+                    return new JsonResponse(array(
+                        "categories" => $categories,
+                        "souscategories" => $souscategories,
+                        "produits" => $produits
+                    ));
+                }
+                else{
+                    
+                    $req="SELECT * FROM sous_categorie WHERE categorie=$id_element";
+                    $statement = $em->getConnection()->prepare($req);
+                    $statement->execute();
+                    $souscategories = $statement->fetchAll();
+
+                    //si la categorie n'a pas de sous-categorie, alors donner tous les stocks
+                    if(empty($souscategories)){
+                        $req="SELECT * FROM stock WHERE categorie=$id_element";
+                        $statement = $em->getConnection()->prepare($req);
+                        $statement->execute();
+                        $produits = $statement->fetchAll();
+                        
+                    }else{
+                        $req="SELECT stock.* FROM stock,sous_categorie,categorie WHERE stock.categorie=sous_categorie.id AND sous_categorie.categorie=$id_element;";
+                        $statement = $em->getConnection()->prepare($req);
+                        $statement->execute();
+                        $produits = $statement->fetchAll();
+                        
+                    }
+
+                    return new JsonResponse(array(
+                        'produits' => $produits,
+                        'souscategories' => $souscategories
+                    ));
+                }
+
+            }
+            elseif($element == "souscategorie"){ //si c'est la souscategorie qui change, liste tous les stocks
+                if($id_element=="*"){
+                    $req="SELECT * FROM sous_categorie";
+                    $statement = $em->getConnection()->prepare($req);
+                    $statement->execute();
+                    $souscategories = $statement->fetchAll();
+
+                    $req="SELECT * FROM stock";
+                    $statement = $em->getConnection()->prepare($req);
+                    $statement->execute();
+                    $produits = $statement->fetchAll();
+                    
+                }
+                else{
+                    $req="SELECT * FROM stock WHERE categorie=:$id_element";
+                    $statement = $em->getConnection()->prepare($req);
+                    $statement->execute();
+                    $produits = $statement->fetchAll();
+                    $souscategories = array();
+
+                }
+
+                return new JsonResponse(array(
+                        "souscategories" => $souscategories,
+                        "produits" => $produits
+                    ));
+            }
+            else{
+                return new Response("Mauvais requetelo!!!");
+            }
+        }else{
+                return new Response("Mauvais requete!!!");
+            }
     }
 
 }

@@ -18,6 +18,8 @@
 
         <link rel="stylesheet" type="text/css" href = "{{ app.request.schemeAndHttpHost ~ asset('bundles/pharmacieaccueil/bower_components/datatables/media/css/jquery.dataTables.css') }}"/>
          
+         <!-- select2.js pour l'autocompletition dans les balises select -->
+        <link rel="stylesheet" type="text/css" href = " {{ app.request.schemeAndHttpHost ~ asset('bundles/pharmaciestock/bower_components/select2/dist/css/select2.css') }}"/>
 
     
     <body id="coprsTemplate" onload="date_heure('heure');">
@@ -90,16 +92,25 @@
     
     <script type="text/javascript" src="{{ app.request.schemeAndHttpHost ~ asset('bundles/pharmacieaccueil/bower_components/datatables/media/js/jquery.dataTables.js')}}"></script>
 
-    <!-- Custom Theme JavaScript -->
+    
+    <!-- select2.js pour l'autocompletition dans les balises select -->
+    <script type="text/javascript" src=" {{ app.request.schemeAndHttpHost ~ asset('bundles/pharmaciestock/bower_components/select2/dist/js/select2.js') }}"></script>
+
+     <!-- Custom Theme JavaScript -->
     <script type="text/javascript" src=" {{ app.request.schemeAndHttpHost ~ asset('bundles/pharmacieaccueil/js/style.js') }}"></script>
+
      <script>
             $(document).ready(function(){
                 $('.dropdown-toggle').dropdown();
                 $('#mytable').DataTable();
 
-                var pathname = window.location.pathname.split("/");
+                
            
 
+                /*
+                * formulaire dynamiques pour ajouter stock
+                */
+                var pathname = window.location.pathname.split("/");
                 if( pathname[pathname.length-2]=="stock" && pathname[pathname.length-1]=="ajouter"){
                     ajouter_keyword();
                     
@@ -107,12 +118,44 @@
                 }
                 else if( pathname[pathname.length-2]=="produit" && pathname[pathname.length-1]=="ajouter"){
                     //ajouter_champ_produit();
-                    $("#libelle").select2({
-                        placeholder: "nom du produit",
-                        allowClear: true
-                    });
+                    
                 }
 
+                /*
+                * select2.js
+                */
+
+                $(".select_souscategorie").select2({
+                    placeholder: "sous catégorie",
+                    allowClear: true
+                });
+                $(".select_categorie").select2({
+                    placeholder: "catégorie",
+                    allowClear: true
+                });
+                $(".select_produit").select2({
+                    placeholder: "nom du produit",
+                    allowClear: true
+                });
+                
+
+                /* 
+                * appel ajax pour liste de stock d'une categorie
+                */
+                $(".select_categorie").change(function() {
+                    var id_element = $("select.select_categorie option:selected").val();
+                    if(id_element == null || id_element == undefined)
+                       id_element = "*";
+                    
+                    appelAjaxCategorie('categorie', id_element, "{{ path('gestion_stock_ajax_produit') }}");
+                }).trigger('change');
+
+                $(".select_souscategorie").change(function() {
+                    var id_element = $("select.select_souscategorie option:selected").val();
+                    if(id_element == null || id_element == undefined)
+                       id_element = "*";
+                    appelAjaxCategorie('souscategorie', id_element, "{{path('gestion_stock_ajax_produit')}}");
+                }).trigger('change');
                     
             });    
         </script>

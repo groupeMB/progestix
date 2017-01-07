@@ -123,3 +123,11 @@ gestion_stock_souscategorie_afficher:
     path:       /souscategorieafficher/{id}
     defaults:   {_controller: PharmacieStockBundle:SousCategorie:afficher}
 
+
+
+# requetes dynamiques avec ajax
+gestion_stock_ajax_produit:
+    path:   /ajax/produit
+    defaults: {_controller: PharmacieStockBundle:Produit:whenCategorieChange}
+    requirements:
+        _method: GET
