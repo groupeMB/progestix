@@ -301,6 +301,7 @@ class ProduitController extends Controller
         return $this->render('PharmacieStockBundle:Produit:fiche.html.twig', array("fiche"  => $resultat ));
     }
 
+
     /*
     * Retourne dynamique la liste des produits(ie stocks) lorsque la catégorie/sous-categorie change
     *
@@ -401,7 +402,7 @@ class ProduitController extends Controller
             }
         }else{
                 return new Response("Mauvais requete!!!");
-            }
+        }
     }
 
 }

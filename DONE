@@ -2,9 +2,16 @@
 -> graphe pour produit de categorie
 -> photo pour les produits avec le bundle vich/uploader-bundle
 -> intégration bundle vente
+
 ->Gestion catégorie de produits
-	-> CRUD sous catégorie
-	-> Assignation sous-catégories à catégorie
+	-> CRUD catégorie
+	-> Listing catégorie
+
 -> Gestion des produits
 	-> CRUD produits
 	-> Listing produits
+
+->Gestion sous catégorie de produits
+	-> CRUD sous catégorie
+	-> Assignation sous-catégories à catégorie
+	-> Listing sous-catégorie
