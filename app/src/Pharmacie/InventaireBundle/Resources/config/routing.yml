@@ -1,0 +1,8 @@
+pharmacie_inventaire_homepage:
+    path:     /
+    defaults: { _controller: PharmacieInventaireBundle:Default:index }
+faire_inventaire:
+    path: /inventaire
+    defaults: { _controller: PharmacieInventaireBundle:Inventaire:index }
+    
+    

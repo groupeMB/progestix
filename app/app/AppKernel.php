@@ -27,10 +27,11 @@ class AppKernel extends Kernel
             new Pharmacie\AccueilBundle\PharmacieAccueilBundle(),
             new Pharmacie\StockBundle\PharmacieStockBundle(),
             new Pharmacie\VenteBundle\PharmacieVenteBundle(),
-            new Ras\Bundle\FlashAlertBundle\RasFlashAlertBundle(),
+            //new Ras\Bundle\FlashAlertBundle\RasFlashAlertBundle(),
             new Ob\HighchartsBundle\ObHighchartsBundle(), //graphe
             new SaadTazi\GChartBundle\SaadTaziGChartBundle(), //graphe
-            new Vich\UploaderBundle\VichUploaderBundle(), //upload de fichiers
+            new Vich\UploaderBundle\VichUploaderBundle(), //upload de fichiers,
+            new Pharmacie\InventaireBundle\PharmacieInventaireBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'), true)) {

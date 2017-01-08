@@ -1,3 +1,7 @@
+pharmacie_inventaire:
+    resource: "@PharmacieInventaireBundle/Resources/config/routing.yml"
+    prefix:   /
+
 _demo:
     resource: "@SaadTaziGChartBundle/Resources/config/routing.yml"
     type:     yaml
