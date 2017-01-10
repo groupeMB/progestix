@@ -3,8 +3,8 @@ parameters:
     database_host: 127.0.0.1
     database_port: null
     database_name: mb_progestix
-    database_user: abdoulaye
-    database_password: kamstelecom
+    database_user: root
+    database_password: ""
     mailer_transport: smtp
     mailer_host: 127.0.0.1
     mailer_user: null

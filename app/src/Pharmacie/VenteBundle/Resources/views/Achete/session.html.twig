@@ -1,0 +1,40 @@
+{% extends "PharmacieVenteBundle:Achete:index.html.twig" %}
+{% block contenu %}
+ {% block main %}
+    <div class="row">
+        <div class="col-md-9">
+            {% for flashMessage in app.session.flashbag.get('succes')%}
+                <div class="alert alert-success"> {{   flashMessage }}</div>
+            {% endfor %}
+            <div class="table-responsive">
+                <table id="mytable" class="table montable-bordered table-hover table-responsive" style="border: 1px solid #424242;">
+                    <thead class="monentete2">
+                            <th>Numero de session</th>
+                            <th>Date d'ouverture</th>
+                            <th>Date de fermeture</th>
+                            <th>Agent</th>
+                            <th> <center> <span class="glyphicon glyphicon-eye-open" ></span> Détails </center> </th>
+                    </thead>
+                    <tbody>
+                        {% for tag in sessions %}
+                            <tr>
+                                <td style="vertical-align: middle;">{{ tag.id }}</td>
+                                <td style="vertical-align: middle;">{{ tag.dateouverture| date('H:i:s') }}</td>
+                                <td style="vertical-align: middle;">{{ tag.datefermeture| date('H:i:s') }}</td>
+                                <td style="vertical-align: middle;">{{ tag.agent }}</td>
+                                <td style="vertical-align: middle; background:#F4EEEE;">
+                                    <center> 
+                                        <button class="btn btn-default btn-xs">
+                                        <a href="{{ path('gestionstock_detail_session', {'id': tag.id}) }}" style="color:red;text-decoration:none"><span class="glyphicon glyphicon-list"></span></a>
+                                        </button>
+                                    </center>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+ {%endblock%}
+{%endblock%}

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.10deb1
+-- version 4.1.14
 -- http://www.phpmyadmin.net
 --
--- Client: localhost
--- Généré le: Sam 07 Janvier 2017 à 17:59
--- Version du serveur: 5.5.53-0ubuntu0.14.04.1
--- Version de PHP: 5.5.9-1ubuntu4.20
+-- Client :  127.0.0.1
+-- Généré le :  Mar 10 Janvier 2017 à 00:57
+-- Version du serveur :  5.6.17
+-- Version de PHP :  5.5.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de données: `mb_progestix`
+-- Base de données :  `mb_progestix`
 --
 
 -- --------------------------------------------------------
@@ -35,19 +35,21 @@ CREATE TABLE IF NOT EXISTS `achete` (
   PRIMARY KEY (`id`),
   KEY `IDX_6AFD8FC3C29D63C1` (`idproduit_id`),
   KEY `IDX_6AFD8FC367F0C0D4` (`idclient_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=9 ;
 
 --
 -- Contenu de la table `achete`
 --
 
 INSERT INTO `achete` (`id`, `idproduit_id`, `idclient_id`, `date`, `montant`) VALUES
-(1, 14, 1, '2017-01-02 02:54:49', 54),
-(2, 14, 1, '2017-01-02 03:02:15', 54),
-(3, 10, 1, '2017-01-02 03:05:24', 4408),
-(4, 14, 1, '2017-01-02 03:05:24', 4408),
-(5, 16, 1, '2017-01-02 03:05:24', 4408),
-(6, 30, 1, '2017-01-02 03:05:24', 4408);
+(1, 14, 1, '2017-01-02 02:54:49', '54'),
+(2, 14, 1, '2017-01-02 03:02:15', '54'),
+(3, 10, 1, '2017-01-02 03:05:24', '4408'),
+(4, 14, 1, '2017-01-02 03:05:24', '4408'),
+(5, 16, 1, '2017-01-02 03:05:24', '4408'),
+(6, 30, 1, '2017-01-02 03:05:24', '4408'),
+(7, 9, 1, '2017-01-09 20:08:29', '3000'),
+(8, 10, 1, '2017-01-09 20:08:29', '3000');
 
 -- --------------------------------------------------------
 
@@ -323,7 +325,7 @@ CREATE TABLE IF NOT EXISTS `fos_user_user` (
 --
 
 INSERT INTO `fos_user_user` (`id`, `username`, `username_canonical`, `email`, `email_canonical`, `enabled`, `salt`, `password`, `last_login`, `locked`, `expired`, `expires_at`, `confirmation_token`, `password_requested_at`, `roles`, `credentials_expired`, `credentials_expire_at`, `created_at`, `updated_at`, `date_of_birth`, `firstname`, `lastname`, `website`, `biography`, `gender`, `locale`, `timezone`, `phone`, `facebook_uid`, `facebook_name`, `facebook_data`, `twitter_uid`, `twitter_name`, `twitter_data`, `gplus_uid`, `gplus_name`, `gplus_data`, `token`, `two_step_code`) VALUES
-(1, 'admin', 'admin', 'admin@progestix.sn', 'admin@progestix.sn', 1, 'ojv9mw5jwcg0w44s0cgsswg4s8gwcog', 'ft29DJZECGpsHbWyjVzbD3RznmxeJbtQ4f//w1zkImcX7DWOWjDyMq/7tbE0pXohLAWhQoVGJWqUPgs2txxX+g==', '2017-01-07 17:00:18', 0, 0, NULL, NULL, NULL, 'a:1:{i:0;s:16:"ROLE_SUPER_ADMIN";}', 0, NULL, '2016-10-10 17:08:13', '2017-01-07 17:00:18', NULL, NULL, NULL, NULL, NULL, 'u', NULL, NULL, NULL, NULL, NULL, 'null', NULL, NULL, 'null', NULL, NULL, 'null', NULL, NULL);
+(1, 'admin', 'admin', 'admin@progestix.sn', 'admin@progestix.sn', 1, 'ojv9mw5jwcg0w44s0cgsswg4s8gwcog', 'ft29DJZECGpsHbWyjVzbD3RznmxeJbtQ4f//w1zkImcX7DWOWjDyMq/7tbE0pXohLAWhQoVGJWqUPgs2txxX+g==', '2017-01-07 21:42:59', 0, 0, NULL, NULL, NULL, 'a:1:{i:0;s:16:"ROLE_SUPER_ADMIN";}', 0, NULL, '2016-10-10 17:08:13', '2017-01-07 21:43:00', NULL, NULL, NULL, NULL, NULL, 'u', NULL, NULL, NULL, NULL, NULL, 'null', NULL, NULL, 'null', NULL, NULL, 'null', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -531,34 +533,34 @@ CREATE TABLE IF NOT EXISTS `produit` (
 --
 
 INSERT INTO `produit` (`id`, `stock`, `codeBarre`, `prixUnitaire`, `datePeremption`) VALUES
-(9, 3, '10009', 2000.00, '2017-11-12'),
-(10, 3, '192881', 1000.00, '2017-01-01'),
-(11, 2, '10091', 5000.00, '2019-01-01'),
-(12, 3, '7181772', 2000.00, '2017-01-01'),
-(13, 4, '11323', 12000.00, '2017-01-01'),
-(14, 2, '17lll', 18.00, '2017-01-01'),
-(15, 2, 'lllsll', 192.00, '2017-01-01'),
-(16, 2, '77162', 190.00, '2017-01-01'),
-(17, 2, '77162', 190.00, '2018-01-04'),
-(18, 2, '1872', 190.00, '2018-03-04'),
-(19, 2, '14555GM', 126.00, '2017-01-16'),
-(20, 2, '1DF2', 213.00, '2017-01-01'),
-(21, 2, '10009', 1929.00, '2017-01-01'),
-(22, 2, '10010', 199.00, '2017-07-01'),
-(23, 2, '10010', 2.00, '2017-07-01'),
-(24, 2, '11009', 19.00, '2017-01-01'),
-(25, 2, '10009', 193.00, '2017-01-01'),
-(26, 2, '200111', 2190.42, '2017-01-01'),
-(27, 2, '200111', 20189.67, '2017-01-01'),
-(28, 2, '10091', 1987.98, '2017-01-01'),
-(29, 2, '1L1OQ2', 2019.68, '2017-01-01'),
-(30, 18, '190001', 2009.65, '2018-01-01'),
-(31, 22, '14526', 1524.00, '2019-01-01'),
-(32, 2, '1452688', 1782.00, '2018-01-01'),
-(33, 25, '1111222', 1529.00, '2019-01-01'),
-(34, NULL, '1122112211', 1345.00, '2018-01-01'),
-(35, 25, '1122112211', 1345.00, '2018-01-01'),
-(36, 25, '11221122112', 2222.00, '2018-01-01');
+(9, 3, '10009', '2000.00', '2017-11-12'),
+(10, 3, '192881', '1000.00', '2017-01-01'),
+(11, 2, '10091', '5000.00', '2019-01-01'),
+(12, 3, '7181772', '2000.00', '2017-01-01'),
+(13, 4, '11323', '12000.00', '2017-01-01'),
+(14, 2, '17lll', '18.00', '2017-01-01'),
+(15, 2, 'lllsll', '192.00', '2017-01-01'),
+(16, 2, '77162', '190.00', '2017-01-01'),
+(17, 2, '77162', '190.00', '2018-01-04'),
+(18, 2, '1872', '190.00', '2018-03-04'),
+(19, 2, '14555GM', '126.00', '2017-01-16'),
+(20, 2, '1DF2', '213.00', '2017-01-01'),
+(21, 2, '10009', '1929.00', '2017-01-01'),
+(22, 2, '10010', '199.00', '2017-07-01'),
+(23, 2, '10010', '2.00', '2017-07-01'),
+(24, 2, '11009', '19.00', '2017-01-01'),
+(25, 2, '10009', '193.00', '2017-01-01'),
+(26, 2, '200111', '2190.42', '2017-01-01'),
+(27, 2, '200111', '20189.67', '2017-01-01'),
+(28, 2, '10091', '1987.98', '2017-01-01'),
+(29, 2, '1L1OQ2', '2019.68', '2017-01-01'),
+(30, 18, '190001', '2009.65', '2018-01-01'),
+(31, 22, '14526', '1524.00', '2019-01-01'),
+(32, 2, '1452688', '1782.00', '2018-01-01'),
+(33, 25, '1111222', '1529.00', '2019-01-01'),
+(34, NULL, '1122112211', '1345.00', '2018-01-01'),
+(35, 25, '1122112211', '1345.00', '2018-01-01'),
+(36, 25, '11221122112', '2222.00', '2018-01-01');
 
 -- --------------------------------------------------------
 
@@ -587,7 +589,7 @@ CREATE TABLE IF NOT EXISTS `produit_vendu` (
   `prixunitaire` int(11) NOT NULL,
   `idvente` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=17 ;
 
 --
 -- Contenu de la table `produit_vendu`
@@ -598,7 +600,18 @@ INSERT INTO `produit_vendu` (`id`, `quantite`, `nomproduit`, `prixunitaire`, `id
 (2, '2', 'actifed', 1000, 3),
 (3, '1', 'aspegic', 18, 3),
 (4, '2', 'aspegic', 190, 3),
-(5, '1', 'frotté', 2010, 3);
+(5, '1', 'frotté', 2010, 3),
+(6, '1', 'actifed', 2000, 5),
+(7, '1', 'actifed', 1000, 5),
+(8, '1', 'aspegic', 2, 6),
+(9, '1', 'actifed', 1529, 6),
+(10, '1', 'actifed', 1000, 7),
+(11, '1', 'actifed', 2000, 8),
+(12, '1', 'aspegic', 2, 9),
+(13, '1', 'aspegic', 19, 9),
+(14, '1', 'actifed', 1345, 9),
+(15, '2', 'actifed', 1345, 10),
+(16, '1', 'actifed', 1000, 11);
 
 -- --------------------------------------------------------
 
@@ -618,6 +631,34 @@ CREATE TABLE IF NOT EXISTS `rapport` (
   KEY `IDX_BE34A09CF347EFB` (`produit_id`),
   KEY `IDX_BE34A09CCE430A85` (`inventaire_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `session`
+--
+
+CREATE TABLE IF NOT EXISTS `session` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `dateouverture` datetime DEFAULT NULL,
+  `datefermeture` datetime DEFAULT NULL,
+  `agent` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=56 ;
+
+--
+-- Contenu de la table `session`
+--
+
+INSERT INTO `session` (`id`, `dateouverture`, `datefermeture`, `agent`) VALUES
+(48, '2017-01-10 00:06:01', '2017-01-10 00:06:01', 'anon.'),
+(49, '2017-01-10 00:12:39', '2017-01-10 00:12:47', 'anon.'),
+(50, '2017-01-10 00:13:15', '2017-01-10 00:13:15', 'anon.'),
+(51, '2017-01-10 00:16:17', '2017-01-10 00:16:34', 'anon.'),
+(52, '2017-01-10 00:17:06', '2017-01-10 00:17:06', 'anon.'),
+(53, '2017-01-10 00:19:43', '2017-01-10 00:19:43', 'anon.'),
+(54, '2017-01-10 00:29:51', '2017-01-10 00:30:09', 'anon.'),
+(55, '2017-01-10 00:31:34', '2017-01-10 00:31:55', 'anon.');
 
 -- --------------------------------------------------------
 
@@ -667,29 +708,29 @@ CREATE TABLE IF NOT EXISTS `stock` (
 --
 
 INSERT INTO `stock` (`id`, `categorie`, `quantite`, `seuilMin`, `description`, `posologie`, `libelle`, `reference`, `image_name`, `updated_at`) VALUES
-(2, 11, 3, 1982, 'aspegic', 'aspegic', 'aspegic', '177269', '', '0000-00-00 00:00:00'),
-(3, 4, -1, 19, 'actifed llslls', 'actifed llslls', 'actifed', '1728', '', '0000-00-00 00:00:00'),
-(4, 4, 1, 20, 'glycineiiii', 'glyciiiiiiiii', 'glycine', '111222', '', '0000-00-00 00:00:00'),
-(5, 1, 0, 1982, 'pomme de moi', 'aaaaaaaaaaaaaa', 'produit', '17726778', '', '0000-00-00 00:00:00'),
-(6, 1, 0, 1982, 'pomme de moi', 'aaaaaaaaaaaaaa', 'produit_2', '1782', '', '0000-00-00 00:00:00'),
-(7, 1, 0, 1982, 'pomme de moi', 'aaaaaaaaaaaaaa', 'produit_2', '1782', '', '0000-00-00 00:00:00'),
-(8, 1, 0, 1982, 'pomme de moi', 'aaaaaaaaaaaaaa', 'produit_3', '7888888', '', '0000-00-00 00:00:00'),
-(9, 1, 0, 900, 'ppppppppppppp', 'ppppppppppppp', 'produit_4', '222111', '', '0000-00-00 00:00:00'),
-(10, 1, 0, 190, 'kammmmmmmmmm', 'kammmmmmmmm', 'kams', '9999911', '', '0000-00-00 00:00:00'),
-(11, 1, 0, 1220, 'layessssss', 'layesssssss', 'layes', '99991111', '', '0000-00-00 00:00:00'),
-(12, 1, 0, 1922, 'llllllllllllllllll', 'lllllllllllllllllllllll', 'kamssss', '22222', '', '0000-00-00 00:00:00'),
-(13, 1, 0, 124, 'lllllllllllllllllllllllll', 'llllllllllllllllllllllllllllll', 'produitsssss', '17726990', '', '0000-00-00 00:00:00'),
-(15, 1, 0, 1220, 'pomme de moi', 'kammmmmmmmm', 'fruit', '2223232', '', '0000-00-00 00:00:00'),
-(16, 1, 0, 1222, 'medicament pour homme', 'prendre avec précaution', 'ngor keng', '112121212', '', '0000-00-00 00:00:00'),
-(17, 1, 0, 1222, 'medicament pour homme', 'prendre avec précaution', 'ngor keng', '112121212', '', '0000-00-00 00:00:00'),
-(18, 1, -1, 29, 'du frotté pour se frotter', 'le mettre sur le corpe', 'frotté', '11121111', '', '0000-00-00 00:00:00'),
-(19, 1, 0, -16, 'manguellllllla', 'lllllllllllllllllllll', 'fruit', '177269', '', '0000-00-00 00:00:00'),
-(20, 1, 0, 9, 'lallllllllllllllllllllllll', 'llllllllllllllllllllllllllll', 'moutarde', '17726912', '', '0000-00-00 00:00:00'),
-(21, 1, 0, 18, 'ordikslkkkkkkkkkkkkkk', 'laaaaaaaaaaaaaaaaaaaaaaaaa', 'ordi', '61762VV', '', '0000-00-00 00:00:00'),
-(22, 1, 1, 5, 'aaaaaaaaaaaaaaaaaaaa', 'aaaaaaaaaaaaaaaa', 'newproduit', '12111', '', '0000-00-00 00:00:00'),
-(23, 1, 0, 17, 'aaaaaaaaaaaaaaaaaaaaaaaaaa', 'aaaaaaaaaaaaaaaaaaaaaaaa', 'AKAKAKA', 'A11111', '', '0000-00-00 00:00:00'),
-(24, 1, 0, 10, 'aaaaaaaaaaaaaaaaaaaa', 'aaaaaaaaaaaaaaaaaaaaaa', 'B111111111', 'B111111', 'log ucad.png', '2017-01-01 23:02:27'),
-(25, 1, 3, 15, 'c''est la description', 'c''est la posologie', 'actifed', '1A1A1A', 'med120.jpg', '2017-01-02 03:22:29');
+(2, 11, 452, 1982, 'aspegic', 'aspegic', 'aspegic', '177269', '', '0000-00-00 00:00:00'),
+(3, 4, 733, 19, 'actifed llslls', 'actifed llslls', 'actifed', '1728', '', '0000-00-00 00:00:00'),
+(4, 4, 452, 20, 'glycineiiii', 'glyciiiiiiiii', 'glycine', '111222', '', '0000-00-00 00:00:00'),
+(5, 1, 1254, 1982, 'pomme de moi', 'aaaaaaaaaaaaaa', 'produit', '17726778', '', '0000-00-00 00:00:00'),
+(6, 1, 5231, 1982, 'pomme de moi', 'aaaaaaaaaaaaaa', 'produit_2', '1782', '', '0000-00-00 00:00:00'),
+(7, 1, 364, 1982, 'pomme de moi', 'aaaaaaaaaaaaaa', 'produit_2', '1782', '', '0000-00-00 00:00:00'),
+(8, 1, 500, 1982, 'pomme de moi', 'aaaaaaaaaaaaaa', 'produit_3', '7888888', '', '0000-00-00 00:00:00'),
+(9, 1, 600, 900, 'ppppppppppppp', 'ppppppppppppp', 'produit_4', '222111', '', '0000-00-00 00:00:00'),
+(10, 1, 300, 190, 'kammmmmmmmmm', 'kammmmmmmmm', 'kams', '9999911', '', '0000-00-00 00:00:00'),
+(11, 1, 345, 1220, 'layessssss', 'layesssssss', 'layes', '99991111', '', '0000-00-00 00:00:00'),
+(12, 1, 634, 1922, 'llllllllllllllllll', 'lllllllllllllllllllllll', 'kamssss', '22222', '', '0000-00-00 00:00:00'),
+(13, 1, 642, 124, 'lllllllllllllllllllllllll', 'llllllllllllllllllllllllllllll', 'produitsssss', '17726990', '', '0000-00-00 00:00:00'),
+(15, 1, 965, 1220, 'pomme de moi', 'kammmmmmmmm', 'fruit', '2223232', '', '0000-00-00 00:00:00'),
+(16, 1, 9034, 1222, 'medicament pour homme', 'prendre avec précaution', 'ngor keng', '112121212', '', '0000-00-00 00:00:00'),
+(17, 1, 637, 1222, 'medicament pour homme', 'prendre avec précaution', 'ngor keng', '112121212', '', '0000-00-00 00:00:00'),
+(18, 1, 674, 29, 'du frotté pour se frotter', 'le mettre sur le corpe', 'frotté', '11121111', '', '0000-00-00 00:00:00'),
+(19, 1, 975, -16, 'manguellllllla', 'lllllllllllllllllllll', 'fruit', '177269', '', '0000-00-00 00:00:00'),
+(20, 1, 697, 9, 'lallllllllllllllllllllllll', 'llllllllllllllllllllllllllll', 'moutarde', '17726912', '', '0000-00-00 00:00:00'),
+(21, 1, 572, 18, 'ordikslkkkkkkkkkkkkkk', 'laaaaaaaaaaaaaaaaaaaaaaaaa', 'ordi', '61762VV', '', '0000-00-00 00:00:00'),
+(22, 1, 674, 5, 'aaaaaaaaaaaaaaaaaaaa', 'aaaaaaaaaaaaaaaa', 'newproduit', '12111', '', '0000-00-00 00:00:00'),
+(23, 1, 642, 17, 'aaaaaaaaaaaaaaaaaaaaaaaaaa', 'aaaaaaaaaaaaaaaaaaaaaaaa', 'AKAKAKA', 'A11111', '', '0000-00-00 00:00:00'),
+(24, 1, 672, 10, 'aaaaaaaaaaaaaaaaaaaa', 'aaaaaaaaaaaaaaaaaaaaaa', 'B111111111', 'B111111', 'log ucad.png', '2017-01-01 23:02:27'),
+(25, 1, 669, 15, 'c''est la description', 'c''est la posologie', 'actifed', '1A1A1A', 'med120.jpg', '2017-01-02 03:22:29');
 
 -- --------------------------------------------------------
 
@@ -741,7 +782,7 @@ CREATE TABLE IF NOT EXISTS `vente` (
   `agent` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `dateVente` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=13 ;
 
 --
 -- Contenu de la table `vente`
@@ -751,7 +792,15 @@ INSERT INTO `vente` (`id`, `montant`, `agent`, `dateVente`) VALUES
 (1, 54, 'admin', '2017-01-02 02:54:49'),
 (2, 54, 'admin', '2017-01-02 03:02:16'),
 (3, 4408, 'admin', '2017-01-02 03:05:24'),
-(4, 0, 'admin', '2017-01-02 03:06:02');
+(4, 0, 'admin', '2017-01-02 03:06:02'),
+(5, 3000, 'anon.', '2017-01-09 20:08:29'),
+(6, 1531, 'anon.', '2017-01-09 20:09:16'),
+(7, 1000, 'anon.', '2017-01-09 20:34:03'),
+(8, 2000, 'anon.', '2017-01-09 20:34:30'),
+(9, 1366, 'anon.', '2017-01-10 00:09:07'),
+(10, 2690, 'anon.', '2017-01-10 00:14:18'),
+(11, 1000, 'anon.', '2017-01-10 00:17:35'),
+(12, 0, 'anon.', '2017-01-10 00:19:59');
 
 --
 -- Contraintes pour les tables exportées

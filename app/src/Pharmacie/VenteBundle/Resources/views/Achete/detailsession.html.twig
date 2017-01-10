@@ -1,0 +1,42 @@
+{% extends "PharmacieVenteBundle:Achete:index.html.twig" %}
+{% block contenu %}
+ {% block main %}
+    <div class="row">
+        <div class="col-md-9">
+            {% for flashMessage in app.session.flashbag.get('succes')%}
+                <div class="alert alert-success"> {{   flashMessage }}</div>
+            {% endfor %}
+            <div class="table-responsive">
+                <table id="mytable" class="table montable-bordered table-hover table-responsive" style="border: 1px solid #424242;">
+                    <thead class="monentete2">
+                            <th>Numero de vente</th>
+                            <th>Agent</th>
+                            <th>Date</th>
+                            <th>Heure</th>
+                            <th>Montant (FCFA)</th>
+                            <th> <center> <span class="glyphicon glyphicon-eye-open" ></span> Détails </center> </th>
+                    </thead>
+                    <tbody>
+                        {% for tag in allvente %}
+                            <tr>
+                                <td style="vertical-align: middle;">{{ tag.id }}</td>
+                                <td style="vertical-align: middle;">{{ tag.agent }}</td>
+                                <td style="vertical-align: middle;">{{ tag.dateVente | date('d-m-Y') }}</td>
+                                <td style="vertical-align: middle;">{{ tag.dateVente | date('H:i:s') }}</td>
+                                <td style="vertical-align: middle;">{{ tag.montant }}</td>
+                                <td style="vertical-align: middle; background:#F4EEEE;">
+                                    <center> 
+                                        <button class="btn btn-default btn-xs">
+                                        <a href="{{ path('gestionstock_lister_achete_vente', {'id': tag.id}) }}" style="color:red;text-decoration:none"><span class="glyphicon glyphicon-list"></span></a>
+                                        </button>
+                                    </center>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+ {%endblock%}
+{%endblock%}

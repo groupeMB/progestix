@@ -84,21 +84,22 @@
                     </footer>
                 </div>
             {% endblock %}
-        </div>  
-        <script type="text/javascript" src=" {{ app.request.schemeAndHttpHost ~ asset('bundles/pharmacieaccueil/bower_components/jquery/jquery.min.js') }}"></script>
+        </div>            
+    </body>
+    <script type="text/javascript" src=" {{ app.request.schemeAndHttpHost ~ asset('bundles/pharmacieaccueil/bower_components/jquery/jquery.min.js') }}"></script>
     
-        <script type="text/javascript" src="{{ app.request.schemeAndHttpHost ~ asset('bundles/pharmacieaccueil/bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
-        
-        <script type="text/javascript" src="{{ app.request.schemeAndHttpHost ~ asset('bundles/pharmacieaccueil/bower_components/datatables/media/js/jquery.dataTables.js')}}"></script>
+    <script type="text/javascript" src="{{ app.request.schemeAndHttpHost ~ asset('bundles/pharmacieaccueil/bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+    
+    <script type="text/javascript" src="{{ app.request.schemeAndHttpHost ~ asset('bundles/pharmacieaccueil/bower_components/datatables/media/js/jquery.dataTables.js')}}"></script>
 
-        
-        <!-- select2.js pour l'autocompletition dans les balises select -->
-        <script type="text/javascript" src=" {{ app.request.schemeAndHttpHost ~ asset('bundles/pharmaciestock/bower_components/select2/dist/js/select2.js') }}"></script>
+    
+    <!-- select2.js pour l'autocompletition dans les balises select -->
+    <script type="text/javascript" src=" {{ app.request.schemeAndHttpHost ~ asset('bundles/pharmaciestock/bower_components/select2/dist/js/select2.js') }}"></script>
 
-         <!-- Custom Theme JavaScript -->
-        <script type="text/javascript" src=" {{ app.request.schemeAndHttpHost ~ asset('bundles/pharmacieaccueil/js/style.js') }}"></script>
+     <!-- Custom Theme JavaScript -->
+    <script type="text/javascript" src=" {{ app.request.schemeAndHttpHost ~ asset('bundles/pharmacieaccueil/js/style.js') }}"></script>
 
-        <script>
+     <script>
             $(document).ready(function(){
                 $('.dropdown-toggle').dropdown();
                 $('#mytable').DataTable();
@@ -159,7 +160,7 @@
             });    
         </script>
 
-        <script>
+    <script>
             $(function() {
                     $('a[data-confirm]').click(function(ev) {
                     var href = $(this).attr('href');
@@ -187,10 +188,9 @@
 
                          
         <!-- Pour assurer la responsivite -->
-        <script>
+         <script>
             $(document).ready(function(){
                 $('.collapse').collapse();
             });
-        </script>          
-    </body>
+         </script>
 </html>
