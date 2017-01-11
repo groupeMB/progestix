@@ -6,3 +6,38 @@ services:
         class: Gestion\StockBundle\Service\BaseDD
         arguments: ['@doctrine.orm.entity_manager']
 
+    pharmacie_stock.admin.categorie:
+        class: Pharmacie\StockBundle\Admin\CategorieAdmin
+        arguments: [~, Pharmacie\StockBundle\Entity\Categorie, PharmacieStockBundle:CategorieAdmin]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Categorie }
+
+    pharmacie_stock.admin.produit:
+        class: Pharmacie\StockBundle\Admin\ProduitAdmin
+        arguments: [~, Pharmacie\StockBundle\Entity\Produit, PharmacieStockBundle:ProduitAdmin]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Produit }
+
+    pharmacie_stock.admin.stock:
+        class: Pharmacie\StockBundle\Admin\StockAdmin
+        arguments: [~, Pharmacie\StockBundle\Entity\Stock, PharmacieStockBundle:StockAdmin]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Stock }
+
+    pharmacie_stock.admin.champ_dynamique:
+        class: Pharmacie\StockBundle\Admin\ChampDynamiqueAdmin
+        arguments: [~, Pharmacie\StockBundle\Entity\ChampDynamique, PharmacieStockBundle:ChampDynamiqueAdmin]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: ChampDynamique }
+
+    pharmacie_stock.admin.image:
+        class: Pharmacie\StockBundle\Admin\ImageAdmin
+        arguments: [~, Pharmacie\StockBundle\Entity\Image, PharmacieStockBundle:ImageAdmin]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Image }
+
+    pharmacie_stock.admin.sous_categorie:
+        class: Pharmacie\StockBundle\Admin\SousCategorieAdmin
+        arguments: [~, Pharmacie\StockBundle\Entity\SousCategorie, PharmacieStockBundle:SousCategorieAdmin]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: SousCategorie }

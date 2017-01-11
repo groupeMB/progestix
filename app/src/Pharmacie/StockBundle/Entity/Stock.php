@@ -70,7 +70,7 @@ class Stock
      */
     private $reference;
 
-        /**
+    /**
      * @var Pharmacie\StockBundle\Entity\Categorie
      *
      * @ORM\ManyToOne(targetEntity="Pharmacie\StockBundle\Entity\Categorie")
