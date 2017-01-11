@@ -2,6 +2,8 @@
 
 namespace Pharmacie\StockBundle\Admin;
 
+use Doctrine\ORM\EntityRepository;
+use Pharmacie\StockBundle\Form\CategorieType;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
@@ -13,6 +15,7 @@ class StockAdmin extends AbstractAdmin
     /**
      * @param DatagridMapper $datagridMapper
      */
+
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
@@ -25,6 +28,7 @@ class StockAdmin extends AbstractAdmin
             ->add('reference')
             ->add('imageName')
             ->add('updatedAt')
+            ->add('categorie')
 
         ;
     }
@@ -44,6 +48,21 @@ class StockAdmin extends AbstractAdmin
             ->add('reference')
             ->add('imageName')
             ->add('updatedAt')
+
+            ->add('categorie','entity', array(
+                'class' => 'Pharmacie\StockBundle\Entity\Categorie',
+                'query_builder' => function(EntityRepository $er,Pharmacie\StockBundle\Entity\Categorie $categ){
+
+                    return $er->createQueryBuilder('sc')
+                        ->leftjoin('sc.categorie', 'c')
+                        ->where('c.id=:id')
+                        ->setParameter('id',$categ->getId());
+                }
+
+
+
+            ))
+
             ->add('_action', null, array(
                 'actions' => array(
                     'show' => array(),
@@ -95,6 +114,7 @@ class StockAdmin extends AbstractAdmin
             ->add('reference')
             ->add('imageName')
             ->add('updatedAt')
+            ->add('categorie')
         ;
     }
 }
