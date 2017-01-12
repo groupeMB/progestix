@@ -96,6 +96,9 @@ fos_user:
         user_manager: sonata.user.orm.user_manager
 
 sonata_admin:
+    security:
+        handler: sonata.admin.security.handler.acl
+
     title:      PROGESTIX
     title_logo: bundles/administrationpharmacie/img/logo.png
 

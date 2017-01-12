@@ -22,12 +22,17 @@ gestionstock_clientajouter_achete:
 gestionstock_ajouter_achete:
     path:     /achat/ajouter
     defaults: { _controller: PharmacieVenteBundle:Achete:panier }
+gestionstock_demarer_session:
+    path:     /demarer/session
+    defaults: { _controller: PharmacieVenteBundle:Achete:demarersession }
 
+gestionstock_fermeturesession:
+    path:     /fermeturesession
+    defaults: { _controller: PharmacieVenteBundle:Achete:fermeturesession }
 
-
-# gestionstock_modifier_achete:
-#     path:     /achat/modier/{id}
-#     defaults: { _controller:  PharmacieVenteBundle:Achete:modifier }
+gestionstock_session:
+    path:     /session
+    defaults: { _controller:  PharmacieVenteBundle:Achete:session }
 
 gestionstock_modifier_achete:
     path:     /achat/modifier/
@@ -76,3 +81,6 @@ gestionstock_lister_achete_produitVendu:
 gestionstock_lister_achete_vente:
     path:     /achat/vente/{id}
     defaults: { _controller: PharmacieVenteBundle:Achete:vente }
+gestionstock_detail_session:
+    path:     /detail/session/{id}
+    defaults: { _controller: PharmacieVenteBundle:Achete:detailsession }

@@ -13,6 +13,7 @@ use Pharmacie\VenteBundle\Entity\achete;
 use Pharmacie\StockBundle\Entity\Produit;
 use Pharmacie\VenteBundle\Entity\produitVendu;
 use Pharmacie\VenteBundle\Entity\Vente;
+use Pharmacie\VenteBundle\Entity\Session;
 use Pharmacie\VenteBundle\Entity\client;                            //thm
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\SecurityContext;
@@ -263,9 +264,78 @@ class AcheteController extends Controller
     //     );
     // }
 
-    public function panierAction()
-    {
+     public function fermeturesessionAction(){
+
         $session=$this->getRequest()->getSession();
+        $fermeture = $session->get('fermeture');
+        $em = $this->getDoctrine()->getManager();
+ 
+       
+       // $em->persist($fermeture[1]);
+       // var_dump($fermeture);die;
+        $fermeture1 = $em->getRepository('PharmacieVenteBundle:Session')->find($fermeture[1]->getId());  
+        $fermeture1->setDatefermeture(new \DateTime());   
+       
+        $em->flush();
+        $session->remove('fermeture');
+       return $this->redirect($this->generateUrl('gestion_stock_lister_produit'));
+
+     }
+
+      public function sessionAction(){
+
+        
+        $em = $this->getDoctrine()->getManager();
+        $session = $em->getRepository('PharmacieVenteBundle:Session')->findAll();  
+        return $this->render('PharmacieVenteBundle:Achete:session.html.twig', array('sessions' => $session));
+
+     }
+
+    public function detailsessionAction($id){
+
+        
+        $em = $this->getDoctrine()->getManager();
+        $session = $em->getRepository('PharmacieVenteBundle:Session')->find($id);  
+        // var_dump($session);die;
+         $req = "SELECT * FROM vente,session WHERE session.dateouverture<vente.dateVente AND  session.datefermeture>vente.dateVente AND $id=session.id AND
+         session.agent=vente.agent;";
+        $statement = $em->getConnection()->prepare($req);
+        $statement->execute();
+        $allvente = $statement->fetchAll();
+
+
+        return $this->render('PharmacieVenteBundle:Achete:detailsession.html.twig', array('allvente' => $allvente));
+
+     }
+     
+     public function demarersessionAction()
+
+    {
+
+
+        $session=$this->getRequest()->getSession();
+        $em = $this->getDoctrine()->getManager();
+       // $session->remove('fermeture');
+        if (!$session->has('fermeture')){
+            $session_agent=new Session();
+            $utilisateur= $this->container->get('security.context')->getToken()->getUser();
+            $session_agent->setDateouverture(new \DateTime());
+            $session_agent->setDatefermeture(new \DateTime());
+            $session_agent->setAgent($utilisateur);
+            $em->persist($session_agent); 
+            $em->flush();
+            $session->set('fermeture', array());
+            $fermeture = $session->get('fermeture');
+            $tab= $em->getRepository('PharmacieVenteBundle:Session')->findAll();
+            $fermeture[1] =$tab[count($tab)-1]  ;
+            $session->set('fermeture', $fermeture);
+        }       
+             
+
+        
+       
+         
+       
         if (!$session->has('panier')) {
             $session->set('panier',array());
             $article = 0;
@@ -276,7 +346,8 @@ class AcheteController extends Controller
         if(!$session->has('client'))
             $session->set('client',array());
 
-        $em = $this->getDoctrine()->getManager();
+        
+       
         //$allproducts = $em->getRepository('PharmacieStockBundle:Stock')->findAll();
         $req = "SELECT produit.id AS id, stock.libelle AS libelle, produit.prixUnitaire, stock.quantite, COUNT(*) AS decompte FROM produit,stock WHERE stock.quantite>0 AND produit.stock = stock.id GROUP BY stock.libelle, produit.prixUnitaire;";
         $statement = $em->getConnection()->prepare($req);
@@ -298,6 +369,68 @@ class AcheteController extends Controller
 
         $em = $this->getDoctrine()->getManager();
         $listeClients = $em->getRepository('PharmacieVenteBundle:client')->findAll();
+
+
+        return $this->render('PharmacieVenteBundle:Achete:achete.html.twig', array(
+            'listeproduits' => $produit ,
+            'client' => $client,
+            'panier' => $session->get('panier'),
+            'sclient' => $session->get('client'),
+            'listeclients' => $listeClients,
+
+
+            'produits' => $allproducts,
+            'article' => $article
+            )
+        );
+    }
+
+
+
+
+    public function panierAction()
+
+    {
+
+
+        $session=$this->getRequest()->getSession();
+        $em = $this->getDoctrine()->getManager();
+       
+        if (!$session->has('panier')) {
+            $session->set('panier',array());
+            $article = 0;
+        }
+        else
+            $article = count($session->get('panier'));
+
+        if(!$session->has('client'))
+            $session->set('client',array());
+
+        
+       
+        //$allproducts = $em->getRepository('PharmacieStockBundle:Stock')->findAll();
+        $req = "SELECT produit.id AS id, stock.libelle AS libelle, produit.prixUnitaire, stock.quantite, COUNT(*) AS decompte FROM produit,stock WHERE stock.quantite>0 AND produit.stock = stock.id GROUP BY stock.libelle, produit.prixUnitaire;";
+        $statement = $em->getConnection()->prepare($req);
+        $statement->execute();
+        $allproducts = $statement->fetchAll();
+
+
+        if (count($session->get('panier'))!=0)
+            $produit = $em->getRepository('PharmacieStockBundle:Produit')->findArray(array_keys($session->get('panier')));
+        else
+            $produit = $em->getRepository('PharmacieStockBundle:Produit')->find(-3);
+
+        if (count($session->get('client'))!=0){
+            $id=$session->get('client');
+            $client = $em->getRepository('PharmacieVenteBundle:client')->find($id[1]);
+        }
+        else
+            $client = $em->getRepository('PharmacieVenteBundle:client')->find(-3);
+
+        $em = $this->getDoctrine()->getManager();
+        $listeClients = $em->getRepository('PharmacieVenteBundle:client')->findAll();
+
+
         return $this->render('PharmacieVenteBundle:Achete:achete.html.twig', array(
             'listeproduits' => $produit ,
             'client' => $client,
@@ -452,7 +585,7 @@ class AcheteController extends Controller
         return $this->redirect($this->generateUrl('gestionstock_panier_achete'));
     }
 
-
+ 
 
     public function listerAction()
     {

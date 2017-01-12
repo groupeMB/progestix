@@ -5,7 +5,7 @@
 
 {% block titre %}
     {% if app.user is defined  %}
-        <span class="navbar-brand" style="color: white" href="#">Bienvenue {{ app.user.firstname }} {{ app.user.lastname }}</span>
+        <span class="navbar-brand" style="color: white" href="#">Bienvenue  </span>
     {% endif %}
 {% endblock %}
 
@@ -58,7 +58,14 @@
             </li>
         </ul>
     </li>
-
+   
+    <li  class="dropdown">
+        <a class="text-center" href="{{path('gestionstock_fermeturesession')}}">
+            <strong>Fermeture session</strong>
+            <i class="glyphicon glyphicon-arrow-right"></i>
+        </a>
+    </li>
+    
     {% if app.user%}
 
     <li class="dropdown">
@@ -122,12 +129,15 @@
                                 <i class="fa fa-dashboard fa-fw"></i><span class="glyphicon glyphicon-shopping-cart"></span> Gestion vente
                                 <b class="glyphicon glyphicon-hand-down navbar-right changeIconeDropdownPosition"></b>
                             </a>
-                            <ul class="dropdown-menu">
+                            <ul class="dropdown-menu"> 
                                 <li>
-                                    <span class="btn-block"><a href="{{ path("gestionstock_ajouter_achete") }}"><i class="glyphicon glyphicon-list-alt"></i> Espace vente </a></span>
+                                    <span class="btn-block"><a href="{{ path("gestionstock_demarer_session") }}"><i class="glyphicon glyphicon-list-alt"></i> Démarer une session </a></span>
                                 </li>
                                 <li>
                                     <span class="btn-block"><a href="{{ path("gestionstock_lister_achete_produitVendu") }}"><i class="glyphicon glyphicon-calendar"></i> Historique de vente</a></span>
+                                </li>
+                                <li>
+                                    <span class="btn-block"><a href="{{ path("gestionstock_session") }}"><i class="glyphicon glyphicon-calendar"></i> Session</a></span>
                                 </li>
                                 <li>
                                     <span class="btn-block"><a href="#"><i class="glyphicon glyphicon-time"></i> Recette journalière</a></span>

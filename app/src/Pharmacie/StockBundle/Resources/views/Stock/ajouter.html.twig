@@ -99,6 +99,28 @@
                 </div>
             </div>
 
+
+            <div class="form-group">
+            	<label class="col-sm-4 control-label">Mots Clés:</label>
+			    <div class="col-sm-4">
+			        <input type="text" class="form-control" />
+			        <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
+			    </div>
+			</div>
+
+			<div class="form-group">
+            	<label class="col-sm-4 control-label">Nouveaux champs</label>
+				<button type="button" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-plus"></span>
+				</button>
+			</div>
+			 
+			<div class="form-group">
+				<div class="col-sm-2">\
+	                <a href=""><button type="button" class="btn btn-success"><span class="glyphicon glyphicon-plus">Nouveaux champs</span></button></a>\
+	            </div>
+			</div>
+
+
 			<div id="keywords_div" data-prototype="
 				{% filter escape %}
 		        <div class='form-group'>
@@ -151,6 +173,7 @@
 					</div>
 			      </div>
 			      <div class="modal-footer">
+
 
 			        <span style="margin-left:30%">{{ form_widget(formulaire.Valider, {'attr': {'class': 'btn btn-primary'}}) }}</span>
 

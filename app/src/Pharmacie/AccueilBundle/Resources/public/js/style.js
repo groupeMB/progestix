@@ -160,7 +160,7 @@ function ajouter_keyword(){
         e.preventDefault(); // évite qu'un # apparaisse dans l'URL
         return false;
       });
-    }
+      }
 }
 
 function ajouter_champ_produit(){
@@ -243,6 +243,9 @@ function ajouter_champ_produit(){
     }
     
 }
+
+
+function ajout_
 
 
 /************************************************************************************************************************************************/
