@@ -32,6 +32,7 @@ class AppKernel extends Kernel
             new SaadTazi\GChartBundle\SaadTaziGChartBundle(), //graphe
             new Vich\UploaderBundle\VichUploaderBundle(), //upload de fichiers,
             new Pharmacie\InventaireBundle\PharmacieInventaireBundle(),
+        	new Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'), true)) {
