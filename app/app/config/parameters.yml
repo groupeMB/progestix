@@ -2,9 +2,9 @@
 parameters:
     database_host: 127.0.0.1
     database_port: null
-    database_name: progestix
+    database_name: mb_progestix
     database_user: root
-    database_password: m.diallo
+    database_password: 50cent
     mailer_transport: smtp
     mailer_host: 127.0.0.1
     mailer_user: null
