@@ -22,7 +22,7 @@ use Symfony\Component\Validator\Constraints\DateTime;
 
 class AcheteController extends Controller
 {
-
+ 
     public function infoClientAction(Request $request)
     {
   /*      if($request->isXmlHttpRequest()) {

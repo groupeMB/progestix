@@ -1,8 +1,21 @@
-pharmacie_inventaire_homepage:
-    path:     /
-    defaults: { _controller: PharmacieInventaireBundle:Default:index }
+#pharmacie_inventaire_homepage:
+#    path:     /
+#    defaults: { _controller: PharmacieInventaireBundle:Default:index }
+
 faire_inventaire:
     path: /inventaire
     defaults: { _controller: PharmacieInventaireBundle:Inventaire:index }
     
+creer_modele_inventaire:
+    path: /inventaire/modele/creer
+    defaults: { _controller: PharmacieInventaireBundle:ModeleInventaire:creerModeleInventaire }
+
+modifier_modele_inventaire:
+    path: /inventaire/modele/edit/{id}
+    defaults: { _controller: PharmacieInventaireBundle:ModeleInventaire:modifierModeleInventaire }
+
+
+generer_pdf:
+    path: /inventaire/pdf
+    defaults: { _controller: PharmacieInventaireBundle:Inventaire:pdf }
     
