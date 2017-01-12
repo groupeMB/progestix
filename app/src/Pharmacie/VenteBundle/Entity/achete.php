@@ -44,7 +44,7 @@ class achete
 
 
     /**
-     * @ORM\ManyToOne(targetEntity="client")
+     * @ORM\ManyToOne(targetEntity="Pharmacie\VenteBundle\Entity\client")
      */
     private $idclient;
 

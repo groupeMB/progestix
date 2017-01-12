@@ -59,8 +59,6 @@ class StockAdmin extends AbstractAdmin
                         ->setParameter('id',$categ->getId());
                 }
 
-
-
             ))
 
             ->add('_action', null, array(

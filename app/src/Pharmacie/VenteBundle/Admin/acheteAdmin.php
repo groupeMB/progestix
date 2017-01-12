@@ -1,14 +1,15 @@
 <?php
 
-namespace Pharmacie\StockBundle\Admin;
+namespace Pharmacie\VenteBundle\Admin;
 
+use Pharmacie\VenteBundle\Entity\achete;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 
-class ProduitAdmin extends AbstractAdmin
+class acheteAdmin extends AbstractAdmin
 {
     /**
      * @param DatagridMapper $datagridMapper
@@ -17,10 +18,8 @@ class ProduitAdmin extends AbstractAdmin
     {
         $datagridMapper
             ->add('id')
-            ->add('codebarre')
-            ->add('prixunitaire')
-            ->add('dateperemption')
-            ->add('libelle')
+            ->add('date')
+            ->add('montant')
         ;
     }
 
@@ -31,18 +30,27 @@ class ProduitAdmin extends AbstractAdmin
     {
         $listMapper
             ->add('id')
-            ->add('codebarre')
-            ->add('prixunitaire')
-            ->add('dateperemption')
+            ->add('date')
+            ->add('montant')
+            ->add('codebarre','entity', array(
+                'class' => 'Pharmacie\StockBundle\Entity\Produit',
+                'query_builder' => function(EntityRepository $er,achete $achat){
 
-            ->add('libelle','entity', array(
-                'class' => 'Pharmacie\StockBundle\Entity\Stock',
-                'query_builder' => function(EntityRepository $er,Pharmacie\StockBundle\Entity\Stock $stock){
+                    return $er->createQueryBuilder()
+                        ->from('Pharmacie\StockBundle\Entity\Produit','produit')
+                        ->where('produit.id=:id')
+                        ->setParameter('id',$achat>getIdproduit());
+                }
+
+            ))
+            ->add('nom','entity', array(
+                'class' => 'Pharmacie\VenteBundle\Entity\client',
+                'query_builder' => function(EntityRepository $er,Pharmacie\VenteBundle\Entity\client $client){
 
                     return $er->createQueryBuilder('sc')
-                        ->leftjoin('sc.stock', 'c')
+                        ->leftjoin('sc.idclient', 'c')
                         ->where('c.id=:id')
-                        ->setParameter('id',$stock->getId());
+                        ->setParameter('id',$client->getId());
                 }
 
             ))
@@ -63,17 +71,9 @@ class ProduitAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->with('Ajout de Produit', array('class' => 'col-md-8'))
-                ->add('codebarre')
-                ->add('prixunitaire')
-                ->add('dateperemption')
-            ->end()
-
-            ->with('Types de Stocke', array('class' => 'col-md-4'))
-                ->add('libelle', 'sonata_type_model', array(
-                    'class' => 'Pharmacie\StockBundle\Entity\Stock',
-                    'property' => 'libelle',
-                ))
+            ->with('Achat', array('class' => 'col-md-8'))
+                ->add('date')
+                ->add('montant')
             ->end()
         ;
     }
@@ -85,9 +85,8 @@ class ProduitAdmin extends AbstractAdmin
     {
         $showMapper
             ->add('id')
-            ->add('codebarre')
-            ->add('prixunitaire')
-            ->add('dateperemption')
+            ->add('date')
+            ->add('montant')
         ;
     }
 }

@@ -41,3 +41,15 @@ services:
         arguments: [~, Pharmacie\StockBundle\Entity\SousCategorie, PharmacieStockBundle:SousCategorieAdmin]
         tags:
             - { name: sonata.admin, manager_type: orm, group: admin, label: SousCategorie }
+
+    pharmacie_stock.admin.keyword:
+        class: Pharmacie\StockBundle\Admin\KeywordAdmin
+        arguments: [~, Pharmacie\StockBundle\Entity\Keyword, PharmacieStockBundle:KeywordAdmin]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Keyword }
+
+    pharmacie_stock.admin.champ_produit:
+        class: Pharmacie\StockBundle\Admin\ChampProduitAdmin
+        arguments: [~, Pharmacie\StockBundle\Entity\ChampProduit, PharmacieStockBundle:ChampProduitAdmin]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: ChampProduit }
