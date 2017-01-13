@@ -1,0 +1,102 @@
+/* Credit to bootsnipp.com for the css for the color graph */
+.colorgraph {
+  height: 5px;
+  border-top: 0;
+  background: #c4e17f;
+  
+  background-image: -webkit-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+  background-image: -moz-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+  background-image: -o-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+  background-image: linear-gradient(to right, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+}
+
+
+.myheading
+{
+	background-color: #ed7d31;
+	color: white;
+}
+#logo
+{
+	border: 2px solid #5cb85c; 
+	border-radius: 5px;
+}
+
+.fixe
+{
+    display: block;
+}
+.flot
+{
+    display: none;
+}
+.menuLeft li .titremenu
+{
+	color: white; 
+	text-decoration: none; 
+	font-size: 1em; 
+	background-color: #5cb85c;
+}
+.sous-menu-item
+{
+	text-align: left;
+	padding: 5px;
+	border-radius: 5px;
+	padding-left: 10px;
+}
+.sous-menu-item a, .sous-menu-item a:hover
+{
+	text-decoration: none;
+	color: white;
+}
+
+.menuLeft li ul
+{
+	border-radius: 0; 
+	width:100%; 
+	height: auto; 
+	position: relative;
+}
+
+.menuLeft li ul li span a
+{
+	color: white; 
+	text-decoration: none; 
+	background-color: none;
+
+}
+
+.menuLeft li .legende li a
+{
+	color: #5cb85c;  
+	background-color: none;
+}
+.menuLeft li .legende li
+{
+	color: #5cb85c;
+	background-color: white;
+}
+
+.menuLeft li ul li
+{
+	background-color: #ed7d31;
+	text-align:left; 
+	padding: 10px;
+}
+
+#mytable thead th
+{
+	font-size: 0.9em; 
+	padding: 10px;
+}
+
+#mytable tbody td
+{
+	font-size: 0.9em;
+	background: white;
+}
+#mytable tbody td a
+{
+	width: 33%;
+	float: left;
+}

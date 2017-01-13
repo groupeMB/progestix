@@ -18,24 +18,15 @@ use Pharmacie\VenteBundle\Entity\client;                            //thm
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\SecurityContext;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Validator\Constraints\DateTime;      
+use Symfony\Component\Validator\Constraints\DateTime; 
+
 
 class AcheteController extends Controller
 {
- 
+
     public function infoClientAction(Request $request)
     {
-  /*      if($request->isXmlHttpRequest()) {
-            $idcli = $request->request->get('client');
-            $em = $this->getDoctrine()->getManager();
-            $client = $em->getRepository('PharmacieStockBundle:Stock')->findOneBy(array('id' => $idcli));
-            return new Response(json_encode($client));
-        }
-        return new Response("Erreur: ce n''est pas une requête Ajax",400);
-*/
-
-//        $request = $this->container->get('request');
-//        $idcli = $request->query->get('data');
+ 
         $idcli = $request->request->get('id');
         $em = $this->getDoctrine()->getManager();
         $client = $em->getRepository('PharmacieVenteBundle:client')->findOneBy(array('id' => $idcli));
@@ -50,11 +41,7 @@ class AcheteController extends Controller
             );
         return new Response(json_encode($response));
 
-
-
     }
-
-
 
     public function ajouterAction(Request $request)
     {
@@ -105,11 +92,6 @@ class AcheteController extends Controller
             return $this->redirect($this->generateUrl('gestionstock_ajouter_achete'));
 
     }
-
-
-
-
-
 
 
     // public function modifierAction($id)
@@ -278,7 +260,7 @@ class AcheteController extends Controller
        
         $em->flush();
         $session->remove('fermeture');
-       return $this->redirect($this->generateUrl('gestion_stock_lister_produit'));
+       return $this->redirect($this->generateUrl('gestionstock_session'));
 
      }
 
@@ -297,7 +279,7 @@ class AcheteController extends Controller
         $em = $this->getDoctrine()->getManager();
         $session = $em->getRepository('PharmacieVenteBundle:Session')->find($id);  
         // var_dump($session);die;
-         $req = "SELECT * FROM vente,session WHERE session.dateouverture<vente.dateVente AND  session.datefermeture>vente.dateVente AND $id=session.id AND
+         $req = "SELECT vente.id AS id,vente.montant AS montant,vente.agent AS agent,vente.dateVente AS dateVente FROM vente,session WHERE session.dateouverture<=vente.dateVente AND  session.datefermeture>=vente.dateVente AND $id=session.id AND
          session.agent=vente.agent;";
         $statement = $em->getConnection()->prepare($req);
         $statement->execute();
@@ -308,85 +290,7 @@ class AcheteController extends Controller
 
      }
      
-     public function demarersessionAction()
-
-    {
-
-
-        $session=$this->getRequest()->getSession();
-        $em = $this->getDoctrine()->getManager();
-       // $session->remove('fermeture');
-        if (!$session->has('fermeture')){
-            $session_agent=new Session();
-            $utilisateur= $this->container->get('security.context')->getToken()->getUser();
-            $session_agent->setDateouverture(new \DateTime());
-            $session_agent->setDatefermeture(new \DateTime());
-            $session_agent->setAgent($utilisateur);
-            $em->persist($session_agent); 
-            $em->flush();
-            $session->set('fermeture', array());
-            $fermeture = $session->get('fermeture');
-            $tab= $em->getRepository('PharmacieVenteBundle:Session')->findAll();
-            $fermeture[1] =$tab[count($tab)-1]  ;
-            $session->set('fermeture', $fermeture);
-        }       
-             
-
-        
-       
-         
-       
-        if (!$session->has('panier')) {
-            $session->set('panier',array());
-            $article = 0;
-        }
-        else
-            $article = count($session->get('panier'));
-
-        if(!$session->has('client'))
-            $session->set('client',array());
-
-        
-       
-        //$allproducts = $em->getRepository('PharmacieStockBundle:Stock')->findAll();
-        $req = "SELECT produit.id AS id, stock.libelle AS libelle, produit.prixUnitaire, stock.quantite, COUNT(*) AS decompte FROM produit,stock WHERE stock.quantite>0 AND produit.stock = stock.id GROUP BY stock.libelle, produit.prixUnitaire;";
-        $statement = $em->getConnection()->prepare($req);
-        $statement->execute();
-        $allproducts = $statement->fetchAll();
-
-
-        if (count($session->get('panier'))!=0)
-            $produit = $em->getRepository('PharmacieStockBundle:Produit')->findArray(array_keys($session->get('panier')));
-        else
-            $produit = $em->getRepository('PharmacieStockBundle:Produit')->find(-3);
-
-        if (count($session->get('client'))!=0){
-            $id=$session->get('client');
-            $client = $em->getRepository('PharmacieVenteBundle:client')->find($id[1]);
-        }
-        else
-            $client = $em->getRepository('PharmacieVenteBundle:client')->find(-3);
-
-        $em = $this->getDoctrine()->getManager();
-        $listeClients = $em->getRepository('PharmacieVenteBundle:client')->findAll();
-
-
-        return $this->render('PharmacieVenteBundle:Achete:achete.html.twig', array(
-            'listeproduits' => $produit ,
-            'client' => $client,
-            'panier' => $session->get('panier'),
-            'sclient' => $session->get('client'),
-            'listeclients' => $listeClients,
-
-
-            'produits' => $allproducts,
-            'article' => $article
-            )
-        );
-    }
-
-
-
+    
 
     public function panierAction()
 
@@ -396,6 +300,24 @@ class AcheteController extends Controller
         $session=$this->getRequest()->getSession();
         $em = $this->getDoctrine()->getManager();
        
+        if ($session->has('fermeture')){
+            $session_agent=new Session();
+            $utilisateur= $this->container->get('security.context')->getToken()->getUser();
+            $session_agent->setDateouverture(new \DateTime());
+            $session_agent->setDatefermeture(new \DateTime());
+            $session_agent->setAgent($utilisateur);
+            $em->persist($session_agent); 
+            $em->flush();
+            $session->set('fermeture', array());
+            $fermeture = $session->get('fermeture');
+            $fermeture[1]= $em->getRepository('PharmacieVenteBundle:Session')->findBy(array('id'=>'desc'),1,1);
+            var_dump($fermeture);die;
+           // $fermeture[1] =$tab[count($tab)-1]  ;
+            $session->set('fermeture', $fermeture);
+        }
+
+
+
         if (!$session->has('panier')) {
             $session->set('panier',array());
             $article = 0;
@@ -422,7 +344,7 @@ class AcheteController extends Controller
 
         if (count($session->get('client'))!=0){
             $id=$session->get('client');
-            $client = $em->getRepository('PharmacieVenteBundle:client')->find($id[1]);
+            $client = $em->getRepository('PharmacieVenteBundle:client')->find(1);
         }
         else
             $client = $em->getRepository('PharmacieVenteBundle:client')->find(-3);
@@ -507,7 +429,8 @@ class AcheteController extends Controller
             $em->flush();
         }
        
-        $session->clear();
+        $session->remove('panier');
+        $session->remove('client');
         return $this->redirect($this->generateUrl('gestionstock_panier_achete'));
     }
 
@@ -517,7 +440,7 @@ class AcheteController extends Controller
     public function validerAction()
     {
         // Ajout du client
-        $this->ajouterclient();
+       $this->ajouterclient();
 
 
         $session=$this->getRequest()->getSession();
@@ -553,7 +476,7 @@ class AcheteController extends Controller
             $em->flush();
         }
         
-        $session->clear();
+        $session->remove('panier');
         return $this->redirect($this->generateUrl('gestionstock_panier_achete'));
     }
 

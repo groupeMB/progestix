@@ -59,12 +59,6 @@
         </ul>
     </li>
    
-    <li  class="dropdown">
-        <a class="text-center" href="{{path('gestionstock_fermeturesession')}}">
-            <strong>Fermeture session</strong>
-            <i class="glyphicon glyphicon-arrow-right"></i>
-        </a>
-    </li>
     
     {% if app.user%}
 
@@ -131,7 +125,7 @@
                             </a>
                             <ul class="dropdown-menu"> 
                                 <li>
-                                    <span class="btn-block"><a href="{{ path("gestionstock_demarer_session") }}"><i class="glyphicon glyphicon-list-alt"></i> Démarer une session </a></span>
+                                    <span class="btn-block"><a href="{{ path("gestionstock_ajouter_achete") }}"><i class="glyphicon glyphicon-list-alt"></i> Démarer une session </a></span>
                                 </li>
                                 <li>
                                     <span class="btn-block"><a href="{{ path("gestionstock_lister_achete_produitVendu") }}"><i class="glyphicon glyphicon-calendar"></i> Historique de vente</a></span>

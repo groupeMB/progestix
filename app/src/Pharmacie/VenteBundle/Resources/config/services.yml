@@ -5,8 +5,3 @@ services:
 #    gestion_vente.example:
 #        class: %gestion_vente.example.class%
 #        arguments: [@service_id, "plain_value", %parameter%]
-    pharmacie_vente.admin.achete:
-        class: Pharmacie\VenteBundle\Admin\acheteAdmin
-        arguments: [~, Pharmacie\VenteBundle\Entity\achete, PharmacieVenteBundle:acheteAdmin]
-        tags:
-            - { name: sonata.admin, manager_type: orm, group: admin, label: achete }

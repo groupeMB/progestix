@@ -22,10 +22,7 @@ gestionstock_clientajouter_achete:
 gestionstock_ajouter_achete:
     path:     /achat/ajouter
     defaults: { _controller: PharmacieVenteBundle:Achete:panier }
-gestionstock_demarer_session:
-    path:     /demarer/session
-    defaults: { _controller: PharmacieVenteBundle:Achete:demarersession }
-
+    
 gestionstock_fermeturesession:
     path:     /fermeturesession
     defaults: { _controller: PharmacieVenteBundle:Achete:fermeturesession }
