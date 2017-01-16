@@ -176,10 +176,16 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <span class="btn-block"><a href="#"><i class="glyphicon glyphicon-time"></i> mensuelle</a></span>
+                                    <span class="btn-block"><a href="{{ path("lister_inventaire") }}"><i class="glyphicon glyphicon-time"></i> mensuelle</a></span>
                                 </li>
                                 <li>
-                                    <span class="btn-block"><a href="#" ><i class="glyphicon glyphicon-calendar"></i> Annuelle</a></span>
+                                    <span class="btn-block"><a href="{{ path("lister_inventaire") }}"><i class="glyphicon glyphicon-calendar"></i> Annuelle</a></span>
+                                </li>
+                                <li>
+                                    <span class="btn-block"><a href="{{ path("lister_inventaire") }}"><i class="glyphicon glyphicon-time"></i> peremption</a></span>
+                                </li>
+                                <li>
+                                    <span class="btn-block"><a href="{{ path("lister_inventaire") }}"><i class="glyphicon glyphicon-time"></i> stock</a></span>
                                 </li>
                             </ul>
                         </li>
