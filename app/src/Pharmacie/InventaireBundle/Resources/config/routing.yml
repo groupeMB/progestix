@@ -2,10 +2,14 @@
 #    path:     /
 #    defaults: { _controller: PharmacieInventaireBundle:Default:index }
 
+lister_inventaire:
+    path: /inventaire/lister
+    defaults: { _controller: PharmacieInventaireBundle:ModeleInventaire:listerModeleInventaire}
+
 faire_inventaire:
     path: /inventaire
-    defaults: { _controller: PharmacieInventaireBundle:Inventaire:index }
-    
+    defaults: { _controller: PharmacieInventaireBundle:Inventaire:faireInventaire }
+
 creer_modele_inventaire:
     path: /inventaire/modele/creer
     defaults: { _controller: PharmacieInventaireBundle:ModeleInventaire:creerModeleInventaire }
@@ -18,4 +22,3 @@ modifier_modele_inventaire:
 generer_pdf:
     path: /inventaire/pdf
     defaults: { _controller: PharmacieInventaireBundle:Inventaire:pdf }
-    

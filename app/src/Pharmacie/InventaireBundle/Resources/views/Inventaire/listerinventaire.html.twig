@@ -1,0 +1,55 @@
+{% extends "PharmacieAccueilBundle:Template:template1.html.twig" %}
+{% block main %}
+    <center><h5 class="alert alert-success">Listes des inventaires : Enregistrez votre inventaire </h5></center>
+    <hr class="colorgraph">
+    <div class="row">
+       <div class="col-md-9" >
+        {% block table %}
+        <div class="table-responsive">
+            <table id="mytable" class="table table-bordered ">
+                <thead>
+                    <th>Date inventaire</th>
+                    <th>Date de debut</th>
+                    <th>Date de fin</th>
+                    <th>Modele</th>
+                    
+                    <th>Actions</th>
+                </thead>
+                <tbody>
+                    {% for tag in inventaire %}
+                     <tr>
+                        <td>{{ tag.dateInventaire|date('d-M-Y') }}</td>
+                        <td>{{ tag.dateDebut|date('d-M-Y') }}</td>
+                        <td>{{ tag.dateFin|date('d-M-Y') }}</td>
+                        <td>{{ tag.modeleId.libelle }}</td>
+                       
+                        <td><button class="btn btn-info btn-xs"><span class="glyphicon glyphicon-list"></span>>PDF</button> 
+                            <button class="btn btn-warning btn-xs"><span class="glyphicon glyphicon-list"></span>>Excel</button>
+                        </td>
+                    </tr>  
+                     {% endfor %}                
+                </tbody>
+            </table>
+        </div>
+        {% endblock%}
+        </div>
+        <div class="col-md-3">
+            <center><h5 class="panel-heading myheading">Actions à effectuer</h5></center>
+            <hr class="colorgraph">
+                <button class="btn-success btn-block sous-menu-item"><a href="#" class=""><span class="glyphicon glyphicon-tags"></span>  effectuer inventaire</a></button>
+                <br>
+                <button class="btn-success btn-block sous-menu-item"><a href="#" class=""><span class="glyphicon glyphicon-tags"></span>  modifier inventaire </a></button>
+                 </br>
+                <button type="button" class="btn-success btn-block sous-menu-item"><a href="#"><span class="glyphicon glyphicon-list"></span> supprimer inventaire </a></button>
+        </div>
+    </div>
+    {% block reste %}
+    <div class="row">
+        <div class="col-md-3">
+            <a href="{{ path('faire_inventaire')}}"><button type="button" class="btn btn-warning"><span class="glyphicon glyphicon-plus"></span> effectuer inventaire </button></a>
+        </div>
+    </div>
+    <br/><br/><br/>
+    {% endblock %}
+
+{% endblock%}

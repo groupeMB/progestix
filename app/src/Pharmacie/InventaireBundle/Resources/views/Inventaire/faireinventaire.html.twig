@@ -1,0 +1,71 @@
+{% extends "PharmacieInventaireBundle:Inventaire:listerinventaire.html.twig" %}
+	 {% block table %}
+	 <div class="">
+        <center><h3 class="panel-heading alert-danger">Veuillez effectuer votre inventaire  </h3></center>
+
+        {% set lol="2" %}
+
+		{{ form_start(formulaire, {'attr': {'class': 'form-horizontal'}}) }}
+		{{ form_errors(formulaire) }}
+		
+
+		<!-- debut du formulaire -->
+		<div class="form-group">
+		    {# Génération du label. #}
+		    {{ form_label(formulaire.dateInventaire, "Date Inventaire ", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+
+		    {# Affichage des erreurs pour ce champ précis. #}
+		    {{ form_errors(formulaire.dateInventaire) }}
+
+		    <div class="col-sm-4">
+		        {# Génération de l'input. #}
+		        {{ form_widget(formulaire.dateInventaire, {'attr': {'class': 'form-control select_produit'}}) }}
+		    </div>
+
+		</div>
+
+
+		<div class="form-group">
+		    {# Génération du label. #}
+		    {{ form_label(formulaire.dateDebut, "Date Debut", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+
+		    {# Affichage des erreurs pour ce champ précis. #}
+		    {{ form_errors(formulaire.dateDebut) }}
+
+		    <div class="col-sm-4">
+		        {# Génération de l'input. #}
+		        {{ form_widget(formulaire.dateDebut, {'attr': {'class': 'form-control'}}) }}
+		    </div>
+		</div>
+
+
+		<div class="form-group">
+		    {# Génération du label. #}
+		    {{ form_label(formulaire.dateFin, "Date Fin", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+
+		    {# Affichage des erreurs pour ce champ précis. #}
+		    {{ form_errors(formulaire.dateFin) }}
+
+		    <div class="col-sm-4">
+		        {# Génération de l'input. #}
+		        {{ form_widget(formulaire.dateFin, {'attr': {'class': 'form-control'}}) }}
+		    </div>
+		</div>
+
+		<div class="form-group">
+		    {{ form_label(formulaire.modele_id, "Modele inventaire ", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+		    {{ form_errors(formulaire.modele_id) }}
+		    <div class="col-sm-4">
+		        {{ form_widget(formulaire.modele_id, {'attr': {'class': 'form-control'}}) }}
+		    </div>
+		</div>
+
+        <center><span>{{ form_widget(formulaire.Valider, {'attr': {'class': 'btn btn-success'}}) }}</span>
+         <span>{{ form_widget(formulaire.Annuler, {'label': 'Annuler', 'attr': {'class': 'btn btn-warning'}}) }}</span></center>
+
+		{{ form_widget(formulaire) }}
+		 {{ form_end(formulaire) }}	
+		 </div><br><br>
+
+
+	{%endblock%}

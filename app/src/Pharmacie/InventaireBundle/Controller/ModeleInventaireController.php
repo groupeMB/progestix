@@ -15,9 +15,16 @@ class ModeleInventaireController extends Controller
 
     public function listerModeleInventaireAction()
 
-    {
+    {    $inventaire=$this->getDoctrine()
+            ->getManager()
+            ->getRepository("PharmacieInventaireBundle:Inventaire")
+            ->findAll();
 
-        return $this->render('PharmacieInventaireBundle:Default:index.html.twig');
+        if(!$inventaire)
+            throw $this->createNotFoundException( 'Aucun inventaire n a ete fait ');
+        return $this->render('PharmacieInventaireBundle:Inventaire:listerinventaire.html.twig',array('inventaire'=>$inventaire));
+
+        //return $this->render('PharmacieInventaireBundle:Inventaire:listerinventaire.html.twig');
         
     }
     

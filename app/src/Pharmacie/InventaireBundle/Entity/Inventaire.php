@@ -173,7 +173,7 @@ class Inventaire
      *
      * @return Inventaire
      */
-    public function setModele(\Pharmacie\InventaireBundle\Entity\ModeleInventaire $modele)
+    public function setModeleId(\Pharmacie\InventaireBundle\Entity\ModeleInventaire $modele)
     {
         $this->modele = $modele;
 
@@ -185,8 +185,10 @@ class Inventaire
      *
      * @return \Pharmacie\InventaireBundle\Entity\ModeleInventaire
      */
-    public function getModele()
+    public function getModeleId()
     {
         return $this->modele;
     }
+
+
 }

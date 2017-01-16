@@ -92,4 +92,9 @@ class ModeleInventaire
     {
         return $this->description;
     }
+
+        public function __toString()
+    {
+        return $this->libelle;
+    }
 }
