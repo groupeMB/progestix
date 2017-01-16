@@ -20,6 +20,7 @@ class ProduitAdmin extends AbstractAdmin
             ->add('codebarre')
             ->add('prixunitaire')
             ->add('dateperemption')
+            ->add('libelle')
         ;
     }
 
@@ -33,6 +34,19 @@ class ProduitAdmin extends AbstractAdmin
             ->add('codebarre')
             ->add('prixunitaire')
             ->add('dateperemption')
+
+            ->add('libelle','entity', array(
+                'class' => 'Pharmacie\StockBundle\Entity\Stock',
+                'query_builder' => function(EntityRepository $er,Pharmacie\StockBundle\Entity\Stock $stock){
+
+                    return $er->createQueryBuilder('sc')
+                        ->leftjoin('sc.stock', 'c')
+                        ->where('c.id=:id')
+                        ->setParameter('id',$stock->getId());
+                }
+
+            ))
+
             ->add('_action', null, array(
                 'actions' => array(
                     'show' => array(),
@@ -49,9 +63,18 @@ class ProduitAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('codebarre')
-            ->add('prixunitaire')
-            ->add('dateperemption')
+            ->with('Ajout de Produit', array('class' => 'col-md-8'))
+                ->add('codebarre')
+                ->add('prixunitaire')
+                ->add('dateperemption')
+            ->end()
+
+            ->with('Types de Stocke', array('class' => 'col-md-4'))
+                ->add('libelle', 'sonata_type_model', array(
+                    'class' => 'Pharmacie\StockBundle\Entity\Stock',
+                    'property' => 'libelle',
+                ))
+            ->end()
         ;
     }
 

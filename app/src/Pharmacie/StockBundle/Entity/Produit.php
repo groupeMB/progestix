@@ -57,9 +57,7 @@ class Produit
 
 
 
-    public function __toString(){
-        return $this->getLibelle();
-    }
+
 
 
     public function getContent(){
