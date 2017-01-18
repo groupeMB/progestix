@@ -2,6 +2,66 @@
 
 
 {% block main %}
+  
+  <div class="col-md-1" style="min-width: 5%; min-height: 5%">
+    <a href="#" class="btn btn-warning" style="border-radius: 50%; width: 100%; height: 100%;" data-toggle="modal" data-target="#myModal1"><strong><span class="badge">{{nbPrduitEnCourSeuil}}</span></strong>
+    </a>
+</div>
+<div class="col-md-1" style="min-width: 5%; min-height: 5%">
+    <a href="#" class="btn btn-danger" style="border-radius: 50%; width: 100%; height: 100%" data-toggle="modal" data-target="#myModal"><strong><span class="badge">{{nbProduitSeuil}}</span></strong>
+    </a>
+</div>
+<!-- Partie produits ayant atteint le seuil -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Fermer</span></button>
+        <h4 class="modal-title" id="myModalLabel">Produits ayant atteint le seuil de rupture</h4>
+      </div>
+      <div class="modal-body">
+        {% if nbProduitSeuil>0%}
+            {% for chaine in chaine2%}
+                - {{ chaine }} <br/>
+             {%endfor%}
+        {%else%}
+            Aucun produit
+        {%endif%}
+       
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+        <a href="#" class="btn btn-primary">Verifier Stock</a>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Partie produits en cour de rupture -->
+<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Fermer</span></button>
+        <h4 class="modal-title" id="myModalLabel">Produits en cours de rupture</h4>
+      </div>
+      <div class="modal-body">
+        {% if nbPrduitEnCourSeuil>0%}
+           {% for chaine in chaine1%}
+             - {{ chaine }} <br/>
+            {%endfor%}
+        {%else%}
+            Aucun produit
+        {%endif%}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+        <a href="#" class="btn btn-primary">Verifier Stock</a>
+      </div>
+    </div>
+  </div>
+</div>
+<br/>
+<br/>
 
 
     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
